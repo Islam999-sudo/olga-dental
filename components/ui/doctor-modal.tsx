@@ -5,9 +5,10 @@ import { Doctor } from "@/data/doctors";
 type Props = {
   doctor: Doctor;
   onClose: () => void;
+  onBook: (doctor: Doctor) => void;
 };
 
-export function DoctorModal({ doctor, onClose }: Props) {
+export function DoctorModal({ doctor, onClose, onBook }: Props) {
   return (
     <div className="fixed inset-0 z-[999] flex items-center justify-center px-6">
 
@@ -23,32 +24,25 @@ export function DoctorModal({ doctor, onClose }: Props) {
         <div className="grid md:grid-cols-2">
 
           {/* IMAGE */}
-          {/* IMAGE */}
-<div className="relative h-[520px] md:h-full overflow-hidden bg-zinc-100">
+          <div className="relative h-[520px] md:h-full overflow-hidden bg-zinc-100">
 
-  <div className="absolute inset-0 overflow-hidden">
+            <img
+              src={doctor.image}
+              alt={doctor.name}
+              className="h-full w-full scale-105 object-cover transition duration-700"
+              style={{ objectPosition: "50% 20%" }}
+            />
 
-    <img
-      src={doctor.image}
-      alt={doctor.name}
-      className="h-full w-full scale-105 object-cover transition duration-700"
-      style={{
-        objectPosition: "50% 20%",
-      }}
-    />
+            {/* subtle gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
 
-  </div>
+            {/* experience */}
+            <div className="absolute bottom-6 left-6 text-white">
+              <div className="text-sm opacity-80">Стаж</div>
+              <div className="text-2xl font-semibold">{doctor.exp}</div>
+            </div>
 
-  {/* subtle gradient */}
-  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
-
-  {/* bottom info */}
-  <div className="absolute bottom-6 left-6 text-white">
-    <div className="text-sm opacity-80">Стаж</div>
-    <div className="text-2xl font-semibold">{doctor.exp}</div>
-  </div>
-
-</div>
+          </div>
 
           {/* CONTENT */}
           <div className="flex flex-col justify-center p-10">
@@ -70,9 +64,11 @@ export function DoctorModal({ doctor, onClose }: Props) {
             </p>
 
             {/* education */}
-            <div className="mt-6 rounded-2xl bg-zinc-50 p-4 text-sm">
-              🎓 {doctor.education}
-            </div>
+            {doctor.education && (
+              <div className="mt-6 rounded-2xl bg-zinc-50 p-4 text-sm text-zinc-700">
+                🎓 {doctor.education}
+              </div>
+            )}
 
             {/* specialization */}
             <div className="mt-6">
@@ -97,7 +93,7 @@ export function DoctorModal({ doctor, onClose }: Props) {
               {doctor.highlights.map((h, i) => (
                 <div
                   key={i}
-                  className="rounded-xl border border-zinc-200 bg-white p-3 text-sm"
+                  className="rounded-xl border border-zinc-200 bg-white p-3 text-sm text-zinc-700"
                 >
                   ✓ {h}
                 </div>
@@ -114,7 +110,10 @@ export function DoctorModal({ doctor, onClose }: Props) {
                 Закрыть
               </button>
 
-              <button className="flex-1 rounded-xl bg-zinc-900 py-3 text-sm text-white hover:bg-zinc-700">
+              <button
+                onClick={() => onBook(doctor)}
+                className="flex-1 rounded-xl bg-zinc-900 py-3 text-sm text-white hover:bg-zinc-700"
+              >
                 Записаться
               </button>
 

@@ -9,6 +9,7 @@ import { About } from "@/components/sections/about";
 import { BookingModal } from "@/components/ui/booking-modal";
 import { Doctors } from "@/components/sections/doctors";
 import { Testimonials } from "@/components/sections/testimonials";
+import { ContactMap } from "@/components/sections/contact-map";
 
 export default function Home() {
   const [open, setOpen] = useState(false);
@@ -23,6 +24,7 @@ export default function Home() {
         <Doctors />
         <Testimonials />
         <About />
+        <ContactMap />
       </main>
 
       <BookingModal open={open} onClose={() => setOpen(false)} />
