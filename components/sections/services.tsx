@@ -1,8 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
+
+import { ServiceModal } from "@/components/ui/service-modal";
 
 export function Services() {
+  const [selectedService, setSelectedService] = useState<null | {
+    title: string;
+    price: string;
+    desc: string;
+  }>(null);
+
   const services = [
     {
       title: "Имплантация",
@@ -105,7 +114,10 @@ export function Services() {
                         {service.price}
                       </div>
 
-                      <button className="rounded-full bg-white px-6 py-3 text-sm font-medium text-zinc-900 transition hover:scale-[1.03]">
+                      <button
+                        onClick={() => setSelectedService(service)}
+                        className="rounded-full bg-white px-6 py-3 text-sm font-medium text-zinc-900 transition hover:scale-[1.03]"
+                      >
                         Подробнее
                       </button>
 
@@ -141,12 +153,26 @@ export function Services() {
                   {service.desc}
                 </p>
 
+                <button
+                  onClick={() => setSelectedService(service)}
+                  className="mt-8 rounded-full border border-zinc-200 px-5 py-2.5 text-sm font-medium text-zinc-900 transition hover:bg-zinc-100"
+                >
+                  Подробнее
+                </button>
+
               </motion.div>
             );
           })}
 
         </div>
       </div>
+
+      <ServiceModal
+        open={selectedService !== null}
+        service={selectedService}
+        onClose={() => setSelectedService(null)}
+      />
+
     </section>
   );
 }
