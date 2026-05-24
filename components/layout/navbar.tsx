@@ -1,8 +1,54 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 type Props = {
   onBook: () => void;
 };
 
+const sections = ["services", "about", "doctors", "contact"];
+
 export function Navbar({ onBook }: Props) {
+  const [active, setActive] = useState("");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      let current = "";
+
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+
+        const rect = el.getBoundingClientRect();
+
+        if (rect.top <= 120 && rect.bottom >= 120) {
+          current = id;
+        }
+      }
+
+      setActive(current);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const linkClass = (id: string) =>
+    `transition ${
+      active === id
+        ? "text-zinc-900 font-medium"
+        : "text-zinc-500 hover:text-zinc-900"
+    }`;
+
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   return (
     <header className="fixed left-0 top-0 z-50 w-full border-b border-zinc-200 bg-white/60 backdrop-blur-xl">
 
@@ -13,30 +59,29 @@ export function Navbar({ onBook }: Props) {
           <span className="text-xl font-semibold tracking-[0.18em] text-zinc-900">
             OLGA
           </span>
-
           <span className="mt-1 text-[10px] uppercase tracking-[0.35em] text-zinc-500">
             Dental Clinic
           </span>
         </div>
 
         {/* NAV */}
-        <nav className="hidden gap-8 text-sm text-zinc-600 md:flex">
+        <nav className="hidden gap-8 text-sm md:flex">
 
-          <a href="#services" className="hover:text-zinc-900 transition">
+          <button onClick={() => scrollTo("services")} className={linkClass("services")}>
             Услуги
-          </a>
+          </button>
 
-          <a href="#about" className="hover:text-zinc-900 transition">
+          <button onClick={() => scrollTo("about")} className={linkClass("about")}>
             О клинике
-          </a>
+          </button>
 
-          <a href="#doctors" className="hover:text-zinc-900 transition">
+          <button onClick={() => scrollTo("doctors")} className={linkClass("doctors")}>
             Врачи
-          </a>
+          </button>
 
-          <a href="#contact" className="hover:text-zinc-900 transition">
+          <button onClick={() => scrollTo("contact")} className={linkClass("contact")}>
             Контакты
-          </a>
+          </button>
 
         </nav>
 
@@ -45,7 +90,7 @@ export function Navbar({ onBook }: Props) {
 
           <a
             href="tel:+78126026160"
-            className="hidden sm:inline-flex rounded-full border border-zinc-200 bg-white px-5 py-2.5 text-sm text-zinc-900 shadow-sm hover:border-zinc-400 hover:shadow-md transition"
+            className="hidden sm:inline-flex rounded-full border border-zinc-200 bg-white px-5 py-2.5 text-sm text-zinc-900 shadow-sm hover:shadow-md transition"
           >
             Позвонить
           </a>
