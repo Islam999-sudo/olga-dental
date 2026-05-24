@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 import { doctors, Doctor } from "@/data/doctors";
-import { DoctorModal } from "../ui/doctor-modal";
+import { DoctorModal } from "@/components/ui/doctor-modal";
 
 export function Doctors() {
   const [selected, setSelected] = useState<Doctor | null>(null);
@@ -20,7 +20,7 @@ export function Doctors() {
           </h2>
 
           <p className="mt-4 text-lg text-zinc-600">
-            Опытная команда специалистов.
+            Команда специалистов уровня private clinic.
           </p>
         </div>
 
@@ -35,36 +35,60 @@ export function Doctors() {
               className="group relative h-[520px] overflow-hidden rounded-[36px] shadow-soft-lg"
             >
 
-              {/* IMAGE */}
-              <img
-                src={d.image}
-                alt={d.name}
-                className="absolute inset-0 h-full w-full object-cover object-top transition duration-700 group-hover:scale-110"
-              />
+              {/* IMAGE WRAPPER (ВАЖНО) */}
+              <div className="absolute inset-0 overflow-hidden">
 
-              {/* GRADIENT */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                <img
+                  src={d.image}
+                  alt={d.name}
+                  className="h-full w-full object-cover scale-105 transition duration-700 group-hover:scale-110"
+                  style={{
+                    objectPosition: "50% 20%", // фикс для лица (главное исправление)
+                  }}
+                />
+
+                {/* gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+
+              </div>
 
               {/* CONTENT */}
               <div className="relative flex h-full flex-col justify-end p-7 text-white">
+
+                {/* role badge */}
+                <div className="absolute top-6 left-6 rounded-full bg-white/10 px-3 py-1 text-xs backdrop-blur">
+                  {d.role}
+                </div>
 
                 <h3 className="text-2xl font-semibold">
                   {d.name}
                 </h3>
 
                 <p className="mt-1 text-sm text-white/80">
-                  {d.role} • {d.exp}
+                  {d.exp}
                 </p>
 
                 <p className="mt-4 text-sm text-white/80 leading-relaxed">
                   {d.desc}
                 </p>
 
+                {/* specialization preview */}
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {d.specialization.slice(0, 2).map((s, i) => (
+                    <span
+                      key={i}
+                      className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/80 backdrop-blur"
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+
                 <button
                   onClick={() => setSelected(d)}
-                  className="mt-6 w-fit rounded-full bg-white/90 px-5 py-2 text-sm font-medium text-zinc-900"
+                  className="mt-6 w-fit rounded-full bg-white px-5 py-2 text-sm font-medium text-zinc-900 transition hover:scale-[1.02]"
                 >
-                  Подробнее
+                  Профиль врача
                 </button>
 
               </div>

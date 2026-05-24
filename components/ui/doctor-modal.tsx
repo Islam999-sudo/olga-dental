@@ -13,53 +13,98 @@ export function DoctorModal({ doctor, onClose }: Props) {
 
       {/* overlay */}
       <div
-        className="absolute inset-0 bg-zinc-900/40 backdrop-blur-sm"
+        className="absolute inset-0 bg-zinc-900/50 backdrop-blur-md"
         onClick={onClose}
       />
 
       {/* modal */}
-      <div className="relative w-full max-w-4xl overflow-hidden rounded-[32px] bg-white shadow-2xl">
+      <div className="relative w-full max-w-5xl overflow-hidden rounded-[36px] bg-white shadow-2xl">
 
         <div className="grid md:grid-cols-2">
 
           {/* IMAGE */}
-          <div className="relative h-[420px] overflow-hidden bg-zinc-100">
-            <img
-              src={doctor.image}
-              alt={doctor.name}
-              className="h-full w-full object-cover object-top"
-            />
-          </div>
+          {/* IMAGE */}
+<div className="relative h-[520px] md:h-full overflow-hidden bg-zinc-100">
+
+  <div className="absolute inset-0 overflow-hidden">
+
+    <img
+      src={doctor.image}
+      alt={doctor.name}
+      className="h-full w-full scale-105 object-cover transition duration-700"
+      style={{
+        objectPosition: "50% 20%",
+      }}
+    />
+
+  </div>
+
+  {/* subtle gradient */}
+  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+
+  {/* bottom info */}
+  <div className="absolute bottom-6 left-6 text-white">
+    <div className="text-sm opacity-80">Стаж</div>
+    <div className="text-2xl font-semibold">{doctor.exp}</div>
+  </div>
+
+</div>
 
           {/* CONTENT */}
           <div className="flex flex-col justify-center p-10">
 
-            <h2 className="text-3xl font-semibold text-zinc-900">
+            <span className="text-xs uppercase tracking-[0.25em] text-zinc-400">
+              Врач клиники
+            </span>
+
+            <h2 className="mt-4 text-4xl font-semibold text-zinc-900">
               {doctor.name}
             </h2>
 
             <p className="mt-2 text-sm text-zinc-500">
-              {doctor.role} • {doctor.exp}
+              {doctor.role}
             </p>
 
-            <p className="mt-6 text-sm leading-relaxed text-zinc-600">
+            <p className="mt-6 text-sm text-zinc-600 leading-relaxed">
               {doctor.desc}
             </p>
 
-            {/* INFO */}
-            <div className="mt-8 space-y-3">
-              <div className="rounded-xl bg-zinc-50 p-4 text-sm">
-                ✓ Современные методы лечения
+            {/* education */}
+            <div className="mt-6 rounded-2xl bg-zinc-50 p-4 text-sm">
+              🎓 {doctor.education}
+            </div>
+
+            {/* specialization */}
+            <div className="mt-6">
+              <div className="text-xs uppercase tracking-[0.2em] text-zinc-400">
+                Специализация
               </div>
-              <div className="rounded-xl bg-zinc-50 p-4 text-sm">
-                ✓ Индивидуальный подход
-              </div>
-              <div className="rounded-xl bg-zinc-50 p-4 text-sm">
-                ✓ Цифровая диагностика
+
+              <div className="mt-3 flex flex-wrap gap-2">
+                {doctor.specialization.map((s, i) => (
+                  <span
+                    key={i}
+                    className="rounded-full border border-zinc-200 px-3 py-1 text-xs text-zinc-700"
+                  >
+                    {s}
+                  </span>
+                ))}
               </div>
             </div>
 
-            {/* ACTIONS */}
+            {/* highlights */}
+            <div className="mt-6 space-y-2">
+              {doctor.highlights.map((h, i) => (
+                <div
+                  key={i}
+                  className="rounded-xl border border-zinc-200 bg-white p-3 text-sm"
+                >
+                  ✓ {h}
+                </div>
+              ))}
+            </div>
+
+            {/* actions */}
             <div className="mt-10 flex gap-3">
 
               <button
@@ -76,6 +121,7 @@ export function DoctorModal({ doctor, onClose }: Props) {
             </div>
 
           </div>
+
         </div>
       </div>
     </div>
