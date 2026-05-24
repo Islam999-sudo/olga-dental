@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f6f6f5;
+  --foreground: #18181b;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.9), transparent 45%),
+    radial-gradient(circle at bottom, rgba(255,255,255,0.7), transparent 50%),
+    linear-gradient(to bottom, #f7f7f6, #f1f1ef);
+
+  color: var(--foreground);
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  min-height: 100vh;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* выделение текста */
+::selection {
+  background: rgba(24, 24, 27, 0.08);
+}
+
+/* =========================
+   КУРСОР И ИНТЕРАКТИВНОСТЬ
+   ========================= */
+
+/* ВСЕ кликабельные элементы = рука */
+button,
+a {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* disabled кнопки */
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* hover-движение (очень лёгкое, премиум-ощущение) */
+button:hover,
+a:hover {
+  transform: translateY(-2px);
+}
+
+/* =========================
+   АНИМАЦИИ ФОНА
+   ========================= */
+
+@keyframes float {
+  0% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-18px) translateX(8px); }
+  100% { transform: translateY(0px) translateX(0px); }
+}
+
+@keyframes floatSlow {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-26px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 16s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 20s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: floatSlow 26s ease-in-out infinite;
+}
+
+/* =========================
+   ТЕНИ (ПРЕМИУМ СИСТЕМА)
+   ========================= */
+
+.shadow-soft {
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.06),
+    0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.shadow-soft-lg {
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   КАРТОЧКИ
+   ========================= */
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.10);
+}
+
+/* =========================
+   GLASS ЭФФЕКТ
+   ========================= */
+
+.glass {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
