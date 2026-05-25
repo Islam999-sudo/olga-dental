@@ -1,7 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 type Props = {
   onBook: () => void;
 };
@@ -20,11 +18,7 @@ export function Hero({ onBook }: Props) {
       <div className="relative mx-auto grid min-h-[90vh] max-w-7xl items-center gap-20 px-6 lg:grid-cols-2">
 
         {/* LEFT */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-        >
+        <div>
 
           <span className="inline-flex rounded-full border border-zinc-200 bg-white px-4 py-2 text-sm text-zinc-600 shadow-soft">
             Премиальная стоматология
@@ -42,7 +36,6 @@ export function Hero({ onBook }: Props) {
             Эстетика, имплантация и цифровая диагностика с акцентом на комфорт и результат.
           </p>
 
-          {/* BUTTONS */}
           <div className="mt-10 flex flex-wrap gap-4">
 
             <button
@@ -65,7 +58,6 @@ export function Hero({ onBook }: Props) {
 
           </div>
 
-          {/* PHONE */}
           <div className="mt-6 text-sm text-zinc-600">
             Или позвоните:{" "}
             <a
@@ -76,7 +68,6 @@ export function Hero({ onBook }: Props) {
             </a>
           </div>
 
-          {/* STATS */}
           <div className="mt-14 flex gap-10">
             <div>
               <div className="text-3xl font-semibold">15+</div>
@@ -92,7 +83,7 @@ export function Hero({ onBook }: Props) {
             </div>
           </div>
 
-        </motion.div>
+        </div>
 
         {/* RIGHT */}
         <div className="relative">

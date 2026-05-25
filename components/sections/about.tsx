@@ -1,6 +1,18 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { reveal, viewport } from "@/lib/motion";
+
 export function About() {
   return (
-    <section id="about" className="relative py-32">
+    <motion.section
+      id="about"
+      className="relative py-32"
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewport}
+      variants={reveal}
+    >
       <div className="mx-auto max-w-7xl px-6">
 
         <div className="grid gap-16 lg:grid-cols-2 lg:items-start">
@@ -49,6 +61,6 @@ export function About() {
         </div>
 
       </div>
-    </section>
+    </motion.section>
   );
 }

@@ -1,8 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useState } from "react";
-
+import { motion } from "framer-motion";
 import { ServiceModal } from "@/components/ui/service-modal";
 
 export function Services() {
@@ -42,19 +41,11 @@ export function Services() {
   ];
 
   return (
-    <section
-      id="services"
-      className="relative overflow-hidden py-32"
-    >
+    <section id="services" className="relative overflow-hidden py-32">
 
-      {/* background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute left-[5%] top-[20%] h-[300px] w-[300px] rounded-full bg-white/40 blur-3xl" />
-      </div>
+      {/* HEADER */}
+      <div className="mx-auto max-w-7xl px-6">
 
-      <div className="relative mx-auto max-w-7xl px-6">
-
-        {/* HEADER */}
         <div className="max-w-3xl">
           <span className="text-xs uppercase tracking-[0.25em] text-zinc-500">
             Услуги
@@ -79,19 +70,20 @@ export function Services() {
 
           {services.map((service, idx) => {
 
+            const delay = idx * 0.08;
+
             if (service.featured) {
               return (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, y: 24 }}
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.6, delay }}
                   whileHover={{ y: -6 }}
                   className="group relative overflow-hidden rounded-[36px] bg-zinc-900 p-10 text-white shadow-soft-lg lg:col-span-2 lg:row-span-2"
                 >
 
-                  {/* glow */}
                   <div className="absolute right-0 top-0 h-64 w-64 rounded-full bg-white/10 blur-3xl transition-all duration-500 group-hover:scale-125" />
 
                   <div className="relative">
@@ -131,10 +123,10 @@ export function Services() {
             return (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay }}
                 whileHover={{ y: -4 }}
                 className="rounded-[32px] border border-zinc-200 bg-white/70 p-8 backdrop-blur-xl shadow-soft"
               >

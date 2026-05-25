@@ -1,19 +1,77 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 import { doctors, Doctor } from "@/data/doctors";
 import { DoctorModal } from "@/components/ui/doctor-modal";
 import { BookingModal } from "@/components/ui/booking-modal";
 
 export function Doctors() {
+  const [active, setActive] = useState(0);
+
   const [selected, setSelected] = useState<Doctor | null>(null);
   const [bookingOpen, setBookingOpen] = useState(false);
 
-  return (
-    <section id="doctors" className="relative py-32">
+  const next = () => {
+    setActive((prev) => (prev + 1) % doctors.length);
+  };
 
+  const prev = () => {
+    setActive((prev) => (prev - 1 + doctors.length) % doctors.length);
+  };
+
+  const getPosition = (index: number) => {
+    const diff = index - active;
+
+    // CENTER
+    if (diff === 0) {
+      return {
+        x: 0,
+        scale: 1,
+        rotateY: 0,
+        opacity: 1,
+        zIndex: 30,
+      };
+    }
+
+    // LEFT
+    if (diff === -1 || diff === doctors.length - 1) {
+      return {
+        x: -390,
+        scale: 0.9,
+        rotateY: 28,
+        opacity: 0.72,
+        zIndex: 20,
+      };
+    }
+
+    // RIGHT
+    if (diff === 1 || diff === -(doctors.length - 1)) {
+      return {
+        x: 390,
+        scale: 0.9,
+        rotateY: -28,
+        opacity: 0.72,
+        zIndex: 20,
+      };
+    }
+
+    // HIDDEN
+    return {
+      x: 0,
+      scale: 0.6,
+      rotateY: 0,
+      opacity: 0,
+      zIndex: 0,
+    };
+  };
+
+  return (
+    <section
+      id="doctors"
+      className="relative overflow-hidden py-32"
+    >
       <div className="mx-auto max-w-7xl px-6">
 
         {/* HEADER */}
@@ -27,67 +85,195 @@ export function Doctors() {
           </p>
         </div>
 
-        {/* GRID */}
-        <div className="mt-14 grid gap-8 lg:grid-cols-3">
+        {/* CAROUSEL */}
+        <div className="relative mt-24">
 
-          {doctors.map((d, idx) => (
-            <motion.div
-              key={idx}
-              whileHover={{ y: -6 }}
-              transition={{ duration: 0.3 }}
-              className="group relative h-[520px] overflow-hidden rounded-[36px] shadow-soft-lg"
-            >
+          {/* LEFT BUTTON */}
+          <button
+            onClick={prev}
+            className="
+              absolute left-[-30px] top-1/2 z-50
+              -translate-y-1/2
+              h-16 w-16 rounded-full
+              bg-white/90
+              border border-zinc-200
+              shadow-xl
+              backdrop-blur
+              transition
+              hover:scale-105
+            "
+          >
+            ←
+          </button>
 
-              <img
-                src={d.image}
-                alt={d.name}
-                className="absolute inset-0 h-full w-full object-cover scale-105 transition duration-700 group-hover:scale-110"
-                style={{ objectPosition: "50% 20%" }}
-              />
+          {/* RIGHT BUTTON */}
+          <button
+            onClick={next}
+            className="
+              absolute right-[-30px] top-1/2 z-50
+              -translate-y-1/2
+              h-16 w-16 rounded-full
+              bg-white/90
+              border border-zinc-200
+              shadow-xl
+              backdrop-blur
+              transition
+              hover:scale-105
+            "
+          >
+            →
+          </button>
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+          {/* 3D AREA */}
+          <div
+            className="
+              relative
+              flex h-[620px]
+              items-center justify-center
+              overflow-hidden
+            "
+            style={{
+              perspective: "2200px",
+            }}
+          >
 
-              <div className="relative flex h-full flex-col justify-end p-7 text-white">
+            <AnimatePresence mode="popLayout">
+              {doctors.map((d, index) => {
+                const pos = getPosition(index);
 
-                <div className="absolute top-6 left-6 rounded-full bg-white/10 px-3 py-1 text-xs backdrop-blur">
-                  {d.role}
-                </div>
+                return (
+                  <motion.div
+                    key={d.name}
+                    animate={{
+                      x: pos.x,
+                      scale: pos.scale,
+                      rotateY: pos.rotateY,
+                      opacity: pos.opacity,
+                    }}
+                    transition={{
+                      duration: 0.6,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    style={{
+                      zIndex: pos.zIndex,
+                      transformStyle: "preserve-3d",
+                    }}
+                    className="
+                      absolute
+                      w-[360px]
+                      h-[520px]
+                      cursor-pointer
+                    "
+                    onClick={() => setSelected(d)}
+                  >
 
-                <h3 className="text-2xl font-semibold">{d.name}</h3>
-
-                <p className="mt-1 text-sm text-white/80">{d.exp}</p>
-
-                <p className="mt-4 text-sm text-white/80 leading-relaxed">
-                  {d.desc}
-                </p>
-
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {d.specialization.slice(0, 2).map((s, i) => (
-                    <span
-                      key={i}
-                      className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/80 backdrop-blur"
+                    <motion.div
+                      whileHover={{
+                        y: -10,
+                      }}
+                      className="
+                        relative h-full w-full
+                        overflow-hidden
+                        rounded-[40px]
+                        shadow-2xl
+                      "
                     >
-                      {s}
-                    </span>
-                  ))}
-                </div>
 
-                <button
-                  onClick={() => setSelected(d)}
-                  className="mt-6 w-fit rounded-full bg-white px-5 py-2 text-sm font-medium text-zinc-900"
-                >
-                  Профиль врача
-                </button>
+                      {/* IMAGE */}
+                      <img
+                        src={d.image}
+                        alt={d.name}
+                        className="
+                          absolute inset-0
+                          h-full w-full
+                          object-cover
+                        "
+                        style={{
+                          objectPosition: "50% 20%",
+                        }}
+                      />
 
-              </div>
+                      {/* OVERLAY */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
 
-            </motion.div>
-          ))}
+                      {/* ROLE */}
+                      <div
+                        className="
+                          absolute left-6 top-6
+                          rounded-full
+                          bg-white/10
+                          px-4 py-2
+                          text-xs text-white
+                          backdrop-blur
+                        "
+                      >
+                        {d.role}
+                      </div>
 
+                      {/* CONTENT */}
+                      <div className="absolute bottom-0 p-7 text-white">
+
+                        <h3 className="text-3xl font-semibold">
+                          {d.name}
+                        </h3>
+
+                        <p className="mt-2 text-sm text-white/80">
+                          {d.exp}
+                        </p>
+
+                        <p className="mt-4 text-sm leading-relaxed text-white/80">
+                          {d.desc}
+                        </p>
+
+                        <div className="mt-5 flex flex-wrap gap-2">
+                          {d.specialization
+                            .slice(0, 2)
+                            .map((s, i) => (
+                              <span
+                                key={i}
+                                className="
+                                  rounded-full
+                                  bg-white/10
+                                  px-3 py-1
+                                  text-xs
+                                  backdrop-blur
+                                "
+                              >
+                                {s}
+                              </span>
+                            ))}
+                        </div>
+
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelected(d);
+                          }}
+                          className="
+                            mt-6
+                            rounded-full
+                            bg-white
+                            px-5 py-2
+                            text-sm
+                            font-medium
+                            text-zinc-900
+                          "
+                        >
+                          Профиль врача
+                        </button>
+
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
+
+          </div>
         </div>
       </div>
 
-      {/* DOCTOR MODAL */}
+      {/* MODALS */}
       {selected && (
         <DoctorModal
           doctor={selected}
@@ -99,14 +285,12 @@ export function Doctors() {
         />
       )}
 
-      {/* BOOKING MODAL */}
       <BookingModal
         open={bookingOpen}
         onClose={() => setBookingOpen(false)}
         doctor={null}
         service={null}
       />
-
     </section>
   );
 }

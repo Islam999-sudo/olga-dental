@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { reveal, viewport } from "@/lib/motion";
 
 export function ContactMap() {
   const [copied, setCopied] = useState(false);
@@ -15,8 +17,14 @@ export function ContactMap() {
   };
 
   return (
-    <section id="contact" className="relative py-32">
-
+    <motion.section
+      id="contact"
+      className="relative py-32"
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewport}
+      variants={reveal}
+    >
       <div className="mx-auto max-w-7xl px-6">
 
         {/* HEADER */}
@@ -81,24 +89,20 @@ export function ContactMap() {
               </div>
             </div>
 
-            {/* ACTIONS */}
+            {/* CTA */}
             <div className="flex flex-wrap gap-3">
 
-              {/* ROUTE */}
               <a
-                href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
-                  address
-                )}`}
+                href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`}
                 target="_blank"
-                className="rounded-full bg-zinc-900 px-6 py-3 text-sm text-white hover:bg-zinc-700"
+                className="rounded-full bg-zinc-900 px-6 py-3 text-sm text-white hover:bg-zinc-700 transition"
               >
                 Построить маршрут
               </a>
 
-              {/* CALL */}
               <a
                 href={`tel:${phone}`}
-                className="rounded-full border border-zinc-200 px-6 py-3 text-sm text-zinc-900 hover:bg-zinc-100"
+                className="rounded-full border border-zinc-200 px-6 py-3 text-sm text-zinc-900 hover:bg-zinc-100 transition"
               >
                 Позвонить
               </a>
@@ -108,31 +112,43 @@ export function ContactMap() {
           </div>
 
           {/* RIGHT - MAP */}
-          <div className="relative overflow-hidden rounded-[32px] border border-zinc-200 shadow-soft-lg">
+          <motion.div
+            initial={{ opacity: 0, y: 24, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="relative overflow-hidden rounded-[32px] border border-zinc-200 shadow-soft-lg hover:shadow-2xl transition-shadow duration-300"
+          >
 
-            {/* subtle overlay UI (sticky CTA) */}
-            <div className="absolute bottom-4 left-4 z-10 rounded-2xl bg-white/90 px-4 py-3 text-sm backdrop-blur">
+            {/* overlay gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none" />
+
+            {/* sticky info */}
+            <motion.div
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="absolute bottom-4 left-4 z-10 rounded-2xl bg-white/90 px-4 py-3 text-sm backdrop-blur"
+            >
               <div className="font-medium text-zinc-900">
                 OLGA Dental Clinic
               </div>
               <div className="text-xs text-zinc-500">
                 центр города
               </div>
-            </div>
+            </motion.div>
 
             <iframe
-              src={`https://www.google.com/maps?q=${encodeURIComponent(
-                address
-              )}&output=embed`}
+              src={`https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`}
               className="h-[420px] w-full"
               loading="lazy"
             />
-
-          </div>
+          </motion.div>
 
         </div>
 
       </div>
-    </section>
+    </motion.section>
   );
 }
