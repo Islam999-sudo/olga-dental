@@ -41,81 +41,195 @@ export function ServiceModal({
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
 
-      {/* overlay */}
+      {/* OVERLAY */}
       <div
         onClick={onClose}
-        className="absolute inset-0 bg-black/40 backdrop-blur-md"
+        className="
+          absolute inset-0
+          bg-[#0f766e]/20
+          backdrop-blur-md
+        "
       />
 
-      {/* modal */}
-      <div className="relative w-full max-w-2xl overflow-hidden rounded-[36px] border border-white/20 bg-white p-10 shadow-2xl">
+      {/* MODAL */}
+      <div
+        className="
+          relative
+          w-full
+          max-w-2xl
+          overflow-hidden
+          rounded-[36px]
+          border border-[#12c7b7]/15
+          bg-white
+          p-10
+          shadow-[0_30px_120px_rgba(18,199,183,0.16)]
+        "
+      >
 
-        {/* glow */}
-        <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-zinc-100 blur-3xl" />
+        {/* GLOW */}
+        <div
+          className="
+            absolute
+            right-[-80px]
+            top-[-80px]
+            h-[260px]
+            w-[260px]
+            rounded-full
+            bg-[#12c7b7]/10
+            blur-3xl
+          "
+        />
 
         <div className="relative">
 
-          <span className="rounded-full border border-zinc-200 bg-zinc-100 px-4 py-2 text-xs uppercase tracking-[0.2em] text-zinc-600">
+          {/* TAG */}
+          <span
+            className="
+              rounded-full
+              border border-[#12c7b7]/20
+              bg-[#12c7b7]/8
+              px-4 py-2
+              text-xs
+              uppercase
+              tracking-[0.2em]
+              text-[#0f8f84]
+            "
+          >
             Услуга
           </span>
 
-          <h2 className="mt-8 text-4xl font-semibold tracking-tight text-zinc-900">
+          {/* TITLE */}
+          <h2
+            className="
+              mt-8
+              text-4xl
+              font-semibold
+              tracking-tight
+              text-[#0f766e]
+            "
+          >
             {service.title}
           </h2>
 
-          <p className="mt-6 text-lg leading-relaxed text-zinc-600">
+          {/* DESC */}
+          <p
+            className="
+              mt-6
+              text-lg
+              leading-relaxed
+              text-zinc-600
+            "
+          >
             {service.desc}
           </p>
 
-          {/* benefits */}
+          {/* BENEFITS */}
           <div className="mt-10 grid gap-4 md:grid-cols-2">
 
-            <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-5">
-              <div className="text-sm font-medium text-zinc-900">
+            <div
+              className="
+                rounded-2xl
+                border border-[#12c7b7]/15
+                bg-[#12c7b7]/5
+                p-5
+              "
+            >
+
+              <div className="text-sm font-medium text-[#0f766e]">
                 Современные технологии
               </div>
 
               <div className="mt-2 text-sm text-zinc-600">
                 Используем цифровую диагностику и современные материалы.
               </div>
+
             </div>
 
-            <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-5">
-              <div className="text-sm font-medium text-zinc-900">
+            <div
+              className="
+                rounded-2xl
+                border border-[#12c7b7]/15
+                bg-[#12c7b7]/5
+                p-5
+              "
+            >
+
+              <div className="text-sm font-medium text-[#0f766e]">
                 Комфорт пациента
               </div>
 
               <div className="mt-2 text-sm text-zinc-600">
                 Максимально бережный и спокойный процесс лечения.
               </div>
+
             </div>
 
           </div>
 
-          {/* bottom */}
-          <div className="mt-12 flex flex-col gap-4 border-t border-zinc-200 pt-8 md:flex-row md:items-center md:justify-between">
+          {/* BOTTOM */}
+          <div
+            className="
+              mt-12
+              flex flex-col gap-4
+              border-t border-[#12c7b7]/15
+              pt-8
+              md:flex-row
+              md:items-center
+              md:justify-between
+            "
+          >
 
             <div>
-              <div className="text-sm text-zinc-500">
+
+              <div className="text-sm text-[#12a89d]">
                 Стоимость
               </div>
 
-              <div className="mt-1 text-3xl font-semibold text-zinc-900">
+              <div
+                className="
+                  mt-1
+                  text-3xl
+                  font-semibold
+                  text-[#0f766e]
+                "
+              >
                 {service.price}
               </div>
+
             </div>
 
             <div className="flex gap-3">
 
               <button
                 onClick={onClose}
-                className="rounded-full border border-zinc-200 px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-100"
+                className="
+                  rounded-full
+                  border border-[#12c7b7]/20
+                  bg-white
+                  px-6 py-3
+                  text-sm
+                  font-medium
+                  text-[#0f766e]
+                  transition
+                  hover:bg-[#12c7b7]/5
+                "
               >
                 Закрыть
               </button>
 
               <button
-                className="rounded-full bg-zinc-900 px-6 py-3 text-sm text-white hover:bg-zinc-700"
+                className="
+                  rounded-full
+                  bg-[#12c7b7]
+                  px-6 py-3
+                  text-sm
+                  font-medium
+                  text-white
+                  shadow-lg
+                  shadow-[#12c7b7]/30
+                  transition
+                  hover:bg-[#10b3a5]
+                "
               >
                 Записаться
               </button>

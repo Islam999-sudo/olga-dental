@@ -41,17 +41,66 @@ export function Services() {
   ];
 
   return (
-    <section id="services" className="relative overflow-hidden py-32">
+    <section
+      id="services"
+      className="relative overflow-hidden py-32"
+    >
 
-      {/* HEADER */}
-      <div className="mx-auto max-w-7xl px-6">
+      {/* BACKGROUND */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
 
+        <div
+          className="
+            absolute
+            left-[-120px]
+            top-[120px]
+            h-[420px]
+            w-[420px]
+            rounded-full
+            bg-[#12c7b7]/15
+            blur-3xl
+          "
+        />
+
+        <div
+          className="
+            absolute
+            right-[-120px]
+            bottom-[0]
+            h-[360px]
+            w-[360px]
+            rounded-full
+            bg-[#12c7b7]/10
+            blur-3xl
+          "
+        />
+
+      </div>
+
+      <div className="relative mx-auto max-w-7xl px-6">
+
+        {/* HEADER */}
         <div className="max-w-3xl">
-          <span className="text-xs uppercase tracking-[0.25em] text-zinc-500">
+
+          <span
+            className="
+              inline-flex
+              rounded-full
+              border border-[#12c7b7]/20
+              bg-[#12c7b7]/10
+              px-4
+              py-2
+              text-xs
+              font-medium
+              uppercase
+              tracking-[0.25em]
+              text-[#0f8f84]
+            "
+          >
             Услуги
           </span>
 
-          <h2 className="mt-4 text-4xl font-semibold tracking-tight text-zinc-900 md:text-6xl">
+          <h2 className="mt-6 text-4xl font-semibold tracking-tight text-[#0f8f84] md:text-6xl">
             Лечение,
             <br />
             ориентированное
@@ -59,10 +108,11 @@ export function Services() {
             на результат
           </h2>
 
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-600">
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#4b8f89]">
             Современные технологии и прозрачный подход без лишних процедур
             и скрытых услуг.
           </p>
+
         </div>
 
         {/* GRID */}
@@ -72,6 +122,7 @@ export function Services() {
 
             const delay = idx * 0.08;
 
+            // FEATURED CARD
             if (service.featured) {
               return (
                 <motion.div
@@ -81,34 +132,96 @@ export function Services() {
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.6, delay }}
                   whileHover={{ y: -6 }}
-                  className="group relative overflow-hidden rounded-[36px] bg-zinc-900 p-10 text-white shadow-soft-lg lg:col-span-2 lg:row-span-2"
+                  className="
+                    group
+                    relative
+                    overflow-hidden
+                    rounded-[36px]
+                    bg-gradient-to-br
+                    from-[#12c7b7]
+                    via-[#16d6c5]
+                    to-[#0fb3a5]
+                    p-10
+                    text-white
+                    shadow-[0_20px_80px_rgba(18,199,183,0.22)]
+                    lg:col-span-2
+                    lg:row-span-2
+                  "
                 >
 
-                  <div className="absolute right-0 top-0 h-64 w-64 rounded-full bg-white/10 blur-3xl transition-all duration-500 group-hover:scale-125" />
+                  {/* glow */}
+                  <div
+                    className="
+                      absolute
+                      right-[-80px]
+                      top-[-80px]
+                      h-[260px]
+                      w-[260px]
+                      rounded-full
+                      bg-white/15
+                      blur-3xl
+                      transition-all
+                      duration-700
+                      group-hover:scale-125
+                    "
+                  />
+
+                  {/* overlay */}
+                  <div
+                    className="
+                      absolute inset-0
+                      bg-[linear-gradient(135deg,rgba(255,255,255,0.10),transparent)]
+                    "
+                  />
 
                   <div className="relative">
 
-                    <span className="rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs uppercase tracking-[0.2em] text-zinc-300">
-                      Premium Care
+                    <span
+                      className="
+                        rounded-full
+                        border border-white/30
+                        bg-white/10
+                        px-4
+                        py-2
+                        text-xs
+                        uppercase
+                        tracking-[0.2em]
+                        text-white
+                        backdrop-blur
+                      "
+                    >
+                      Популярная Услуга
                     </span>
 
                     <h3 className="mt-10 text-4xl font-semibold md:text-5xl">
                       {service.title}
                     </h3>
 
-                    <p className="mt-6 max-w-xl text-lg leading-relaxed text-zinc-300">
+                    <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/90">
                       {service.desc}
                     </p>
 
                     <div className="mt-10 flex items-center justify-between">
 
-                      <div className="text-2xl font-semibold">
+                      <div className="text-2xl font-semibold text-white">
                         {service.price}
                       </div>
 
                       <button
                         onClick={() => setSelectedService(service)}
-                        className="rounded-full bg-white px-6 py-3 text-sm font-medium text-zinc-900 transition hover:scale-[1.03]"
+                        className="
+                          rounded-full
+                          bg-white
+                          px-6
+                          py-3
+                          text-sm
+                          font-medium
+                          text-[#0f8f84]
+                          shadow-lg
+                          transition
+                          hover:scale-[1.03]
+                          hover:bg-[#eafffc]
+                        "
                       >
                         Подробнее
                       </button>
@@ -120,6 +233,7 @@ export function Services() {
               );
             }
 
+            // SMALL CARDS
             return (
               <motion.div
                 key={idx}
@@ -127,27 +241,55 @@ export function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.5, delay }}
-                whileHover={{ y: -4 }}
-                className="rounded-[32px] border border-zinc-200 bg-white/70 p-8 backdrop-blur-xl shadow-soft"
+                whileHover={{ y: -5 }}
+                className="
+                  rounded-[32px]
+                  border
+                  border-[#12c7b7]/15
+                  bg-white/90
+                  p-8
+                  backdrop-blur-xl
+                  shadow-[0_10px_40px_rgba(18,199,183,0.08)]
+                  transition-all
+                  duration-300
+                  hover:border-[#12c7b7]/35
+                  hover:shadow-[0_20px_60px_rgba(18,199,183,0.14)]
+                "
               >
 
                 <div className="flex items-center justify-between">
-                  <h3 className="text-xl font-semibold text-zinc-900">
+
+                  <h3 className="text-xl font-semibold text-[#0f8f84]">
                     {service.title}
                   </h3>
 
-                  <span className="text-sm font-medium text-zinc-500">
+                  <span className="text-sm font-medium text-[#12c7b7]">
                     {service.price}
                   </span>
+
                 </div>
 
-                <p className="mt-5 text-sm leading-relaxed text-zinc-600">
+                <p className="mt-5 text-sm leading-relaxed text-[#5f8f8b]">
                   {service.desc}
                 </p>
 
                 <button
                   onClick={() => setSelectedService(service)}
-                  className="mt-8 rounded-full border border-zinc-200 px-5 py-2.5 text-sm font-medium text-zinc-900 transition hover:bg-zinc-100"
+                  className="
+                    mt-8
+                    rounded-full
+                    border
+                    border-[#12c7b7]/20
+                    bg-[#12c7b7]/8
+                    px-5
+                    py-2.5
+                    text-sm
+                    font-medium
+                    text-[#0f8f84]
+                    transition
+                    hover:bg-[#12c7b7]
+                    hover:text-white
+                  "
                 >
                   Подробнее
                 </button>

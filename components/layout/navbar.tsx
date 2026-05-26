@@ -6,10 +6,11 @@ type Props = {
   onBook: () => void;
 };
 
-const sections = ["services", "about", "doctors", "contact"];
+const sections = ["services", "doctors", "about", "contact"];
 
 export function Navbar({ onBook }: Props) {
   const [active, setActive] = useState("");
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,6 +18,7 @@ export function Navbar({ onBook }: Props) {
 
       for (const id of sections) {
         const el = document.getElementById(id);
+
         if (!el) continue;
 
         const rect = el.getBoundingClientRect();
@@ -27,20 +29,17 @@ export function Navbar({ onBook }: Props) {
       }
 
       setActive(current);
+      setScrolled(window.scrollY > 101);
     };
 
     window.addEventListener("scroll", handleScroll);
+
     handleScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
-
-  const linkClass = (id: string) =>
-    `transition ${
-      active === id
-        ? "text-zinc-900 font-medium"
-        : "text-zinc-500 hover:text-zinc-900"
-    }`;
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({
@@ -49,39 +48,118 @@ export function Navbar({ onBook }: Props) {
     });
   };
 
-  return (
-    <header className="fixed left-0 top-0 z-50 w-full border-b border-zinc-200 bg-white/60 backdrop-blur-xl">
+  const linkClass = (id: string) =>
+    `
+      relative transition duration-300
+      ${
+        active === id
+          ? "text-[#36DFDA] font-medium"
+          : "text-zinc-500 hover:text-[#36DFDA]"
+      }
+    `;
 
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+  return (
+    <header
+      className={`
+        fixed left-0 top-0 z-50 w-full
+        transition-all duration-500
+        ${
+          scrolled
+            ? "border-b border-[#36DFDA]/10 bg-white/80 backdrop-blur-2xl shadow-[0_8px_30px_rgba(54,223,218,0.08)]"
+            : "bg-white/60 backdrop-blur-xl"
+        }
+      `}
+    >
+
+      {/* BACKGROUND GLOW */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+
+        <div
+          className="
+            absolute left-[8%] top-[-120px]
+            h-[260px] w-[260px]
+            rounded-full
+            bg-[#36DFDA]/15
+            blur-3xl
+          "
+        />
+
+        <div
+          className="
+            absolute right-[10%] top-[-140px]
+            h-[240px] w-[240px]
+            rounded-full
+            bg-[#36DFDA]/10
+            blur-3xl
+          "
+        />
+
+      </div>
+
+      <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
 
         {/* LOGO */}
-        <div className="flex flex-col leading-none">
-          <span className="text-xl font-semibold tracking-[0.18em] text-zinc-900">
+        <button
+          onClick={() => scrollTo("services")}
+          className="flex flex-col leading-none text-left"
+        >
+
+          <span
+            className="
+              bg-gradient-to-r
+              from-[#1f8f8b]
+              via-[#36DFDA]
+              to-[#7ff5ef]
+              bg-clip-text
+              text-xl
+              font-semibold
+              tracking-[0.18em]
+              text-transparent
+            "
+          >
             OLGA
           </span>
+
           <span className="mt-1 text-[10px] uppercase tracking-[0.35em] text-zinc-500">
             Dental Clinic
           </span>
-        </div>
 
-        {/* NAV */}
-        <nav className="hidden gap-8 text-sm md:flex">
+        </button>
 
-          <button onClick={() => scrollTo("services")} className={linkClass("services")}>
-            Услуги
-          </button>
+        {/* NAVIGATION */}
+        <nav className="hidden gap-10 text-sm md:flex">
 
-          <button onClick={() => scrollTo("about")} className={linkClass("about")}>
-            О клинике
-          </button>
+          {sections.map((id) => {
+            const labels: Record<string, string> = {
+              services: "Услуги",
+              about: "О клинике",
+              doctors: "Врачи",
+              contact: "Контакты",
+            };
 
-          <button onClick={() => scrollTo("doctors")} className={linkClass("doctors")}>
-            Врачи
-          </button>
+            return (
+              <button
+                key={id}
+                onClick={() => scrollTo(id)}
+                className={linkClass(id)}
+              >
+                {labels[id]}
 
-          <button onClick={() => scrollTo("contact")} className={linkClass("contact")}>
-            Контакты
-          </button>
+                {active === id && (
+                  <span
+                    className="
+                      absolute -bottom-2 left-1/2
+                      h-[3px] w-6
+                      -translate-x-1/2
+                      rounded-full
+                      bg-[#36DFDA]
+                      shadow-[0_0_18px_rgba(54,223,218,0.8)]
+                    "
+                  />
+                )}
+              </button>
+            );
+          })}
 
         </nav>
 
@@ -90,14 +168,43 @@ export function Navbar({ onBook }: Props) {
 
           <a
             href="tel:+78126026160"
-            className="hidden sm:inline-flex rounded-full border border-zinc-200 bg-white px-5 py-2.5 text-sm text-zinc-900 shadow-sm hover:shadow-md transition"
+            className="
+              hidden sm:inline-flex
+              items-center
+              rounded-full
+              border border-[#36DFDA]/30
+              bg-white/90
+              px-5 py-2.5
+              text-sm
+              font-medium
+              text-[#169e99]
+              shadow-sm
+              transition-all duration-300
+              hover:border-[#36DFDA]
+              hover:bg-[#ecfffe]
+              hover:shadow-[0_8px_24px_rgba(54,223,218,0.18)]
+              hover:-translate-y-[1px]
+            "
           >
             Позвонить
           </a>
 
           <button
             onClick={onBook}
-            className="rounded-full bg-zinc-900 px-5 py-2.5 text-sm text-white hover:bg-zinc-700 transition"
+            className="
+              rounded-full
+              bg-[#36DFDA]
+              px-5 py-2.5
+              text-sm
+              font-medium
+              text-white
+              shadow-[0_12px_30px_rgba(54,223,218,0.35)]
+              transition-all duration-300
+              hover:bg-[#2fd1cc]
+              hover:shadow-[0_16px_40px_rgba(54,223,218,0.45)]
+              hover:-translate-y-[2px]
+              active:translate-y-0
+            "
           >
             Запись
           </button>

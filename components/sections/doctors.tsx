@@ -72,17 +72,78 @@ export function Doctors() {
       id="doctors"
       className="relative overflow-hidden py-32"
     >
-      <div className="mx-auto max-w-7xl px-6">
+
+      {/* BACKGROUND */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+
+        <div
+          className="
+            absolute
+            left-[-120px]
+            top-[120px]
+            h-[420px]
+            w-[420px]
+            rounded-full
+            bg-[#12c7b7]/10
+            blur-3xl
+          "
+        />
+
+        <div
+          className="
+            absolute
+            right-[-120px]
+            bottom-[0]
+            h-[360px]
+            w-[360px]
+            rounded-full
+            bg-[#12c7b7]/10
+            blur-3xl
+          "
+        />
+
+      </div>
+
+      <div className="relative mx-auto max-w-7xl px-6">
 
         {/* HEADER */}
         <div className="max-w-3xl">
-          <h2 className="text-4xl md:text-6xl font-semibold text-zinc-900">
+
+          <span
+            className="
+              inline-flex
+              rounded-full
+              border border-[#12c7b7]/20
+              bg-[#12c7b7]/10
+              px-4
+              py-2
+              text-xs
+              font-medium
+              uppercase
+              tracking-[0.25em]
+              text-[#0f8f84]
+            "
+          >
+            Специалисты
+          </span>
+
+          <h2
+            className="
+              mt-6
+              text-4xl
+              font-semibold
+              tracking-tight
+              text-[#0f8f84]
+              md:text-6xl
+            "
+          >
             Врачи
           </h2>
 
-          <p className="mt-4 text-lg text-zinc-600">
+          <p className="mt-4 text-lg leading-relaxed text-[#5f8d88]">
             Команда специалистов уровня private clinic.
           </p>
+
         </div>
 
         {/* CAROUSEL */}
@@ -95,12 +156,16 @@ export function Doctors() {
               absolute left-[-30px] top-1/2 z-50
               -translate-y-1/2
               h-16 w-16 rounded-full
-              bg-white/90
-              border border-zinc-200
-              shadow-xl
-              backdrop-blur
-              transition
+              border border-[#12c7b7]/15
+              bg-white/85
+              text-[#0f8f84]
+              shadow-[0_15px_40px_rgba(18,199,183,0.15)]
+              backdrop-blur-xl
+              transition-all duration-300
               hover:scale-105
+              hover:border-[#12c7b7]/40
+              hover:bg-[#12c7b7]
+              hover:text-white
             "
           >
             ←
@@ -113,12 +178,16 @@ export function Doctors() {
               absolute right-[-30px] top-1/2 z-50
               -translate-y-1/2
               h-16 w-16 rounded-full
-              bg-white/90
-              border border-zinc-200
-              shadow-xl
-              backdrop-blur
-              transition
+              border border-[#12c7b7]/15
+              bg-white/85
+              text-[#0f8f84]
+              shadow-[0_15px_40px_rgba(18,199,183,0.15)]
+              backdrop-blur-xl
+              transition-all duration-300
               hover:scale-105
+              hover:border-[#12c7b7]/40
+              hover:bg-[#12c7b7]
+              hover:text-white
             "
           >
             →
@@ -175,7 +244,8 @@ export function Doctors() {
                         relative h-full w-full
                         overflow-hidden
                         rounded-[40px]
-                        shadow-2xl
+                        border border-[#12c7b7]/15
+                        shadow-[0_25px_80px_rgba(18,199,183,0.14)]
                       "
                     >
 
@@ -193,14 +263,32 @@ export function Doctors() {
                         }}
                       />
 
-                      {/* OVERLAY */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+                      {/* TURQUOISE OVERLAY */}
+                      <div
+                        className="
+                          absolute inset-0
+                          bg-gradient-to-t
+                          from-[#0f8f84]/90
+                          via-[#0f8f84]/25
+                          to-transparent
+                        "
+                      />
+
+                      {/* EXTRA GLOW */}
+                      <div
+                        className="
+                          absolute
+                          inset-0
+                          bg-[#12c7b7]/10
+                        "
+                      />
 
                       {/* ROLE */}
                       <div
                         className="
                           absolute left-6 top-6
                           rounded-full
+                          border border-white/10
                           bg-white/10
                           px-4 py-2
                           text-xs text-white
@@ -225,6 +313,7 @@ export function Doctors() {
                           {d.desc}
                         </p>
 
+                        {/* TAGS */}
                         <div className="mt-5 flex flex-wrap gap-2">
                           {d.specialization
                             .slice(0, 2)
@@ -233,9 +322,11 @@ export function Doctors() {
                                 key={i}
                                 className="
                                   rounded-full
+                                  border border-white/10
                                   bg-white/10
                                   px-3 py-1
                                   text-xs
+                                  text-white
                                   backdrop-blur
                                 "
                               >
@@ -244,6 +335,7 @@ export function Doctors() {
                             ))}
                         </div>
 
+                        {/* BUTTON */}
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
@@ -256,7 +348,11 @@ export function Doctors() {
                             px-5 py-2
                             text-sm
                             font-medium
-                            text-zinc-900
+                            text-[#0f8f84]
+                            transition-all
+                            duration-300
+                            hover:bg-[#12c7b7]
+                            hover:text-white
                           "
                         >
                           Профиль врача
