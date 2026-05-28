@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
 import { doctors, Doctor } from "@/data/doctors";
 import { DoctorModal } from "@/components/ui/doctor-modal";
@@ -13,23 +12,8 @@ type Props = {
 export function Doctors({ onBookDoctor }: Props) {
   const [active, setActive] = useState(0);
   const [selected, setSelected] = useState<Doctor | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
 
-  const dragBlockedRef = useRef(false);
-
-  useEffect(() => {
-    const updateScreen = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    updateScreen();
-
-    window.addEventListener("resize", updateScreen);
-
-    return () => {
-      window.removeEventListener("resize", updateScreen);
-    };
-  }, []);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
   const next = () => {
     setActive((prev) => (prev + 1) % doctors.length);
@@ -39,87 +23,221 @@ export function Doctors({ onBookDoctor }: Props) {
     setActive((prev) => (prev - 1 + doctors.length) % doctors.length);
   };
 
-  const handleSwipe = (
-    offsetX: number,
-    velocityX: number
-  ) => {
-    const swipeDistance = 65;
-    const swipeVelocity = 450;
-
-    const swipedLeft =
-      offsetX < -swipeDistance || velocityX < -swipeVelocity;
-
-    const swipedRight =
-      offsetX > swipeDistance || velocityX > swipeVelocity;
-
-    if (swipedLeft) {
-      dragBlockedRef.current = true;
-      next();
-
-      window.setTimeout(() => {
-        dragBlockedRef.current = false;
-      }, 250);
-
-      return;
-    }
-
-    if (swipedRight) {
-      dragBlockedRef.current = true;
-      prev();
-
-      window.setTimeout(() => {
-        dragBlockedRef.current = false;
-      }, 250);
-    }
+  const getPrevDoctor = () => {
+    return doctors[(active - 1 + doctors.length) % doctors.length];
   };
 
-  const getPosition = (index: number) => {
-    const diff = index - active;
-
-    const sideOffset = isMobile ? 150 : 390;
-
-    if (diff === 0) {
-      return {
-        x: 0,
-        scale: 1,
-        rotateY: 0,
-        opacity: 1,
-        zIndex: 3,
-        pointerEvents: "auto" as const,
-      };
-    }
-
-    if (diff === -1 || diff === doctors.length - 1) {
-      return {
-        x: -sideOffset,
-        scale: isMobile ? 0.8 : 0.9,
-        rotateY: isMobile ? 18 : 28,
-        opacity: isMobile ? 0.5 : 0.72,
-        zIndex: 2,
-        pointerEvents: "auto" as const,
-      };
-    }
-
-    if (diff === 1 || diff === -(doctors.length - 1)) {
-      return {
-        x: sideOffset,
-        scale: isMobile ? 0.8 : 0.9,
-        rotateY: isMobile ? -18 : -28,
-        opacity: isMobile ? 0.5 : 0.72,
-        zIndex: 2,
-        pointerEvents: "auto" as const,
-      };
-    }
-
-    return {
-      x: 0,
-      scale: 0.6,
-      rotateY: 0,
-      opacity: 0,
-      zIndex: 0,
-      pointerEvents: "none" as const,
-    };
+  const getNextDoctor = () => {
+    return doctors[(active + 1) % doctors.length];
   };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX === null) return;
+
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX - touchEndX;
+
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        next();
+      } else {
+        prev();
+      }
+    }
+
+    setTouchStartX(null);
+  };
+
+  const DoctorCard = ({
+    doctor,
+    variant = "main",
+    onClick,
+  }: {
+    doctor: Doctor;
+    variant?: "main" | "side" | "mobile";
+    onClick: () => void;
+  }) => {
+    const isMain = variant === "main";
+    const isMobile = variant === "mobile";
+
+    return (
+      <article
+        onClick={onClick}
+        className={`
+          group
+          relative
+          cursor-pointer
+          overflow-hidden
+          rounded-[34px]
+          border
+          border-[var(--accent-light)]/15
+          bg-[#071412]
+          shadow-[0_24px_80px_rgba(18,199,183,0.14)]
+          transition-all
+          duration-300
+          hover:-translate-y-2
+          hover:shadow-[0_34px_100px_rgba(18,199,183,0.22)]
+          ${isMobile ? "h-[455px] w-full max-w-[320px]" : ""}
+          ${isMain ? "h-[540px] w-[380px]" : ""}
+          ${variant === "side" ? "h-[470px] w-[315px] opacity-75 hover:opacity-100" : ""}
+        `}
+      >
+        {/* IMAGE */}
+        <img
+          src={doctor.image}
+          alt={doctor.name}
+          draggable={false}
+          loading="eager"
+          decoding="async"
+          className="
+            absolute
+            inset-0
+            z-[1]
+            h-full
+            w-full
+            object-cover
+            select-none
+          "
+          style={{
+            objectPosition: "50% 20%",
+          }}
+        />
+
+        {/* DARK OVERLAY */}
+        <div
+          className="
+            pointer-events-none
+            absolute
+            inset-0
+            z-[2]
+            bg-gradient-to-t
+            from-[#021210]/94
+            via-[#021210]/24
+            to-transparent
+          "
+        />
+
+        {/* TURQUOISE BOTTOM GLOW */}
+        <div
+          className="
+            pointer-events-none
+            absolute
+            inset-x-0
+            bottom-0
+            z-[3]
+            h-[52%]
+            bg-[radial-gradient(circle_at_bottom,rgba(36,211,197,0.46),transparent_72%)]
+          "
+        />
+
+        {/* ROLE */}
+        <div
+          className="
+            absolute
+            left-5
+            top-5
+            z-[5]
+            max-w-[calc(100%-40px)]
+            rounded-full
+            border
+            border-white/20
+            bg-white/85
+            px-4
+            py-2
+            text-xs
+            font-medium
+            text-[var(--accent)]
+            shadow-[0_8px_24px_rgba(18,199,183,0.12)]
+          "
+        >
+          {doctor.role}
+        </div>
+
+        {/* CONTENT */}
+        <div
+          className="
+            absolute
+            inset-x-0
+            bottom-0
+            z-[6]
+            p-6
+            text-white
+          "
+        >
+          <h3
+            className={`
+              font-semibold
+              leading-tight
+              tracking-tight
+              text-white
+              ${isMain ? "text-3xl" : "text-2xl"}
+              ${isMobile ? "text-[26px]" : ""}
+            `}
+          >
+            {doctor.name}
+          </h3>
+
+          <p className="mt-2 text-sm text-white/82">
+            {doctor.exp}
+          </p>
+
+          <div className="mt-4 flex flex-wrap gap-2">
+            {doctor.specialization.slice(0, 2).map((item) => (
+              <span
+                key={item}
+                className="
+                  rounded-full
+                  border
+                  border-white/15
+                  bg-white/12
+                  px-3
+                  py-1.5
+                  text-[11px]
+                  font-medium
+                  text-white
+                "
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelected(doctor);
+            }}
+            className="
+              mt-6
+              rounded-full
+              bg-white
+              px-6
+              py-3
+              text-sm
+              font-medium
+              text-[var(--accent)]
+              shadow-[0_12px_32px_rgba(0,0,0,0.14)]
+              transition-all
+              duration-300
+              hover:bg-[var(--accent-light)]
+              hover:text-white
+            "
+          >
+            Профиль врача
+          </button>
+        </div>
+      </article>
+    );
+  };
+
+  const activeDoctor = doctors[active];
+  const prevDoctor = getPrevDoctor();
+  const nextDoctor = getNextDoctor();
 
   return (
     <section
@@ -202,75 +320,87 @@ export function Doctors({ onBookDoctor }: Props) {
           </p>
         </div>
 
-        {/* CAROUSEL */}
-        <div className="relative z-10 mt-16 sm:mt-20 lg:mt-24">
-          {/* DESKTOP LEFT BUTTON */}
+        {/* DESKTOP CAROUSEL */}
+        <div className="relative mt-20 hidden items-center justify-center gap-10 md:flex">
           <button
             type="button"
             onClick={prev}
             aria-label="Предыдущий врач"
             className="
               absolute
-              left-[-30px]
-              top-1/2
+              left-0
               z-20
-              hidden
-              h-16
-              w-16
-              -translate-y-1/2
+              flex
+              h-14
+              w-14
+              items-center
+              justify-center
               rounded-full
               border
               border-[var(--accent-light)]/15
               bg-[var(--card)]
               text-[var(--accent)]
               shadow-[0_15px_40px_rgba(18,199,183,0.15)]
-              backdrop-blur-xl
               transition-all
               duration-300
               hover:scale-105
-              hover:border-[var(--accent-light)]/40
               hover:bg-[var(--accent-light)]
               hover:text-white
-              md:block
             "
           >
             ←
           </button>
 
-          {/* DESKTOP RIGHT BUTTON */}
+          <DoctorCard
+            doctor={prevDoctor}
+            variant="side"
+            onClick={prev}
+          />
+
+          <DoctorCard
+            doctor={activeDoctor}
+            variant="main"
+            onClick={() => setSelected(activeDoctor)}
+          />
+
+          <DoctorCard
+            doctor={nextDoctor}
+            variant="side"
+            onClick={next}
+          />
+
           <button
             type="button"
             onClick={next}
             aria-label="Следующий врач"
             className="
               absolute
-              right-[-30px]
-              top-1/2
+              right-0
               z-20
-              hidden
-              h-16
-              w-16
-              -translate-y-1/2
+              flex
+              h-14
+              w-14
+              items-center
+              justify-center
               rounded-full
               border
               border-[var(--accent-light)]/15
               bg-[var(--card)]
               text-[var(--accent)]
               shadow-[0_15px_40px_rgba(18,199,183,0.15)]
-              backdrop-blur-xl
               transition-all
               duration-300
               hover:scale-105
-              hover:border-[var(--accent-light)]/40
               hover:bg-[var(--accent-light)]
               hover:text-white
-              md:block
             "
           >
             →
           </button>
+        </div>
 
-          {/* SWIPE HINT — MOBILE */}
+        {/* MOBILE CAROUSEL */}
+        <div className="mt-14 flex flex-col items-center md:hidden">
           <div
             className="
               mb-4
@@ -281,7 +411,6 @@ export function Doctors({ onBookDoctor }: Props) {
               text-xs
               font-medium
               text-[var(--text-muted)]
-              md:hidden
             "
           >
             <span>←</span>
@@ -289,269 +418,33 @@ export function Doctors({ onBookDoctor }: Props) {
             <span>→</span>
           </div>
 
-          {/* 3D AREA */}
           <div
-            className="
-              relative
-              z-0
-              flex
-              h-[505px]
-              touch-pan-y
-              items-center
-              justify-center
-              overflow-hidden
-              sm:h-[620px]
-            "
-            style={{
-              perspective: "2200px",
-            }}
+            className="flex w-full justify-center"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
           >
-            <AnimatePresence initial={false}>
-              {doctors.map((d, index) => {
-                const pos = getPosition(index);
-                const isActive = index === active;
-
-                return (
-                  <motion.div
-                    key={d.name}
-                    drag={isMobile && isActive ? "x" : false}
-                    dragConstraints={{
-                      left: 0,
-                      right: 0,
-                    }}
-                    dragElastic={0.22}
-                    onDragEnd={(_, info) => {
-                      if (!isMobile || !isActive) return;
-
-                      handleSwipe(info.offset.x, info.velocity.x);
-                    }}
-                    animate={{
-                      x: pos.x,
-                      scale: pos.scale,
-                      rotateY: pos.rotateY,
-                      opacity: pos.opacity,
-                    }}
-                    transition={{
-                      duration: 0.6,
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
-                    style={{
-                      zIndex: pos.zIndex,
-                      transformStyle: "preserve-3d",
-                      pointerEvents: pos.pointerEvents,
-                    }}
-                    className="
-                      absolute
-                      h-[455px]
-                      w-[292px]
-                      cursor-pointer
-                      select-none
-                      touch-pan-y
-                      sm:h-[520px]
-                      sm:w-[360px]
-                    "
-                    onClick={() => {
-                      if (dragBlockedRef.current) return;
-                      setSelected(d);
-                    }}
-                  >
-                    <motion.div
-                      whileHover={
-                        isMobile
-                          ? undefined
-                          : {
-                              y: -10,
-                            }
-                      }
-                      className="
-                        relative
-                        h-full
-                        w-full
-                        overflow-hidden
-                        rounded-[34px]
-                        border
-                        border-[var(--accent-light)]/15
-                        shadow-[0_25px_80px_rgba(18,199,183,0.14)]
-                        sm:rounded-[40px]
-                      "
-                    >
-                      {/* IMAGE */}
-                      <img
-  src={d.image}
-  alt={d.name}
-  draggable={false}
-  loading="eager"
-  decoding="async"
-  className="
-    pointer-events-none
-    absolute
-    inset-0
-    h-full
-    w-full
-    object-cover
-  "
-  style={{
-    objectPosition: "50% 20%",
-  }}
-/>
-
-                      {/* OVERLAY */}
-                      <div
-                        className="
-                          pointer-events-none
-                          absolute
-                          inset-0
-                          bg-gradient-to-t
-                          from-[var(--accent)]/92
-                          via-[var(--accent)]/24
-                          to-transparent
-                        "
-                      />
-
-                      <div
-                        className="
-                          pointer-events-none
-                          absolute
-                          inset-0
-                          bg-[var(--accent-light)]/10
-                        "
-                      />
-
-                      {/* ROLE */}
-                      <div
-                        className="
-                          absolute
-                          left-5
-                          top-5
-                          max-w-[calc(100%-40px)]
-                          rounded-full
-                          border
-                          border-[var(--accent-light)]/20
-                          bg-[var(--card)]
-                          px-3
-                          py-2
-                          text-[11px]
-                          font-medium
-                          text-[var(--accent)]
-                          shadow-[0_6px_20px_rgba(18,199,183,0.08)]
-                          backdrop-blur-xl
-                          sm:left-6
-                          sm:top-6
-                          sm:px-4
-                          sm:text-xs
-                        "
-                      >
-                        {d.role}
-                      </div>
-
-                      {/* CONTENT */}
-                      <div
-                        className="
-                          absolute
-                          bottom-0
-                          w-full
-                          p-5
-                          text-white
-                          sm:p-7
-                        "
-                      >
-                        <h3
-                          className="
-                            max-w-full
-                            text-[22px]
-                            font-semibold
-                            leading-tight
-                            sm:text-3xl
-                          "
-                        >
-                          {d.name}
-                        </h3>
-
-                        <p className="mt-2 text-sm text-white/85">
-                          {d.exp}
-                        </p>
-
-                        {/* TAGS */}
-                        <div className="mt-4 flex flex-wrap gap-2 sm:mt-5">
-                          {d.specialization.slice(0, 2).map((s, i) => (
-                            <span
-                              key={i}
-                              className="
-                                rounded-full
-                                border
-                                border-white/15
-                                bg-white/12
-                                px-3
-                                py-1
-                                text-[11px]
-                                text-white
-                                backdrop-blur
-                                sm:text-xs
-                              "
-                            >
-                              {s}
-                            </span>
-                          ))}
-                        </div>
-
-                        {/* BUTTON */}
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setSelected(d);
-                          }}
-                          className="
-                            mt-5
-                            rounded-full
-                            bg-white
-                            px-5
-                            py-2
-                            text-sm
-                            font-medium
-                            text-[var(--accent)]
-                            transition-all
-                            duration-300
-                            hover:bg-[var(--accent-light)]
-                            hover:text-white
-                            sm:mt-6
-                          "
-                        >
-                          Профиль врача
-                        </button>
-                      </div>
-                    </motion.div>
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
+            <DoctorCard
+              doctor={activeDoctor}
+              variant="mobile"
+              onClick={() => setSelected(activeDoctor)}
+            />
           </div>
 
-          {/* MOBILE INDICATOR */}
           <div
             className="
               mt-5
-              flex
-              justify-center
-              md:hidden
+              rounded-full
+              border
+              border-[var(--accent-light)]/15
+              bg-[var(--card)]
+              px-4
+              py-2
+              text-xs
+              font-medium
+              text-[var(--text-muted)]
             "
           >
-            <div
-              className="
-                rounded-full
-                border
-                border-[var(--accent-light)]/15
-                bg-[var(--card)]
-                px-4
-                py-2
-                text-xs
-                font-medium
-                text-[var(--text-muted)]
-                backdrop-blur-xl
-              "
-            >
-              {active + 1} / {doctors.length}
-            </div>
+            {active + 1} / {doctors.length}
           </div>
         </div>
       </div>
