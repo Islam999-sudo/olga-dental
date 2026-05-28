@@ -306,7 +306,7 @@ export function Doctors({ onBookDoctor }: Props) {
               perspective: "2200px",
             }}
           >
-            <AnimatePresence mode="popLayout">
+            <AnimatePresence initial={false}>
               {doctors.map((d, index) => {
                 const pos = getPosition(index);
                 const isActive = index === active;
@@ -377,21 +377,23 @@ export function Doctors({ onBookDoctor }: Props) {
                     >
                       {/* IMAGE */}
                       <img
-                        src={d.image}
-                        alt={d.name}
-                        draggable={false}
-                        className="
-                          pointer-events-none
-                          absolute
-                          inset-0
-                          h-full
-                          w-full
-                          object-cover
-                        "
-                        style={{
-                          objectPosition: "50% 20%",
-                        }}
-                      />
+  src={d.image}
+  alt={d.name}
+  draggable={false}
+  loading="eager"
+  decoding="async"
+  className="
+    pointer-events-none
+    absolute
+    inset-0
+    h-full
+    w-full
+    object-cover
+  "
+  style={{
+    objectPosition: "50% 20%",
+  }}
+/>
 
                       {/* OVERLAY */}
                       <div

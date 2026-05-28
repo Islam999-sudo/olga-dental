@@ -138,23 +138,24 @@ export function DoctorModal({
               "
             >
               <img
-                src={doctor.image}
-                alt={doctor.name}
-                className="
-                  absolute
-                  inset-0
-                  z-[1]
-                  h-full
-                  w-full
-                  object-cover
-                  saturate-[1.06]
-                  contrast-[1.03]
-                  brightness-[0.98]
-                "
-                style={{
-                  objectPosition: "50% 18%",
-                }}
-              />
+  src={doctor.image}
+  alt={doctor.name}
+  loading="eager"
+  decoding="async"
+  draggable={false}
+  className="
+    block
+    h-full
+    w-full
+    object-cover
+    saturate-[1.06]
+    contrast-[1.03]
+    brightness-[0.98]
+  "
+  style={{
+    objectPosition: "50% 18%",
+  }}
+/>
 
               <div
                 className="
