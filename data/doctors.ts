@@ -13,7 +13,7 @@ export type Doctor = {
 export const doctors: Doctor[] = [
   {
     name: "Федюшова Полина Витальевна",
-    image: "/doctors/fed.png",
+    image: "/doctors/1.png",
     role: "Стоматолог-терапевт",
     exp: "С 2024 года",
     desc: "Занимается терапевтическим лечением зубов, профилактикой и восстановлением здоровья полости рта.",
