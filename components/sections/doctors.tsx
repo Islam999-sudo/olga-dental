@@ -312,7 +312,7 @@ export function Doctors({ onBookDoctor }: Props) {
               md:text-6xl
             "
           >
-            Врачи
+            ТЕСТ 123
           </h2>
 
           <p className="mt-4 text-lg leading-relaxed text-[var(--text-soft)]">
