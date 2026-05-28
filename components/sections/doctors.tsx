@@ -270,7 +270,7 @@ export function Doctors({ onBookDoctor }: Props) {
             →
           </button>
 
-          {/* SWIPE HINT — MOBILE */}
+          {/* SWIPE HINT */}
           <div
             className="
               mb-4
@@ -380,16 +380,24 @@ export function Doctors({ onBookDoctor }: Props) {
                         src={d.image}
                         alt={d.name}
                         draggable={false}
+                        loading="eager"
+                        decoding="async"
                         className="
                           pointer-events-none
                           absolute
                           inset-0
+                          z-[1]
+                          block
                           h-full
                           w-full
                           object-cover
+                          select-none
                         "
                         style={{
                           objectPosition: "50% 20%",
+                          backfaceVisibility: "hidden",
+                          WebkitBackfaceVisibility: "hidden",
+                          transform: "translateZ(0)",
                         }}
                       />
 
@@ -399,6 +407,7 @@ export function Doctors({ onBookDoctor }: Props) {
                           pointer-events-none
                           absolute
                           inset-0
+                          z-[2]
                           bg-gradient-to-t
                           from-[var(--accent)]/92
                           via-[var(--accent)]/24
@@ -406,11 +415,13 @@ export function Doctors({ onBookDoctor }: Props) {
                         "
                       />
 
+                      {/* LIGHT */}
                       <div
                         className="
                           pointer-events-none
                           absolute
                           inset-0
+                          z-[3]
                           bg-[var(--accent-light)]/10
                         "
                       />
@@ -421,6 +432,7 @@ export function Doctors({ onBookDoctor }: Props) {
                           absolute
                           left-5
                           top-5
+                          z-[4]
                           max-w-[calc(100%-40px)]
                           rounded-full
                           border
@@ -447,6 +459,7 @@ export function Doctors({ onBookDoctor }: Props) {
                         className="
                           absolute
                           bottom-0
+                          z-[5]
                           w-full
                           p-5
                           text-white
