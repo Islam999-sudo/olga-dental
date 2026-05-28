@@ -1,17 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { doctors, Doctor } from "@/data/doctors";
 import { DoctorModal } from "@/components/ui/doctor-modal";
-import { BookingModal } from "@/components/ui/booking-modal";
 
-export function Doctors() {
+type Props = {
+  onBookDoctor: (doctor: Doctor) => void;
+};
+
+export function Doctors({ onBookDoctor }: Props) {
   const [active, setActive] = useState(0);
-
   const [selected, setSelected] = useState<Doctor | null>(null);
-  const [bookingOpen, setBookingOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const dragBlockedRef = useRef(false);
+
+  useEffect(() => {
+    const updateScreen = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    updateScreen();
+
+    window.addEventListener("resize", updateScreen);
+
+    return () => {
+      window.removeEventListener("resize", updateScreen);
+    };
+  }, []);
 
   const next = () => {
     setActive((prev) => (prev + 1) % doctors.length);
@@ -21,61 +39,102 @@ export function Doctors() {
     setActive((prev) => (prev - 1 + doctors.length) % doctors.length);
   };
 
+  const handleSwipe = (
+    offsetX: number,
+    velocityX: number
+  ) => {
+    const swipeDistance = 65;
+    const swipeVelocity = 450;
+
+    const swipedLeft =
+      offsetX < -swipeDistance || velocityX < -swipeVelocity;
+
+    const swipedRight =
+      offsetX > swipeDistance || velocityX > swipeVelocity;
+
+    if (swipedLeft) {
+      dragBlockedRef.current = true;
+      next();
+
+      window.setTimeout(() => {
+        dragBlockedRef.current = false;
+      }, 250);
+
+      return;
+    }
+
+    if (swipedRight) {
+      dragBlockedRef.current = true;
+      prev();
+
+      window.setTimeout(() => {
+        dragBlockedRef.current = false;
+      }, 250);
+    }
+  };
+
   const getPosition = (index: number) => {
     const diff = index - active;
 
-    // CENTER
+    const sideOffset = isMobile ? 150 : 390;
+
     if (diff === 0) {
       return {
         x: 0,
         scale: 1,
         rotateY: 0,
         opacity: 1,
-        zIndex: 30,
+        zIndex: 3,
+        pointerEvents: "auto" as const,
       };
     }
 
-    // LEFT
     if (diff === -1 || diff === doctors.length - 1) {
       return {
-        x: -390,
-        scale: 0.9,
-        rotateY: 28,
-        opacity: 0.72,
-        zIndex: 20,
+        x: -sideOffset,
+        scale: isMobile ? 0.8 : 0.9,
+        rotateY: isMobile ? 18 : 28,
+        opacity: isMobile ? 0.5 : 0.72,
+        zIndex: 2,
+        pointerEvents: "auto" as const,
       };
     }
 
-    // RIGHT
     if (diff === 1 || diff === -(doctors.length - 1)) {
       return {
-        x: 390,
-        scale: 0.9,
-        rotateY: -28,
-        opacity: 0.72,
-        zIndex: 20,
+        x: sideOffset,
+        scale: isMobile ? 0.8 : 0.9,
+        rotateY: isMobile ? -18 : -28,
+        opacity: isMobile ? 0.5 : 0.72,
+        zIndex: 2,
+        pointerEvents: "auto" as const,
       };
     }
 
-    // HIDDEN
     return {
       x: 0,
       scale: 0.6,
       rotateY: 0,
       opacity: 0,
       zIndex: 0,
+      pointerEvents: "none" as const,
     };
   };
 
   return (
     <section
       id="doctors"
-      className="relative overflow-hidden py-32"
+      className="
+        relative
+        z-0
+        overflow-hidden
+        py-24
+        sm:py-28
+        lg:py-32
+      "
     >
-
       {/* BACKGROUND */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <div
           className="
             absolute
@@ -84,7 +143,7 @@ export function Doctors() {
             h-[420px]
             w-[420px]
             rounded-full
-            bg-[#12c7b7]/10
+            bg-[var(--accent-light)]/10
             blur-3xl
           "
         />
@@ -92,36 +151,34 @@ export function Doctors() {
         <div
           className="
             absolute
+            bottom-0
             right-[-120px]
-            bottom-[0]
             h-[360px]
             w-[360px]
             rounded-full
-            bg-[#12c7b7]/10
+            bg-[var(--accent-light)]/10
             blur-3xl
           "
         />
-
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6">
-
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
         {/* HEADER */}
         <div className="max-w-3xl">
-
           <span
             className="
               inline-flex
               rounded-full
-              border border-[#12c7b7]/20
-              bg-[#12c7b7]/10
+              border
+              border-[var(--accent-light)]/20
+              bg-[var(--accent-light)]/10
               px-4
               py-2
               text-xs
               font-medium
               uppercase
               tracking-[0.25em]
-              text-[#0f8f84]
+              text-[var(--accent)]
             "
           >
             Специалисты
@@ -133,86 +190,141 @@ export function Doctors() {
               text-4xl
               font-semibold
               tracking-tight
-              text-[#0f8f84]
+              text-[var(--accent)]
               md:text-6xl
             "
           >
             Врачи
           </h2>
 
-          <p className="mt-4 text-lg leading-relaxed text-[#5f8d88]">
+          <p className="mt-4 text-lg leading-relaxed text-[var(--text-soft)]">
             Команда специалистов уровня private clinic.
           </p>
-
         </div>
 
         {/* CAROUSEL */}
-        <div className="relative mt-24">
-
-          {/* LEFT BUTTON */}
+        <div className="relative z-10 mt-16 sm:mt-20 lg:mt-24">
+          {/* DESKTOP LEFT BUTTON */}
           <button
+            type="button"
             onClick={prev}
+            aria-label="Предыдущий врач"
             className="
-              absolute left-[-30px] top-1/2 z-50
+              absolute
+              left-[-30px]
+              top-1/2
+              z-20
+              hidden
+              h-16
+              w-16
               -translate-y-1/2
-              h-16 w-16 rounded-full
-              border border-[#12c7b7]/15
-              bg-white/85
-              text-[#0f8f84]
+              rounded-full
+              border
+              border-[var(--accent-light)]/15
+              bg-[var(--card)]
+              text-[var(--accent)]
               shadow-[0_15px_40px_rgba(18,199,183,0.15)]
               backdrop-blur-xl
-              transition-all duration-300
+              transition-all
+              duration-300
               hover:scale-105
-              hover:border-[#12c7b7]/40
-              hover:bg-[#12c7b7]
+              hover:border-[var(--accent-light)]/40
+              hover:bg-[var(--accent-light)]
               hover:text-white
+              md:block
             "
           >
             ←
           </button>
 
-          {/* RIGHT BUTTON */}
+          {/* DESKTOP RIGHT BUTTON */}
           <button
+            type="button"
             onClick={next}
+            aria-label="Следующий врач"
             className="
-              absolute right-[-30px] top-1/2 z-50
+              absolute
+              right-[-30px]
+              top-1/2
+              z-20
+              hidden
+              h-16
+              w-16
               -translate-y-1/2
-              h-16 w-16 rounded-full
-              border border-[#12c7b7]/15
-              bg-white/85
-              text-[#0f8f84]
+              rounded-full
+              border
+              border-[var(--accent-light)]/15
+              bg-[var(--card)]
+              text-[var(--accent)]
               shadow-[0_15px_40px_rgba(18,199,183,0.15)]
               backdrop-blur-xl
-              transition-all duration-300
+              transition-all
+              duration-300
               hover:scale-105
-              hover:border-[#12c7b7]/40
-              hover:bg-[#12c7b7]
+              hover:border-[var(--accent-light)]/40
+              hover:bg-[var(--accent-light)]
               hover:text-white
+              md:block
             "
           >
             →
           </button>
 
+          {/* SWIPE HINT — MOBILE */}
+          <div
+            className="
+              mb-4
+              flex
+              items-center
+              justify-center
+              gap-2
+              text-xs
+              font-medium
+              text-[var(--text-muted)]
+              md:hidden
+            "
+          >
+            <span>←</span>
+            <span>Свайпните карточку</span>
+            <span>→</span>
+          </div>
+
           {/* 3D AREA */}
           <div
             className="
               relative
-              flex h-[620px]
-              items-center justify-center
+              z-0
+              flex
+              h-[505px]
+              touch-pan-y
+              items-center
+              justify-center
               overflow-hidden
+              sm:h-[620px]
             "
             style={{
               perspective: "2200px",
             }}
           >
-
             <AnimatePresence mode="popLayout">
               {doctors.map((d, index) => {
                 const pos = getPosition(index);
+                const isActive = index === active;
 
                 return (
                   <motion.div
                     key={d.name}
+                    drag={isMobile && isActive ? "x" : false}
+                    dragConstraints={{
+                      left: 0,
+                      right: 0,
+                    }}
+                    dragElastic={0.22}
+                    onDragEnd={(_, info) => {
+                      if (!isMobile || !isActive) return;
+
+                      handleSwipe(info.offset.x, info.velocity.x);
+                    }}
                     animate={{
                       x: pos.x,
                       scale: pos.scale,
@@ -226,36 +338,54 @@ export function Doctors() {
                     style={{
                       zIndex: pos.zIndex,
                       transformStyle: "preserve-3d",
+                      pointerEvents: pos.pointerEvents,
                     }}
                     className="
                       absolute
-                      w-[360px]
-                      h-[520px]
+                      h-[455px]
+                      w-[292px]
                       cursor-pointer
+                      select-none
+                      touch-pan-y
+                      sm:h-[520px]
+                      sm:w-[360px]
                     "
-                    onClick={() => setSelected(d)}
+                    onClick={() => {
+                      if (dragBlockedRef.current) return;
+                      setSelected(d);
+                    }}
                   >
-
                     <motion.div
-                      whileHover={{
-                        y: -10,
-                      }}
+                      whileHover={
+                        isMobile
+                          ? undefined
+                          : {
+                              y: -10,
+                            }
+                      }
                       className="
-                        relative h-full w-full
+                        relative
+                        h-full
+                        w-full
                         overflow-hidden
-                        rounded-[40px]
-                        border border-[#12c7b7]/15
+                        rounded-[34px]
+                        border
+                        border-[var(--accent-light)]/15
                         shadow-[0_25px_80px_rgba(18,199,183,0.14)]
+                        sm:rounded-[40px]
                       "
                     >
-
                       {/* IMAGE */}
                       <img
                         src={d.image}
                         alt={d.name}
+                        draggable={false}
                         className="
-                          absolute inset-0
-                          h-full w-full
+                          pointer-events-none
+                          absolute
+                          inset-0
+                          h-full
+                          w-full
                           object-cover
                         "
                         style={{
@@ -263,130 +393,178 @@ export function Doctors() {
                         }}
                       />
 
-                      {/* TURQUOISE OVERLAY */}
+                      {/* OVERLAY */}
                       <div
                         className="
-                          absolute inset-0
+                          pointer-events-none
+                          absolute
+                          inset-0
                           bg-gradient-to-t
-                          from-[#0f8f84]/90
-                          via-[#0f8f84]/25
+                          from-[var(--accent)]/92
+                          via-[var(--accent)]/24
                           to-transparent
                         "
                       />
 
-                      {/* EXTRA GLOW */}
                       <div
                         className="
+                          pointer-events-none
                           absolute
                           inset-0
-                          bg-[#12c7b7]/10
+                          bg-[var(--accent-light)]/10
                         "
                       />
 
                       {/* ROLE */}
                       <div
                         className="
-                          absolute left-6 top-6
+                          absolute
+                          left-5
+                          top-5
+                          max-w-[calc(100%-40px)]
                           rounded-full
-                          border border-white/10
-                          bg-white/10
-                          px-4 py-2
-                          text-xs text-white
-                          backdrop-blur
+                          border
+                          border-[var(--accent-light)]/20
+                          bg-[var(--card)]
+                          px-3
+                          py-2
+                          text-[11px]
+                          font-medium
+                          text-[var(--accent)]
+                          shadow-[0_6px_20px_rgba(18,199,183,0.08)]
+                          backdrop-blur-xl
+                          sm:left-6
+                          sm:top-6
+                          sm:px-4
+                          sm:text-xs
                         "
                       >
                         {d.role}
                       </div>
 
                       {/* CONTENT */}
-                      <div className="absolute bottom-0 p-7 text-white">
-
-                        <h3 className="text-3xl font-semibold">
+                      <div
+                        className="
+                          absolute
+                          bottom-0
+                          w-full
+                          p-5
+                          text-white
+                          sm:p-7
+                        "
+                      >
+                        <h3
+                          className="
+                            max-w-full
+                            text-[22px]
+                            font-semibold
+                            leading-tight
+                            sm:text-3xl
+                          "
+                        >
                           {d.name}
                         </h3>
 
-                        <p className="mt-2 text-sm text-white/80">
+                        <p className="mt-2 text-sm text-white/85">
                           {d.exp}
                         </p>
 
-                        <p className="mt-4 text-sm leading-relaxed text-white/80">
-                          {d.desc}
-                        </p>
-
                         {/* TAGS */}
-                        <div className="mt-5 flex flex-wrap gap-2">
-                          {d.specialization
-                            .slice(0, 2)
-                            .map((s, i) => (
-                              <span
-                                key={i}
-                                className="
-                                  rounded-full
-                                  border border-white/10
-                                  bg-white/10
-                                  px-3 py-1
-                                  text-xs
-                                  text-white
-                                  backdrop-blur
-                                "
-                              >
-                                {s}
-                              </span>
-                            ))}
+                        <div className="mt-4 flex flex-wrap gap-2 sm:mt-5">
+                          {d.specialization.slice(0, 2).map((s, i) => (
+                            <span
+                              key={i}
+                              className="
+                                rounded-full
+                                border
+                                border-white/15
+                                bg-white/12
+                                px-3
+                                py-1
+                                text-[11px]
+                                text-white
+                                backdrop-blur
+                                sm:text-xs
+                              "
+                            >
+                              {s}
+                            </span>
+                          ))}
                         </div>
 
                         {/* BUTTON */}
                         <button
+                          type="button"
                           onClick={(e) => {
                             e.stopPropagation();
                             setSelected(d);
                           }}
                           className="
-                            mt-6
+                            mt-5
                             rounded-full
                             bg-white
-                            px-5 py-2
+                            px-5
+                            py-2
                             text-sm
                             font-medium
-                            text-[#0f8f84]
+                            text-[var(--accent)]
                             transition-all
                             duration-300
-                            hover:bg-[#12c7b7]
+                            hover:bg-[var(--accent-light)]
                             hover:text-white
+                            sm:mt-6
                           "
                         >
                           Профиль врача
                         </button>
-
                       </div>
                     </motion.div>
                   </motion.div>
                 );
               })}
             </AnimatePresence>
+          </div>
 
+          {/* MOBILE INDICATOR */}
+          <div
+            className="
+              mt-5
+              flex
+              justify-center
+              md:hidden
+            "
+          >
+            <div
+              className="
+                rounded-full
+                border
+                border-[var(--accent-light)]/15
+                bg-[var(--card)]
+                px-4
+                py-2
+                text-xs
+                font-medium
+                text-[var(--text-muted)]
+                backdrop-blur-xl
+              "
+            >
+              {active + 1} / {doctors.length}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* MODALS */}
+      {/* MODAL */}
       {selected && (
         <DoctorModal
           doctor={selected}
           onClose={() => setSelected(null)}
           onBook={() => {
+            onBookDoctor(selected);
             setSelected(null);
-            setBookingOpen(true);
           }}
         />
       )}
-
-      <BookingModal
-        open={bookingOpen}
-        onClose={() => setBookingOpen(false)}
-        doctor={null}
-        service={null}
-      />
     </section>
   );
 }

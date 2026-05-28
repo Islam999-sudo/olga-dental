@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { Doctor } from "@/data/doctors";
 
 type Props = {
@@ -13,264 +15,476 @@ export function DoctorModal({
   onClose,
   onBook,
 }: Props) {
-  return (
-    <div className="fixed inset-0 z-[999] flex items-center justify-center px-6">
+  const [mounted, setMounted] = useState(false);
 
-      {/* OVERLAY */}
-      <div
-        className="
-          absolute inset-0
-          bg-[#0f766e]/20
-          backdrop-blur-md
-        "
-        onClick={onClose}
-      />
+  useEffect(() => {
+    setMounted(true);
 
-      {/* MODAL */}
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleEsc);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleEsc);
+    };
+  }, [onClose]);
+
+  if (!mounted) return null;
+
+  return createPortal(
+    <div
+      className="
+        fixed
+        inset-0
+        z-[2147483647]
+        flex
+        items-center
+        justify-center
+        bg-black/55
+        px-4
+        py-6
+        backdrop-blur-md
+        sm:px-6
+      "
+      onClick={onClose}
+    >
       <div
+        onClick={(e) => e.stopPropagation()}
         className="
           relative
           w-full
-          max-w-5xl
-          overflow-hidden
-          rounded-[40px]
-          border border-[#12c7b7]/15
-          bg-white
-          shadow-[0_30px_120px_rgba(18,199,183,0.18)]
+          max-w-[1040px]
+          max-h-[88vh]
+          overflow-y-auto
+          overflow-x-hidden
+          rounded-[30px]
+          border
+          border-[var(--accent-light)]/15
+          bg-[var(--card)]
+          text-[var(--foreground)]
+          shadow-[0_40px_140px_rgba(18,199,183,0.18)]
+          backdrop-blur-2xl
+          md:rounded-[36px]
         "
       >
+        {/* CLOSE BUTTON */}
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Закрыть профиль врача"
+          className="
+            absolute
+            right-5
+            top-5
+            z-[40]
+            flex
+            h-10
+            w-10
+            items-center
+            justify-center
+            rounded-full
+            bg-white/85
+            text-lg
+            font-medium
+            leading-none
+            text-[var(--accent)]
+            shadow-[0_8px_30px_rgba(0,0,0,0.08)]
+            backdrop-blur-xl
+            transition
+            hover:bg-white
+            dark:bg-[var(--glass)]
+            dark:hover:bg-[var(--accent-light)]/10
+          "
+        >
+          ×
+        </button>
 
-        {/* glow */}
         <div
           className="
-            pointer-events-none
-            absolute
-            right-[-120px]
-            top-[-120px]
-            h-[320px]
-            w-[320px]
-            rounded-full
-            bg-[#12c7b7]/10
-            blur-3xl
+            grid
+            gap-0
+            md:grid-cols-[380px_1fr]
+            lg:grid-cols-[410px_1fr]
           "
-        />
-
-        <div className="grid md:grid-cols-2">
-
-          {/* IMAGE */}
+        >
+          {/* IMAGE — DESKTOP ONLY */}
           <div
             className="
-              relative
-              h-[520px]
-              overflow-hidden
-              bg-[#dffaf7]
-              md:h-full
+              hidden
+              p-5
+              pr-0
+              md:block
+              lg:p-6
+              lg:pr-0
             "
           >
-
-            <img
-              src={doctor.image}
-              alt={doctor.name}
-              className="
-                h-full
-                w-full
-                scale-105
-                object-cover
-                transition
-                duration-700
-              "
-              style={{
-                objectPosition: "50% 20%",
-              }}
-            />
-
-            {/* turquoise gradient */}
             <div
               className="
-                absolute inset-0
-                bg-gradient-to-t
-                from-[#0f8f84]/60
-                via-transparent
-                to-transparent
+                relative
+                h-full
+                min-h-[520px]
+                overflow-hidden
+                rounded-[28px]
+                bg-[#071412]
+                shadow-[0_24px_80px_rgba(18,199,183,0.16)]
               "
-            />
+            >
+              <img
+                src={doctor.image}
+                alt={doctor.name}
+                className="
+                  absolute
+                  inset-0
+                  z-[1]
+                  h-full
+                  w-full
+                  object-cover
+                  saturate-[1.06]
+                  contrast-[1.03]
+                  brightness-[0.98]
+                "
+                style={{
+                  objectPosition: "50% 18%",
+                }}
+              />
 
-            {/* EXPERIENCE */}
-            <div className="absolute bottom-6 left-6 text-white">
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  inset-0
+                  z-[2]
+                  bg-gradient-to-t
+                  from-[#020404]/78
+                  via-[#020404]/10
+                  to-transparent
+                "
+              />
 
-              <div className="text-sm opacity-80">
-                Стаж
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  bottom-[-150px]
+                  left-1/2
+                  z-[3]
+                  h-[360px]
+                  w-[440px]
+                  -translate-x-1/2
+                  rounded-full
+                  bg-[#12c7b7]/36
+                  blur-[105px]
+                "
+              />
+
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  inset-x-0
+                  bottom-0
+                  z-[4]
+                  h-[34%]
+                  bg-gradient-to-t
+                  from-[#12c7b7]/20
+                  via-[#12c7b7]/7
+                  to-transparent
+                "
+              />
+
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  inset-0
+                  z-[5]
+                  bg-[linear-gradient(135deg,rgba(255,255,255,0.06),transparent_42%)]
+                "
+              />
+
+              <div className="absolute bottom-7 left-7 z-[6] text-white">
+                <div className="text-sm opacity-75">
+                  Стаж
+                </div>
+
+                <div className="mt-1 text-2xl font-semibold tracking-wide">
+                  {doctor.exp}
+                </div>
               </div>
-
-              <div className="text-2xl font-semibold">
-                {doctor.exp}
-              </div>
-
             </div>
-
           </div>
 
           {/* CONTENT */}
-          <div className="relative flex flex-col justify-center p-10">
-
-            <span
+          <div
+            className="
+              relative
+              p-6
+              sm:p-8
+              md:p-10
+              lg:p-12
+            "
+          >
+            <div
               className="
-                text-xs
-                uppercase
-                tracking-[0.25em]
-                text-[#0f8f84]
+                pointer-events-none
+                absolute
+                right-[-120px]
+                top-1/2
+                h-[300px]
+                w-[300px]
+                -translate-y-1/2
+                rounded-full
+                bg-[var(--accent-light)]/8
+                blur-3xl
               "
-            >
-              Врач клиники
-            </span>
+            />
 
-            <h2
-              className="
-                mt-4
-                text-4xl
-                font-semibold
-                text-[#0f766e]
-              "
-            >
-              {doctor.name}
-            </h2>
-
-            <p className="mt-2 text-sm text-[#12a89d]">
-              {doctor.role}
-            </p>
-
-            <p
-              className="
-                mt-6
-                text-sm
-                leading-relaxed
-                text-zinc-600
-              "
-            >
-              {doctor.desc}
-            </p>
-
-            {/* EDUCATION */}
-            {doctor.education && (
-              <div
-                className="
-                  mt-6
-                  rounded-2xl
-                  border border-[#12c7b7]/15
-                  bg-[#12c7b7]/5
-                  p-4
-                  text-sm
-                  text-[#0f766e]
-                "
-              >
-                🎓 {doctor.education}
-              </div>
-            )}
-
-            {/* SPECIALIZATION */}
-            <div className="mt-6">
-
-              <div
+            <div className="relative z-[2] max-w-[600px]">
+              <span
                 className="
                   text-xs
                   uppercase
-                  tracking-[0.2em]
-                  text-[#12a89d]
+                  tracking-[0.28em]
+                  text-[var(--accent)]
                 "
               >
-                Специализация
+                Врач клиники
+              </span>
+
+              <h2
+                className="
+                  mt-4
+                  pr-10
+                  text-3xl
+                  font-semibold
+                  leading-tight
+                  text-[var(--foreground)]
+                  sm:text-4xl
+                  md:text-[38px]
+                "
+              >
+                {doctor.name}
+              </h2>
+
+              <p
+                className="
+                  mt-3
+                  text-sm
+                  text-[var(--text-muted)]
+                "
+              >
+                {doctor.role}
+              </p>
+
+              {/* MOBILE EXPERIENCE */}
+              <div
+                className="
+                  mt-5
+                  rounded-2xl
+                  border
+                  border-[var(--accent-light)]/15
+                  bg-[var(--accent-light)]/6
+                  p-4
+                  md:hidden
+                "
+              >
+                <div className="text-xs uppercase tracking-[0.2em] text-[var(--text-muted)]">
+                  Стаж
+                </div>
+
+                <div className="mt-1 text-lg font-semibold text-[var(--accent)]">
+                  {doctor.exp}
+                </div>
               </div>
 
-              <div className="mt-3 flex flex-wrap gap-2">
+              <p
+                className="
+                  mt-6
+                  text-sm
+                  leading-relaxed
+                  text-[var(--text-soft)]
+                "
+              >
+                {doctor.desc}
+              </p>
 
-                {doctor.specialization.map((s, i) => (
-                  <span
-                    key={i}
-                    className="
-                      rounded-full
-                      border border-[#12c7b7]/20
-                      bg-[#12c7b7]/5
-                      px-3 py-1
-                      text-xs
-                      text-[#0f766e]
-                    "
-                  >
-                    {s}
-                  </span>
-                ))}
-
-              </div>
-
-            </div>
-
-            {/* HIGHLIGHTS */}
-            <div className="mt-6 space-y-2">
-
-              {doctor.highlights.map((h, i) => (
+              {doctor.education && (
                 <div
-                  key={i}
                   className="
-                    rounded-xl
-                    border border-[#12c7b7]/15
-                    bg-white
-                    p-3
+                    mt-6
+                    rounded-3xl
+                    border
+                    border-[var(--accent-light)]/15
+                    bg-[linear-gradient(180deg,rgba(18,199,183,0.08),rgba(18,199,183,0.03))]
+                    p-5
                     text-sm
-                    text-[#0f766e]
-                    shadow-[0_4px_20px_rgba(18,199,183,0.05)]
+                    leading-relaxed
+                    text-[var(--text-soft)]
+                    shadow-[0_10px_40px_rgba(18,199,183,0.06)]
+                    backdrop-blur-xl
                   "
                 >
-                  ✓ {h}
+                  <span className="mr-2 text-[var(--accent)]">
+                    🎓
+                  </span>
+
+                  {doctor.education}
                 </div>
-              ))}
+              )}
 
-            </div>
+              <div className="mt-8">
+                <div
+                  className="
+                    text-xs
+                    uppercase
+                    tracking-[0.22em]
+                    text-[var(--text-muted)]
+                  "
+                >
+                  Специализация
+                </div>
 
-            {/* ACTIONS */}
-            <div className="mt-10 flex gap-3">
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {doctor.specialization.map((s, i) => (
+                    <span
+                      key={i}
+                      className="
+                        rounded-full
+                        border
+                        border-[var(--accent-light)]/20
+                        bg-[var(--accent-light)]/6
+                        px-4
+                        py-2
+                        text-xs
+                        text-[var(--text-soft)]
+                        backdrop-blur-xl
+                        transition-all
+                        duration-300
+                        hover:border-[var(--accent-light)]/35
+                        hover:bg-[var(--accent-light)]/10
+                      "
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </div>
 
-              <button
-                onClick={onClose}
+              <div className="mt-8 space-y-3">
+                {doctor.highlights.map((h, i) => (
+                  <div
+                    key={i}
+                    className="
+                      flex
+                      items-start
+                      gap-3
+                      rounded-2xl
+                      border
+                      border-[var(--accent-light)]/12
+                      bg-[var(--glass)]
+                      p-4
+                      text-sm
+                      leading-relaxed
+                      text-[var(--text-soft)]
+                      shadow-[0_8px_30px_rgba(18,199,183,0.05)]
+                      backdrop-blur-xl
+                      transition-all
+                      duration-300
+                      hover:border-[var(--accent-light)]/24
+                      hover:bg-[var(--accent-light)]/5
+                    "
+                  >
+                    <span
+                      className="
+                        mt-[1px]
+                        flex
+                        h-5
+                        w-5
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-full
+                        bg-[var(--accent-light)]/15
+                        text-[11px]
+                        text-[var(--accent)]
+                      "
+                    >
+                      ✓
+                    </span>
+
+                    <span>{h}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div
                 className="
-                  flex-1
-                  rounded-xl
-                  border border-[#12c7b7]/20
-                  bg-white
-                  py-3
-                  text-sm
-                  font-medium
-                  text-[#0f766e]
-                  transition
-                  hover:bg-[#12c7b7]/5
+                  mt-8
+                  flex
+                  flex-col
+                  gap-3
+                  sm:flex-row
                 "
               >
-                Закрыть
-              </button>
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="
+                    flex-1
+                    rounded-2xl
+                    border
+                    border-[var(--accent-light)]/20
+                    bg-white/70
+                    py-3
+                    text-sm
+                    font-medium
+                    text-[var(--foreground)]
+                    shadow-[0_10px_30px_rgba(18,199,183,0.06)]
+                    transition-all
+                    duration-300
+                    hover:border-[var(--accent-light)]/40
+                    hover:bg-white
+                    dark:bg-[var(--glass)]
+                    dark:hover:bg-[var(--accent-light)]/8
+                  "
+                >
+                  Закрыть
+                </button>
 
-              <button
-                onClick={() => onBook(doctor)}
-                className="
-                  flex-1
-                  rounded-xl
-                  bg-[#12c7b7]
-                  py-3
-                  text-sm
-                  font-medium
-                  text-white
-                  shadow-lg
-                  shadow-[#12c7b7]/30
-                  transition
-                  hover:bg-[#10b3a5]
-                "
-              >
-                Записаться
-              </button>
-
+                <button
+                  type="button"
+                  onClick={() => onBook(doctor)}
+                  className="
+                    flex-1
+                    rounded-2xl
+                    bg-[var(--accent-light)]
+                    py-3
+                    text-sm
+                    font-semibold
+                    text-[#071412]
+                    shadow-[0_12px_40px_rgba(18,199,183,0.28)]
+                    transition-all
+                    duration-300
+                    hover:-translate-y-[2px]
+                    hover:brightness-110
+                  "
+                >
+                  Записаться
+                </button>
+              </div>
             </div>
-
           </div>
-
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
