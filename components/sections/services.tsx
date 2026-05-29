@@ -1,12 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ServiceModal } from "@/components/ui/service-modal";
 
 export type Service = {
   title: string;
   price: string;
+  image?: string;
   desc: string;
   fullDesc: string;
   benefits: string[];
@@ -19,6 +21,7 @@ const services: Service[] = [
   {
     title: "Имплантация",
     price: "от 25 000 ₽",
+    image: "/services/implantation.png",
     desc: "Восстановление зубов с цифровым планированием и современными имплантами.",
     fullDesc:
       "Имплантация помогает восстановить утраченные зубы и вернуть нормальную жевательную функцию. Лечение планируется индивидуально с учётом состояния костной ткани и будущей ортопедической конструкции.",
@@ -33,6 +36,7 @@ const services: Service[] = [
   {
     title: "Лечение кариеса",
     price: "6 000 ₽",
+    image: "/services/caries.png",
     desc: "Акционное лечение кариеса одной или нескольких поверхностей зуба.",
     fullDesc:
       "Кариес разрушает твёрдые ткани зуба и без лечения может привести к осложнениям. Мы восстанавливаем зуб современными материалами с сохранением естественной формы и эстетики.",
@@ -46,6 +50,7 @@ const services: Service[] = [
   {
     title: "Профессиональная гигиена",
     price: "4 000 ₽",
+    image: "/services/hygiene.png",
     desc: "Комплексная чистка Air-Flow для удаления налёта и профилактики.",
     fullDesc:
       "Профессиональная гигиена помогает удалить мягкий налёт, улучшить состояние дёсен и снизить риск кариеса. Процедура проводится с использованием Air-Flow.",
@@ -59,6 +64,7 @@ const services: Service[] = [
   {
     title: "Виниры E-Max",
     price: "от 22 700 ₽",
+    image: "/services/veneers.png",
     desc: "Эстетическое восстановление улыбки керамическими винирами.",
     fullDesc:
       "Виниры E-Max помогают улучшить форму, цвет и эстетику зубов. Это решение для пациентов, которые хотят получить красивую и естественную улыбку.",
@@ -72,6 +78,7 @@ const services: Service[] = [
   {
     title: "Удаление зубов",
     price: "от 3 700 ₽",
+    image: "/services/extraction.png",
     desc: "Бережное удаление зубов любой сложности под анестезией.",
     fullDesc:
       "Если зуб невозможно сохранить, проводится удаление. Процедура выполняется под местной анестезией с акцентом на безопасность и комфорт пациента.",
@@ -85,6 +92,7 @@ const services: Service[] = [
   {
     title: "Лечение пульпита",
     price: "от 10 000 ₽",
+    image: "/services/pulpitis.png",
     desc: "Лечение воспаления нерва зуба с обработкой каналов.",
     fullDesc:
       "Пульпит — воспаление внутренних тканей зуба, которое часто сопровождается сильной болью. Лечение направлено на устранение воспаления, обработку каналов и сохранение зуба.",
@@ -98,6 +106,7 @@ const services: Service[] = [
   {
     title: "Лечение периодонтита",
     price: "от 12 000 ₽",
+    image: "/services/periodontitis.png",
     desc: "Комплексное лечение воспаления тканей вокруг корня зуба.",
     fullDesc:
       "Периодонтит возникает при воспалении тканей вокруг корня зуба и может приводить к осложнениям. Лечение требует точной диагностики, обработки каналов и контроля воспаления.",
@@ -111,6 +120,7 @@ const services: Service[] = [
   {
     title: "Коронки",
     price: "от 14 900 ₽",
+    image: "/services/crowns.png",
     desc: "Металлокерамические и циркониевые коронки для восстановления зубов.",
     fullDesc:
       "Коронки применяются для восстановления разрушенных зубов и протезирования на имплантах. Доступны варианты из металлокерамики и диоксида циркония.",
@@ -124,6 +134,7 @@ const services: Service[] = [
   {
     title: "Съёмные протезы",
     price: "от 9 500 ₽",
+    image: "/services/prosthetics.jpg",
     desc: "Полные и частичные акриловые протезы для восстановления зубного ряда.",
     fullDesc:
       "Съёмные акриловые протезы позволяют восстановить один, несколько или все зубы. Конструкция подбирается индивидуально и помогает вернуть жевательную функцию.",
@@ -137,6 +148,7 @@ const services: Service[] = [
   {
     title: "Синус-лифтинг",
     price: "от 45 000 ₽",
+    image: "/services/sinus.jpg",
     desc: "Наращивание костной ткани перед установкой импланта.",
     fullDesc:
       "Синус-лифтинг проводится при недостаточном объёме костной ткани в области верхней челюсти. Это подготовительный этап перед имплантацией.",
@@ -150,6 +162,7 @@ const services: Service[] = [
   {
     title: "Ортодонтия",
     price: "от 81 000 ₽",
+    image: "/services/orthodontics.jpg",
     desc: "Брекеты и элайнеры для коррекции прикуса.",
     fullDesc:
       "Ортодонтическое лечение помогает исправить прикус и положение зубов. Доступны брекет-системы, частичные системы и элайнеры.",
@@ -162,6 +175,25 @@ const services: Service[] = [
   },
 ];
 
+const advantages = [
+  {
+    title: "Прозрачные цены",
+    desc: "Пациент заранее понимает стоимость и этапы лечения.",
+  },
+  {
+    title: "Современная диагностика",
+    desc: "Планирование лечения строится на точной диагностике и клинической картине.",
+  },
+  {
+    title: "Комплексный подход",
+    desc: "Терапия, хирургия, ортопедия и гигиена работают как единая система.",
+  },
+  {
+    title: "Комфортное лечение",
+    desc: "Внимательное отношение, анестезия и спокойная атмосфера на приёме.",
+  },
+];
+
 type Props = {
   onBookService: (service: Service) => void;
   preview?: boolean;
@@ -170,75 +202,197 @@ type Props = {
 export function Services({
   onBookService,
   preview = false,
-}: Props)
- {
-  const [selectedService, setSelectedService] = useState<Service | null>(null);
-  const [showAll, setShowAll] = useState(false);
+}: Props) {
+  const [selectedService, setSelectedService] =
+    useState<Service | null>(null);
 
   const visibleServices = preview
-  ? services.slice(0, 3)
-  : showAll
-  ? services
-  : services.slice(0, 5);
+    ? services.slice(0, 3)
+    : services;
 
   return (
-    <section id="services" className="relative overflow-hidden py-32">
+    <section
+      id="services"
+      className={`
+        relative
+        overflow-hidden
+        ${preview ? "py-24 sm:py-28 lg:py-32" : "pb-32 pt-36"}
+      `}
+    >
       {/* BACKGROUND */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute left-[-120px] top-[120px] h-[420px] w-[420px] rounded-full bg-[var(--accent-light)]/15 blur-3xl" />
-
         <div className="absolute bottom-0 right-[-120px] h-[360px] w-[360px] rounded-full bg-[var(--accent-light)]/10 blur-3xl" />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-6">
-        {/* HEADER */}
-        <div className="max-w-3xl">
-          <span
-            className="
-              inline-flex
-              rounded-full
-              border border-[var(--accent-light)]/20
-              bg-[var(--accent-light)]/10
-              px-4 py-2
-              text-xs font-medium uppercase tracking-[0.25em]
-              text-[var(--accent)]
-              backdrop-blur
-            "
-          >
-            Услуги
-          </span>
+        {/* PAGE HERO */}
+        {!preview && (
+          <div className="mx-auto max-w-4xl text-center">
+            <span
+              className="
+                inline-flex
+                rounded-full
+                border
+                border-[var(--accent-light)]/20
+                bg-[var(--accent-light)]/10
+                px-4
+                py-2
+                text-xs
+                font-semibold
+                uppercase
+                tracking-[0.25em]
+                text-[var(--accent)]
+                backdrop-blur
+              "
+            >
+              Услуги клиники
+            </span>
 
-          <h2
-            className="
-              mt-6
-              text-4xl
-              font-semibold
-              tracking-tight
-              text-[var(--accent)]
-              md:text-6xl
-            "
-          >
-            Лечение,
-            <br />
-            ориентированное
-            <br />
-            на результат
-          </h2>
+            <h1
+              className="
+                mt-6
+                text-5xl
+                font-semibold
+                tracking-tight
+                text-[var(--accent)]
+                md:text-7xl
+              "
+            >
+              Стоматологические
+              <br />
+              услуги
+            </h1>
 
-          <p
-            className="
-              mt-6
-              max-w-2xl
-              text-lg
-              font-semibold
-              leading-relaxed
-              text-[var(--text-soft)]
-            "
-          >
-            Реальные услуги клиники, прозрачные цены и понятное описание без
-            перегруженных медицинских терминов.
-          </p>
-        </div>
+            <p
+              className="
+                mx-auto
+                mt-6
+                max-w-3xl
+                text-lg
+                font-medium
+                leading-relaxed
+                text-[var(--text-soft)]
+              "
+            >
+              От профилактики и лечения кариеса до имплантации,
+              протезирования и восстановления эстетики улыбки.
+              Все направления собраны в одном месте, чтобы пациент мог
+              получить комплексное лечение без лишних переходов между
+              клиниками.
+            </p>
+          </div>
+        )}
+
+        {/* PREVIEW HEADER */}
+        {preview && (
+          <div className="max-w-3xl">
+            <span
+              className="
+                inline-flex
+                rounded-full
+                border
+                border-[var(--accent-light)]/20
+                bg-[var(--accent-light)]/10
+                px-4
+                py-2
+                text-xs
+                font-medium
+                uppercase
+                tracking-[0.25em]
+                text-[var(--accent)]
+                backdrop-blur
+              "
+            >
+              Услуги
+            </span>
+
+            <h2
+              className="
+                mt-6
+                text-4xl
+                font-semibold
+                tracking-tight
+                text-[var(--accent)]
+                md:text-6xl
+              "
+            >
+              Лечение,
+              <br />
+              ориентированное
+              <br />
+              на результат
+            </h2>
+
+            <p
+              className="
+                mt-6
+                max-w-2xl
+                text-lg
+                font-semibold
+                leading-relaxed
+                text-[var(--text-soft)]
+              "
+            >
+              Популярные направления клиники с понятным описанием и
+              прозрачными ценами.
+            </p>
+          </div>
+        )}
+
+        {/* CATALOG HEADER */}
+        {!preview && (
+          <div className="mt-24 max-w-3xl">
+            <span
+              className="
+                inline-flex
+                rounded-full
+                border
+                border-[var(--accent-light)]/20
+                bg-[var(--accent-light)]/10
+                px-4
+                py-2
+                text-xs
+                font-medium
+                uppercase
+                tracking-[0.25em]
+                text-[var(--accent)]
+                backdrop-blur
+              "
+            >
+              Каталог
+            </span>
+
+            <h2
+              className="
+                mt-6
+                text-4xl
+                font-semibold
+                tracking-tight
+                text-[var(--accent)]
+                md:text-6xl
+              "
+            >
+              Все направления
+              <br />
+              лечения
+            </h2>
+
+            <p
+              className="
+                mt-6
+                max-w-2xl
+                text-lg
+                font-semibold
+                leading-relaxed
+                text-[var(--text-soft)]
+              "
+            >
+              Выберите нужную услугу, чтобы посмотреть подробности,
+              преимущества и ориентировочную стоимость.
+            </p>
+          </div>
+        )}
 
         {/* GRID */}
         <motion.div
@@ -249,7 +403,7 @@ export function Services({
               ease: smoothEase,
             },
           }}
-          className="mt-20"
+          className={preview ? "mt-16" : "mt-16"}
         >
           <motion.div
             layout
@@ -259,275 +413,502 @@ export function Services({
               transformStyle: "preserve-3d",
             }}
           >
-            <AnimatePresence mode="popLayout" initial={false}>
-              {visibleServices.map((service, idx) => {
-                const isNewCard = idx >= 5;
-                const delay = showAll && isNewCard ? (idx - 5) * 0.075 : 0;
+            {visibleServices.map((service, idx) => {
+              const isFeatured = service.featured && !preview;
 
-                return (
-                  <motion.article
-                    key={service.title}
-                    layout
-                    initial={
-                      isNewCard
-                        ? {
-                            opacity: 0,
-                            y: 34,
-                            rotateX: -55,
-                            rotateY: -4,
-                            scale: 0.94,
-                            filter: "blur(10px)",
-                          }
-                        : false
-                    }
-                    animate={{
-                      opacity: 1,
-                      y: 0,
-                      rotateX: 0,
-                      rotateY: 0,
-                      scale: 1,
-                      filter: "blur(0px)",
-                    }}
-                    exit={{
-                      opacity: 0,
-                      y: 28,
-                      rotateX: 45,
-                      rotateY: 4,
-                      scale: 0.94,
-                      filter: "blur(10px)",
-                      transition: {
-                        duration: 0.42,
-                        ease: [0.4, 0, 0.2, 1] as const,
-                      },
-                    }}
-                    transition={{
-                      duration: 0.65,
+              return (
+                <motion.article
+                  key={service.title}
+                  layout
+                  initial={{
+                    opacity: 0,
+                    y: 24,
+                    scale: 0.97,
+                    filter: "blur(8px)",
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    filter: "blur(0px)",
+                  }}
+                  transition={{
+                    duration: 0.55,
+                    ease: smoothEase,
+                    delay: idx * 0.045,
+                    layout: {
+                      duration: 0.7,
                       ease: smoothEase,
-                      delay,
-                      layout: {
-                        duration: 0.7,
-                        ease: smoothEase,
-                      },
-                    }}
-                    style={{
-                      transformOrigin: "top center",
-                      transformStyle: "preserve-3d",
-                    }}
-                    whileHover={{
-                      y: -6,
-                      rotateX: 1.5,
-                      transition: { duration: 0.25 },
-                    }}
-                    className={
-                      service.featured
-                        ? `
-                          group relative overflow-hidden
-                          rounded-[36px]
-                          bg-gradient-to-br
-                          from-[var(--accent-light)]
-                          via-[#16d6c5]
-                          to-[var(--accent)]
-                          p-10
-                          text-white
-                          shadow-[0_20px_80px_rgba(18,199,183,0.22)]
-                          lg:col-span-2 lg:row-span-2
-                        `
-                        : `
-                          group relative overflow-hidden
-                          rounded-[32px]
-                          border border-[var(--accent-light)]/15
-                          bg-[var(--card)]
-                          p-8
-                          shadow-[0_10px_40px_rgba(18,199,183,0.08)]
-                          backdrop-blur-xl
-                          transition-colors duration-300
-                          hover:border-[var(--accent-light)]/35
-                        `
-                    }
+                    },
+                  }}
+                  style={{
+                    transformOrigin: "top center",
+                    transformStyle: "preserve-3d",
+                  }}
+                  whileHover={{
+                    y: -6,
+                    rotateX: 1.5,
+                    transition: {
+                      duration: 0.25,
+                    },
+                  }}
+                  className={
+                    isFeatured
+                      ? `
+                        group
+                        relative
+                        overflow-hidden
+                        rounded-[36px]
+                        bg-gradient-to-br
+                        from-[var(--accent-light)]
+                        via-[#16d6c5]
+                        to-[var(--accent)]
+                        p-5
+                        text-white
+                        shadow-[0_20px_80px_rgba(18,199,183,0.22)]
+                        lg:col-span-2
+                        lg:row-span-2
+                      `
+                      : `
+                        group
+                        relative
+                        overflow-hidden
+                        rounded-[32px]
+                        border
+                        border-[var(--accent-light)]/15
+                        bg-[var(--card)]
+                        p-5
+                        shadow-[0_10px_40px_rgba(18,199,183,0.08)]
+                        backdrop-blur-xl
+                        transition-colors
+                        duration-300
+                        hover:border-[var(--accent-light)]/35
+                      `
+                  }
+                >
+                  {/* IMAGE */}
+                  <div
+                    className={`
+                      relative
+                      overflow-hidden
+                      rounded-[24px]
+                      ${isFeatured ? "h-[300px]" : "h-[190px]"}
+                    `}
                   >
-                    {service.featured ? (
-                      <>
-                        <div className="absolute right-[-80px] top-[-80px] h-[260px] w-[260px] rounded-full bg-white/15 blur-3xl transition-transform duration-700 group-hover:scale-125" />
+                    <div
+                      className={`
+                        absolute
+                        inset-0
+                        ${
+                          isFeatured
+                            ? "bg-white/12"
+                            : "bg-[var(--accent-light)]/10"
+                        }
+                      `}
+                    />
 
-                        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.10),transparent)]" />
+                    {service.image && (
+                      <img
+                        src={service.image}
+                        alt={service.title}
+                        loading="lazy"
+                        onError={(e) => {
+                          e.currentTarget.style.display = "none";
+                        }}
+                        className="
+                          absolute
+                          inset-0
+                          h-full
+                          w-full
+                          object-cover
+                          transition-transform
+                          duration-700
+                          group-hover:scale-105
+                        "
+                      />
+                    )}
 
-                        <div className="relative">
-                          <span className="rounded-full border border-white/30 bg-white/10 px-4 py-2 text-xs uppercase tracking-[0.2em] text-white backdrop-blur">
-                            Популярная услуга
-                          </span>
+                    <div
+                      className={`
+                        absolute
+                        inset-0
+                        ${
+                          isFeatured
+                            ? "bg-gradient-to-t from-[#071412]/65 via-[#071412]/10 to-transparent"
+                            : "bg-gradient-to-t from-[var(--accent)]/28 via-transparent to-transparent"
+                        }
+                      `}
+                    />
 
-                          <h3 className="mt-10 text-4xl font-semibold md:text-5xl">
-                            {service.title}
-                          </h3>
+                    <div
+                      className="
+                        absolute
+                        right-5
+                        top-5
+                        rounded-full
+                        border
+                        border-white/25
+                        bg-white/15
+                        px-3
+                        py-1.5
+                        text-xs
+                        font-medium
+                        text-white
+                        backdrop-blur-xl
+                      "
+                    >
+                      {service.price}
+                    </div>
+                  </div>
 
-                          <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/90">
-                            {service.desc}
-                          </p>
+                  {/* CONTENT */}
+                  <div className={isFeatured ? "p-5" : "p-3 pt-6"}>
+                    {isFeatured && (
+                      <span
+                        className="
+                          inline-flex
+                          rounded-full
+                          border
+                          border-white/30
+                          bg-white/10
+                          px-4
+                          py-2
+                          text-xs
+                          uppercase
+                          tracking-[0.2em]
+                          text-white
+                          backdrop-blur
+                        "
+                      >
+                        Популярная услуга
+                      </span>
+                    )}
 
-                          <div className="mt-10 flex items-center justify-between gap-6">
-                            <div className="text-2xl font-semibold text-white">
-                              {service.price}
-                            </div>
+                    <h3
+                      className={
+                        isFeatured
+                          ? "mt-7 text-4xl font-semibold md:text-5xl"
+                          : "text-xl font-semibold text-[var(--accent)]"
+                      }
+                    >
+                      {service.title}
+                    </h3>
 
-                            <button
-                              onClick={() => setSelectedService(service)}
-                              className="
-                                rounded-full
-                                bg-white
-                                px-6 py-3
-                                text-sm font-medium
-                                text-[var(--accent)]
-                                shadow-lg
-                                transition
-                                hover:scale-[1.03]
-                                hover:bg-[#eafffc]
-                              "
-                            >
-                              Подробнее
-                            </button>
-                          </div>
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <div className="absolute right-[-70px] top-[-70px] h-[170px] w-[170px] rounded-full bg-[var(--accent-light)]/10 blur-3xl transition-transform duration-700 group-hover:scale-125" />
+                    <p
+                      className={
+                        isFeatured
+                          ? "mt-5 max-w-xl text-lg leading-relaxed text-white/90"
+                          : "mt-4 text-sm leading-relaxed text-[var(--text-muted)]"
+                      }
+                    >
+                      {service.desc}
+                    </p>
 
-                        <div className="relative">
-                          <div className="flex items-start justify-between gap-4">
-                            <h3 className="text-xl font-semibold text-[var(--accent)]">
-                              {service.title}
-                            </h3>
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {service.benefits.slice(0, 3).map((benefit) => (
+                        <span
+                          key={benefit}
+                          className={
+                            isFeatured
+                              ? "rounded-full border border-white/15 bg-white/12 px-3 py-1 text-xs text-white backdrop-blur"
+                              : "rounded-full border border-[var(--accent-light)]/18 bg-[var(--accent-light)]/7 px-3 py-1 text-xs text-[var(--text-soft)]"
+                          }
+                        >
+                          {benefit}
+                        </span>
+                      ))}
+                    </div>
 
-                            <span className="shrink-0 text-sm font-medium text-[var(--accent)]">
-                              {service.price}
-                            </span>
-                          </div>
+                    <div className="mt-7 flex items-center justify-between gap-4">
+                      <div
+                        className={
+                          isFeatured
+                            ? "text-2xl font-semibold text-white"
+                            : "text-lg font-semibold text-[var(--accent)]"
+                        }
+                      >
+                        {service.price}
+                      </div>
 
-                          <p className="mt-5 text-sm leading-relaxed text-[var(--text-muted)]">
-                            {service.desc}
-                          </p>
-
-                          <button
-                            onClick={() => setSelectedService(service)}
-                            className="
-                              mt-8
+                      <button
+                        type="button"
+                        onClick={() => setSelectedService(service)}
+                        className={
+                          isFeatured
+                            ? `
                               rounded-full
-                              border border-[var(--accent-light)]/20
+                              bg-white
+                              px-6
+                              py-3
+                              text-sm
+                              font-medium
+                              text-[var(--accent)]
+                              shadow-lg
+                              transition
+                              hover:scale-[1.03]
+                              hover:bg-[#eafffc]
+                            `
+                            : `
+                              rounded-full
+                              border
+                              border-[var(--accent-light)]/20
                               bg-[var(--accent-light)]/8
-                              px-5 py-2.5
-                              text-sm font-medium
+                              px-5
+                              py-2.5
+                              text-sm
+                              font-medium
                               text-[var(--accent)]
                               transition
                               hover:bg-[var(--accent-light)]
                               hover:text-white
-                            "
-                          >
-                            Подробнее
-                          </button>
-                        </div>
-                      </>
-                    )}
-                  </motion.article>
-                );
-              })}
-            </AnimatePresence>
+                            `
+                        }
+                      >
+                        Подробнее
+                      </button>
+                    </div>
+                  </div>
+                </motion.article>
+              );
+            })}
           </motion.div>
         </motion.div>
+
+        {/* PREVIEW CTA */}
         {preview && (
-  <div className="mt-14 flex justify-center">
-    <a
-      href="/services"
-      className="
-        group
-        relative
-        overflow-hidden
-        rounded-full
-        border
-        border-[var(--accent-light)]/20
-        bg-[var(--card)]
-        px-8
-        py-4
-        text-sm
-        font-semibold
-        text-[var(--accent)]
-        shadow-[0_10px_40px_rgba(18,199,183,0.08)]
-        transition-all
-        duration-500
-        hover:-translate-y-1
-        hover:border-[var(--accent-light)]/40
-        hover:shadow-[0_20px_60px_rgba(18,199,183,0.18)]
-      "
-    >
-      <span className="relative flex items-center gap-3">
-        Все услуги
-
-        <span
-          className="
-            transition-transform
-            duration-300
-            group-hover:translate-x-1
-          "
-        >
-          →
-        </span>
-      </span>
-    </a>
-  </div>
-)}
-
-        {/* SHOW MORE */}
-        {!preview && services.length > 5 && (
           <div className="mt-14 flex justify-center">
-            <motion.button
-              type="button"
-              layout
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.96 }}
-              onClick={() => setShowAll((prev) => !prev)}
+            <Link
+              href="/services"
               className="
-                group relative overflow-hidden
+                group
+                relative
+                overflow-hidden
                 rounded-full
-                border border-[var(--accent-light)]/20
+                border
+                border-[var(--accent-light)]/20
                 bg-[var(--card)]
-                px-7 py-3
-                text-sm font-medium
+                px-8
+                py-4
+                text-sm
+                font-semibold
                 text-[var(--accent)]
-                shadow-sm
-                transition-all duration-300
+                shadow-[0_10px_40px_rgba(18,199,183,0.08)]
+                transition-all
+                duration-500
+                hover:-translate-y-1
                 hover:border-[var(--accent-light)]/40
-                hover:text-white
-                hover:shadow-lg hover:shadow-[var(--accent-light)]/20
+                hover:shadow-[0_20px_60px_rgba(18,199,183,0.18)]
               "
             >
-              <span className="absolute inset-0 origin-left scale-x-0 bg-[var(--accent-light)] transition-transform duration-300 group-hover:scale-x-100" />
+              <span className="relative flex items-center gap-3">
+                Все услуги
 
-              <span className="relative inline-flex items-center gap-2">
-                {showAll ? "Скрыть услуги" : "Показать все услуги"}
-
-                <motion.span
-                  animate={{ rotate: showAll ? 180 : 0 }}
-                  transition={{
-                    duration: 0.35,
-                    ease: smoothEase,
-                  }}
+                <span
+                  className="
+                    transition-transform
+                    duration-300
+                    group-hover:translate-x-1
+                  "
                 >
-                  ↓
-                </motion.span>
+                  →
+                </span>
               </span>
-            </motion.button>
+            </Link>
+          </div>
+        )}
+
+        {/* ADVANTAGES */}
+        {!preview && (
+          <div className="mt-28">
+            <div className="mx-auto max-w-3xl text-center">
+              <span
+                className="
+                  inline-flex
+                  rounded-full
+                  border
+                  border-[var(--accent-light)]/20
+                  bg-[var(--accent-light)]/10
+                  px-4
+                  py-2
+                  text-xs
+                  font-semibold
+                  uppercase
+                  tracking-[0.25em]
+                  text-[var(--accent)]
+                "
+              >
+                Почему выбирают нас
+              </span>
+
+              <h2
+                className="
+                  mt-6
+                  text-4xl
+                  font-semibold
+                  text-[var(--accent)]
+                  md:text-5xl
+                "
+              >
+                Лечение должно быть понятным
+                и спокойным
+              </h2>
+
+              <p
+                className="
+                  mx-auto
+                  mt-5
+                  max-w-2xl
+                  text-lg
+                  leading-relaxed
+                  text-[var(--text-soft)]
+                "
+              >
+                Мы объясняем этапы лечения, предлагаем несколько вариантов
+                и помогаем выбрать решение, которое подходит пациенту.
+              </p>
+            </div>
+
+            <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+              {advantages.map((item) => (
+                <motion.div
+                  key={item.title}
+                  whileHover={{ y: -5 }}
+                  className="
+                    rounded-[30px]
+                    border
+                    border-[var(--accent-light)]/15
+                    bg-[var(--card)]
+                    p-7
+                    shadow-[0_14px_45px_rgba(18,199,183,0.06)]
+                    backdrop-blur-xl
+                    transition-all
+                    duration-300
+                    hover:border-[var(--accent-light)]/35
+                  "
+                >
+                  <div
+                    className="
+                      flex
+                      h-10
+                      w-10
+                      items-center
+                      justify-center
+                      rounded-full
+                      bg-[var(--accent-light)]/12
+                      text-[var(--accent)]
+                    "
+                  >
+                    ✓
+                  </div>
+
+                  <h3 className="mt-5 text-lg font-semibold text-[var(--accent)]">
+                    {item.title}
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">
+                    {item.desc}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* FINAL CTA */}
+        {!preview && (
+          <div className="mt-28">
+            <div
+              className="
+                relative
+                overflow-hidden
+                rounded-[40px]
+                border
+                border-[var(--accent-light)]/20
+                bg-[var(--card)]
+                p-10
+                text-center
+                shadow-[0_20px_80px_rgba(18,199,183,0.08)]
+                backdrop-blur-xl
+                md:p-14
+              "
+            >
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  left-1/2
+                  top-[-120px]
+                  h-[320px]
+                  w-[320px]
+                  -translate-x-1/2
+                  rounded-full
+                  bg-[var(--accent-light)]/14
+                  blur-3xl
+                "
+              />
+
+              <div className="relative">
+                <h2
+                  className="
+                    text-4xl
+                    font-semibold
+                    text-[var(--accent)]
+                    md:text-5xl
+                  "
+                >
+                  Не нашли нужную услугу?
+                </h2>
+
+                <p
+                  className="
+                    mx-auto
+                    mt-5
+                    max-w-2xl
+                    text-lg
+                    leading-relaxed
+                    text-[var(--text-soft)]
+                  "
+                >
+                  Свяжитесь с нами, и администратор подскажет, какое
+                  направление подойдёт именно в вашей ситуации.
+                </p>
+
+                <Link
+                  href="/contact"
+                  className="
+                    mt-8
+                    inline-flex
+                    rounded-full
+                    bg-[var(--accent-light)]
+                    px-8
+                    py-4
+                    text-sm
+                    font-semibold
+                    text-[#071412]
+                    shadow-[0_12px_40px_rgba(18,199,183,0.28)]
+                    transition-all
+                    duration-300
+                    hover:-translate-y-[2px]
+                    hover:brightness-110
+                  "
+                >
+                  Связаться с клиникой
+                </Link>
+              </div>
+            </div>
           </div>
         )}
       </div>
 
-     <ServiceModal
-  open={selectedService !== null}
-  service={selectedService}
-  onClose={() => setSelectedService(null)}
-  onBook={(service) => {
-    setSelectedService(null);
-    onBookService(service);
-  }}
-/>
+      <ServiceModal
+        open={selectedService !== null}
+        service={selectedService}
+        onClose={() => setSelectedService(null)}
+        onBook={(service) => {
+          setSelectedService(null);
+          onBookService(service);
+        }}
+      />
     </section>
   );
 }
