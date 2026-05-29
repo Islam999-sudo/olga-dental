@@ -351,9 +351,8 @@ export function Doctors({ onBookDoctor }: Props) {
                       sm:w-[360px]
                     "
                     onClick={() => {
-                      if (dragBlockedRef.current) return;
-                      setSelected(d);
-                    }}
+  if (dragBlockedRef.current) return;
+}}
                   >
                     <motion.div
                       whileHover={
@@ -505,31 +504,7 @@ export function Doctors({ onBookDoctor }: Props) {
                           ))}
                         </div>
 
-                        {/* BUTTON */}
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setSelected(d);
-                          }}
-                          className="
-                            mt-5
-                            rounded-full
-                            bg-white
-                            px-5
-                            py-2
-                            text-sm
-                            font-medium
-                            text-[var(--accent)]
-                            transition-all
-                            duration-300
-                            hover:bg-[var(--accent-light)]
-                            hover:text-white
-                            sm:mt-6
-                          "
-                        >
-                          Профиль врача
-                        </button>
+                        
                       </div>
                     </motion.div>
                   </motion.div>
@@ -539,6 +514,93 @@ export function Doctors({ onBookDoctor }: Props) {
           </div>
 
           {/* MOBILE INDICATOR */}
+          <div className="mt-12 flex justify-center">
+  <a
+    href="/doctors"
+    className="
+      group
+      relative
+      overflow-hidden
+
+      rounded-full
+
+      border
+      border-[var(--accent-light)]/25
+
+      bg-[rgba(18,199,183,0.08)]
+
+      px-10
+      py-4
+
+      text-sm
+      font-semibold
+
+      text-[var(--accent)]
+
+      backdrop-blur-xl
+
+      shadow-[0_10px_40px_rgba(18,199,183,0.12)]
+
+      transition-all
+      duration-500
+
+      hover:-translate-y-1
+      hover:border-[var(--accent-light)]/50
+      hover:shadow-[0_20px_60px_rgba(18,199,183,0.25)]
+    "
+  >
+    {/* перелив */}
+    <span
+      className="
+        absolute
+        inset-0
+
+        -translate-x-[200%]
+        skew-x-[-25deg]
+
+        bg-gradient-to-r
+        from-transparent
+        via-white/30
+        to-transparent
+
+        transition-transform
+        duration-[1800ms]
+
+        group-hover:translate-x-[250%]
+      "
+    />
+
+    {/* внутреннее свечение */}
+    <span
+      className="
+        absolute
+        inset-0
+
+        bg-[radial-gradient(circle_at_center,rgba(18,199,183,0.18),transparent_70%)]
+
+        opacity-0
+        transition-opacity
+        duration-500
+
+        group-hover:opacity-100
+      "
+    />
+
+    <span className="relative flex items-center gap-3">
+      Все специалисты
+
+      <span
+        className="
+          transition-transform
+          duration-300
+          group-hover:translate-x-1
+        "
+      >
+        →
+      </span>
+    </span>
+  </a>
+</div>
           <div
             className="
               mt-5
@@ -567,17 +629,7 @@ export function Doctors({ onBookDoctor }: Props) {
         </div>
       </div>
 
-      {/* MODAL */}
-      {selected && (
-        <DoctorModal
-          doctor={selected}
-          onClose={() => setSelected(null)}
-          onBook={() => {
-            onBookDoctor(selected);
-            setSelected(null);
-          }}
-        />
-      )}
+
     </section>
   );
 }

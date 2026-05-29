@@ -1,31 +1,28 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
 
-type Props = {
-  onBook: () => void;
-};
 
-const sections = ["services", "doctors", "about", "contact"];
 
-const labels: Record<string, string> = {
-  services: "Услуги",
-  doctors: "Врачи",
-  about: "О клинике",
-  contact: "Контакты",
-};
+const navItems = [
+  { href: "/", label: "Главная" },
+  { href: "/services", label: "Услуги" },
+  { href: "/doctors", label: "Врачи" },
+  { href: "/about", label: "О клинике" },
+  { href: "/reviews", label: "Отзывы" },
+  { href: "/contact", label: "Контакты" },
+];
 
 const smoothEase = [0.22, 1, 0.36, 1] as const;
 
-export function Navbar({ onBook }: Props) {
-  const [active, setActive] = useState("");
-  const [scrolled, setScrolled] = useState(false);
+export function Navbar() {
+  
   const [mounted, setMounted] = useState(false);
-
   const { resolvedTheme, setTheme } = useTheme();
   const isDark = mounted && resolvedTheme === "dark";
 
@@ -33,37 +30,6 @@ export function Navbar({ onBook }: Props) {
     setMounted(true);
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      let current = "";
-
-      for (const id of sections) {
-        const el = document.getElementById(id);
-        if (!el) continue;
-
-        const rect = el.getBoundingClientRect();
-
-        if (rect.top <= 120 && rect.bottom >= 120) {
-          current = id;
-        }
-      }
-
-      setActive(current);
-      setScrolled(window.scrollY > 80);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  };
 
   return (
     <header
@@ -85,10 +51,10 @@ export function Navbar({ onBook }: Props) {
       </div>
 
       <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
-        <button
-          onClick={() => scrollTo("services")}
-          className="group flex items-center gap-3"
-        >
+        <Link
+  href="/"
+  className="group flex items-center gap-3"
+>
           <div className="relative">
             <div className="absolute inset-0 rounded-full bg-[var(--accent-light)]/20 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
 
@@ -111,46 +77,46 @@ export function Navbar({ onBook }: Props) {
               Dental Clinic
             </span>
           </div>
-        </button>
+        </Link>
 
-        <nav className="hidden items-center gap-1 rounded-full border border-[color:rgba(18,199,183,0.16)] bg-[var(--card)] p-1 shadow-soft backdrop-blur-2xl md:flex">
-          {sections.map((id) => {
-            const isActive = active === id;
+        <nav
+  className="
+    hidden items-center gap-1 rounded-full
+    border border-[color:rgba(18,199,183,0.16)]
+    bg-[var(--card)]
+    p-1
+    shadow-soft
+    backdrop-blur-2xl
+    md:flex
+  "
+>
+  {navItems.map((item) => (
+    <Link
+      key={item.href}
+      href={item.href}
+      className="
+        relative overflow-hidden rounded-full
+        px-4 py-2 text-sm font-medium
+        text-[var(--text-muted)]
+        transition-all duration-500
+        hover:text-[var(--accent)]
+      "
+    >
+      <span
+        className="
+          absolute inset-0 rounded-full
+          bg-transparent
+          transition-all duration-500
+          hover:bg-[var(--accent-light)]/8
+        "
+      />
 
-            return (
-              <button
-                key={id}
-                onClick={() => scrollTo(id)}
-                className={`
-                  group relative overflow-hidden rounded-full px-4 py-2 text-sm font-medium
-                  transition-all duration-500
-                  ${
-                    isActive
-                      ? "text-[var(--accent)]"
-                      : "text-[var(--text-muted)] hover:text-[var(--accent)]"
-                  }
-                `}
-              >
-                <span
-                  className={`
-                    absolute inset-0 rounded-full transition-all duration-500
-                    ${
-                      isActive
-                        ? "bg-[var(--accent-light)]/12 shadow-[inset_0_0_0_1px_rgba(18,199,183,0.24)]"
-                        : "bg-transparent group-hover:bg-[var(--accent-light)]/8"
-                    }
-                  `}
-                />
-
-                <span className="relative z-10">{labels[id]}</span>
-
-                {isActive && (
-                  <span className="absolute bottom-[4px] left-1/2 h-[2px] w-6 -translate-x-1/2 rounded-full bg-[var(--accent-light)] shadow-[0_0_18px_rgba(18,199,183,0.9)]" />
-                )}
-              </button>
-            );
-          })}
-        </nav>
+      <span className="relative z-10">
+        {item.label}
+      </span>
+    </Link>
+  ))}
+</nav>
 
         <div className="flex items-center gap-3">
           <button
@@ -284,25 +250,25 @@ export function Navbar({ onBook }: Props) {
             Позвонить
           </a>
 
-          <button
-            onClick={onBook}
-            className="
-              rounded-full
-              bg-[var(--accent-light)]
-              px-5 py-2.5
-              text-sm font-semibold
-              text-white
-              shadow-[0_12px_30px_rgba(18,199,183,0.34)]
-              transition-all
-              duration-500
-              hover:-translate-y-[2px]
-              hover:bg-[var(--accent)]
-              hover:shadow-[0_16px_40px_rgba(18,199,183,0.42)]
-              dark:text-[#071412]
-            "
-          >
-            Запись
-          </button>
+<Link
+  href="/contact"
+  className="
+    rounded-full
+    bg-[var(--accent-light)]
+    px-5 py-2.5
+    text-sm font-semibold
+    text-white
+    shadow-[0_12px_30px_rgba(18,199,183,0.34)]
+    transition-all
+    duration-500
+    hover:-translate-y-[2px]
+    hover:bg-[var(--accent)]
+    hover:shadow-[0_16px_40px_rgba(18,199,183,0.42)]
+    dark:text-[#071412]
+  "
+>
+  Запись
+</Link>
         </div>
       </div>
     </header>

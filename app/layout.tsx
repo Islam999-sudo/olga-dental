@@ -1,6 +1,7 @@
 import "./globals.css";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { Navbar } from "@/components/layout/navbar";
 
 export default function RootLayout({
   children,
@@ -13,8 +14,12 @@ export default function RootLayout({
         <ThemeProvider>
           <ScrollToTop />
 
+          <Navbar />
+
           <div className="min-h-screen flex flex-col">
-            <main className="flex-1">{children}</main>
+            <main className="flex-1">
+              {children}
+            </main>
           </div>
         </ThemeProvider>
       </body>

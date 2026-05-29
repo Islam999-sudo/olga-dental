@@ -53,12 +53,15 @@ export default function Home() {
 
   return (
     <>
-      <Navbar onBook={openGeneralBooking} />
+      
 
       <main className="bg-transparent text-zinc-900 dark:text-white">
         <Hero onBook={openGeneralBooking} />
 
-        <Services onBookService={openServiceBooking} />
+        <Services
+  preview
+  onBookService={openServiceBooking}
+/>
 
         <Doctors onBookDoctor={openDoctorBooking} />
 

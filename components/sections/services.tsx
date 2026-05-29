@@ -164,16 +164,22 @@ const services: Service[] = [
 
 type Props = {
   onBookService: (service: Service) => void;
+  preview?: boolean;
 };
 
 export function Services({
   onBookService,
+  preview = false,
 }: Props)
  {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [showAll, setShowAll] = useState(false);
 
-  const visibleServices = showAll ? services : services.slice(0, 5);
+  const visibleServices = preview
+  ? services.slice(0, 3)
+  : showAll
+  ? services
+  : services.slice(0, 5);
 
   return (
     <section id="services" className="relative overflow-hidden py-32">
@@ -427,9 +433,50 @@ export function Services({
             </AnimatePresence>
           </motion.div>
         </motion.div>
+        {preview && (
+  <div className="mt-14 flex justify-center">
+    <a
+      href="/services"
+      className="
+        group
+        relative
+        overflow-hidden
+        rounded-full
+        border
+        border-[var(--accent-light)]/20
+        bg-[var(--card)]
+        px-8
+        py-4
+        text-sm
+        font-semibold
+        text-[var(--accent)]
+        shadow-[0_10px_40px_rgba(18,199,183,0.08)]
+        transition-all
+        duration-500
+        hover:-translate-y-1
+        hover:border-[var(--accent-light)]/40
+        hover:shadow-[0_20px_60px_rgba(18,199,183,0.18)]
+      "
+    >
+      <span className="relative flex items-center gap-3">
+        Все услуги
+
+        <span
+          className="
+            transition-transform
+            duration-300
+            group-hover:translate-x-1
+          "
+        >
+          →
+        </span>
+      </span>
+    </a>
+  </div>
+)}
 
         {/* SHOW MORE */}
-        {services.length > 5 && (
+        {!preview && services.length > 5 && (
           <div className="mt-14 flex justify-center">
             <motion.button
               type="button"
