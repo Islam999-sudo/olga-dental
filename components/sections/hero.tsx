@@ -4,6 +4,7 @@ type Props = {
   onBook?: () => void;
 };
 
+import Link from "next/link";
 export function Hero({ onBook }: Props) {
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
@@ -172,33 +173,32 @@ export function Hero({ onBook }: Props) {
               Записаться
             </button>
 
-            <button
-              type="button"
-              onClick={() => scrollToSection("services")}
-              className="
-                relative
-                z-30
-                rounded-full
-                border border-[var(--accent-light)]/20
-                bg-[var(--card)]
-                px-8
-                py-4
-                text-sm
-                font-medium
-                text-[var(--accent)]
-                shadow-[0_10px_30px_rgba(18,199,183,0.08)]
-                backdrop-blur-xl
-                transition-all
-                duration-300
-                hover:-translate-y-[3px]
-                hover:border-[var(--accent-light)]/40
-                hover:bg-[var(--accent-light)]/5
-                active:translate-y-0
-                active:scale-[0.98]
-              "
-            >
-              Услуги
-            </button>
+<Link
+  href="/services"
+  className="
+    relative
+    z-30
+    rounded-full
+    border border-[var(--accent-light)]/20
+    bg-[var(--card)]
+    px-8
+    py-4
+    text-sm
+    font-medium
+    text-[var(--accent)]
+    shadow-[0_10px_30px_rgba(18,199,183,0.08)]
+    backdrop-blur-xl
+    transition-all
+    duration-300
+    hover:-translate-y-[3px]
+    hover:border-[var(--accent-light)]/40
+    hover:bg-[var(--accent-light)]/5
+    active:translate-y-0
+    active:scale-[0.98]
+  "
+>
+  Услуги
+</Link>
           </div>
 
           {/* CONTACT INFO */}
