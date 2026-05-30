@@ -10,7 +10,9 @@ import { Navbar } from "@/components/layout/navbar";
 import { GlobalBookingModal } from "@/components/global-booking-modal";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://olgadental.ru"),
+  metadataBase: new URL(
+  "https://olga-clinic-murino.ru"
+),
 
   title: {
     default: "OLGA Dental Clinic — стоматология в Мурино",
@@ -57,15 +59,15 @@ export const metadata: Metadata = {
 
     type: "website",
 
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "OLGA Dental Clinic",
-      },
-    ],
-  },
+  images: [
+    {
+      url: "https://olga-clinic-murino.ru/og-image.jpg",
+      width: 1200,
+      height: 630,
+      alt: "OLGA Dental Clinic — стоматология в Мурино",
+    },
+  ],
+},
 
   twitter: {
     card: "summary_large_image",

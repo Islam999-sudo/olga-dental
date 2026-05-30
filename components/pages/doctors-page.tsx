@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 import { doctors, type Doctor } from "@/data/doctors";
 import { DoctorModal } from "@/components/ui/doctor-modal";
-import { BookingModal } from "@/components/ui/booking-modal";
+import { useBooking } from "@/components/providers/booking-provider";
 
 const stats = [
   {
@@ -94,12 +94,10 @@ function matchesFilter(doctor: Doctor, filter: string) {
 }
 
 export function DoctorsPage() {
+  const { openBooking } = useBooking();
+
   const [selectedDoctor, setSelectedDoctor] =
     useState<Doctor | null>(null);
-
-  const [bookingDoctor, setBookingDoctor] =
-    useState<Doctor | null>(null);
-    const [bookingOpen, setBookingOpen] = useState(false);
 
   const [activeFilter, setActiveFilter] = useState("Все");
 
@@ -109,11 +107,10 @@ export function DoctorsPage() {
     );
   }, [activeFilter]);
 
-  const openBooking = (doctor: Doctor) => {
-  setSelectedDoctor(null);
-  setBookingDoctor(doctor);
-  setBookingOpen(true);
-};
+  const handleBookDoctor = (doctor: Doctor) => {
+    setSelectedDoctor(null);
+    openBooking(doctor);
+  };
 
   return (
     <main
@@ -283,10 +280,7 @@ export function DoctorsPage() {
 
               <button
                 type="button"
-                onClick={() => {
-  setBookingDoctor(null);
-  setBookingOpen(true);
-}}
+                onClick={() => openBooking()}
                 className="
                   mt-6
                   w-full
@@ -944,10 +938,7 @@ export function DoctorsPage() {
 
               <button
                 type="button"
-                onClick={() => {
-  setBookingDoctor(null);
-  setBookingOpen(true);
-}}
+                onClick={() => openBooking()}
                 className="
                   mt-8
                   rounded-full
@@ -975,19 +966,9 @@ export function DoctorsPage() {
         <DoctorModal
           doctor={selectedDoctor}
           onClose={() => setSelectedDoctor(null)}
-          onBook={(doctor) => openBooking(doctor)}
+          onBook={handleBookDoctor}
         />
       )}
-
-<BookingModal
-  open={bookingOpen}
-  onClose={() => {
-    setBookingOpen(false);
-    setBookingDoctor(null);
-  }}
-  doctor={bookingDoctor}
-  service={null}
-/>
     </main>
   );
 }

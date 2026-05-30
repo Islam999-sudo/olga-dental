@@ -8,9 +8,17 @@ import {
 } from "react";
 
 type BookingContextType = {
-  openBooking: () => void;
-  closeBooking: () => void;
   isOpen: boolean;
+
+  doctor: any | null;
+  service: any | null;
+
+  openBooking: (
+    doctor?: any,
+    service?: any
+  ) => void;
+
+  closeBooking: () => void;
 };
 
 const BookingContext =
@@ -23,12 +31,34 @@ export function BookingProvider({
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
+  const [doctor, setDoctor] = useState<any | null>(null);
+  const [service, setService] = useState<any | null>(null);
+
+  const openBooking = (
+    doctorData?: any,
+    serviceData?: any
+  ) => {
+    setDoctor(doctorData ?? null);
+    setService(serviceData ?? null);
+
+    setIsOpen(true);
+  };
+
+  const closeBooking = () => {
+    setIsOpen(false);
+
+    setDoctor(null);
+    setService(null);
+  };
+
   return (
     <BookingContext.Provider
       value={{
         isOpen,
-        openBooking: () => setIsOpen(true),
-        closeBooking: () => setIsOpen(false),
+        doctor,
+        service,
+        openBooking,
+        closeBooking,
       }}
     >
       {children}
