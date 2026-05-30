@@ -2,6 +2,8 @@ import "./globals.css";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Navbar } from "@/components/layout/navbar";
+import { BookingProvider } from "@/components/providers/booking-provider";
+import { GlobalBookingModal } from "@/components/global-booking-modal";
 
 export default function RootLayout({
   children,
@@ -11,17 +13,21 @@ export default function RootLayout({
   return (
     <html lang="ru" suppressHydrationWarning>
       <body className="bg-zinc-50 text-zinc-900 antialiased transition-colors duration-500 dark:bg-[#071412] dark:text-white">
-        <ThemeProvider>
-          <ScrollToTop />
+<ThemeProvider>
+  <BookingProvider>
+    <ScrollToTop />
 
-          <Navbar />
+    <Navbar />
+<Navbar />
 
-          <div className="min-h-screen flex flex-col">
-            <main className="flex-1">
-              {children}
-            </main>
-          </div>
-        </ThemeProvider>
+<GlobalBookingModal />
+    <div className="min-h-screen flex flex-col">
+      <main className="flex-1">
+        {children}
+      </main>
+    </div>
+  </BookingProvider>
+</ThemeProvider>
       </body>
     </html>
   );
