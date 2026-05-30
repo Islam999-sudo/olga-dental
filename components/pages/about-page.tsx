@@ -5,32 +5,32 @@ import { motion } from "framer-motion";
 
 const clinicPhotos = [
   {
-    src: "/clinic/clinic-1.jpg",
+    src: "/clinic/clinic-1.webp",
     title: "Зона приёма",
     desc: "Спокойная атмосфера с первого визита.",
   },
   {
-    src: "/clinic/clinic-2.jpg",
+    src: "/clinic/clinic-2.webp",
     title: "Кабинеты",
     desc: "Современное пространство для лечения.",
   },
   {
-    src: "/clinic/clinic-3.jpg",
+    src: "/clinic/clinic-3.webp",
     title: "Диагностика",
     desc: "Точное планирование перед началом лечения.",
   },
   {
-    src: "/clinic/clinic-4.jpg",
+    src: "/clinic/clinic-4.webp",
     title: "Оборудование",
     desc: "Технологии для комфорта и предсказуемого результата.",
   },
   {
-    src: "/clinic/clinic-5.jpg",
-    title: "Команда",
-    desc: "Специалисты разных направлений работают вместе.",
+    src: "/clinic/clinic-5.webp",
+    title: "Клиника",
+    desc: ".",
   },
   {
-    src: "/clinic/clinic-6.jpg",
+    src: "/clinic/clinic-6.webp",
     title: "Комфорт",
     desc: "Внимание к деталям на каждом этапе визита.",
   },
@@ -393,7 +393,7 @@ export function AboutPageContent() {
                 "
               >
                 <img
-                  src="/clinic/clinic-1.jpg"
+                  src="/clinic/clinic-4.webp"
                   alt="Интерьер клиники OLGA Dental"
                   loading="eager"
                   onError={(e) => {

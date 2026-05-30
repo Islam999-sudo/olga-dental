@@ -99,6 +99,7 @@ export function DoctorsPage() {
 
   const [bookingDoctor, setBookingDoctor] =
     useState<Doctor | null>(null);
+    const [bookingOpen, setBookingOpen] = useState(false);
 
   const [activeFilter, setActiveFilter] = useState("Все");
 
@@ -109,9 +110,10 @@ export function DoctorsPage() {
   }, [activeFilter]);
 
   const openBooking = (doctor: Doctor) => {
-    setSelectedDoctor(null);
-    setBookingDoctor(doctor);
-  };
+  setSelectedDoctor(null);
+  setBookingDoctor(doctor);
+  setBookingOpen(true);
+};
 
   return (
     <main
@@ -262,13 +264,7 @@ export function DoctorsPage() {
             />
 
             <div className="relative">
-              <div
-                className="
-                  text-sm
-                  font-semibold
-                  text-[var(--accent)]
-                "
-              >
+              <div className="text-sm font-semibold text-[var(--accent)]">
                 Как мы подбираем врача
               </div>
 
@@ -281,13 +277,16 @@ export function DoctorsPage() {
                 "
               >
                 Если пациент не знает, к какому специалисту записаться,
-                администратор поможет выбрать направление по жалобе,
-                цели лечения и ситуации.
+                администратор поможет выбрать направление по жалобе, цели
+                лечения и ситуации.
               </p>
 
               <button
                 type="button"
-                onClick={() => setBookingDoctor(doctors[0])}
+                onClick={() => {
+  setBookingDoctor(null);
+  setBookingOpen(true);
+}}
                 className="
                   mt-6
                   w-full
@@ -331,13 +330,7 @@ export function DoctorsPage() {
                 hover:border-[var(--accent-light)]/35
               "
             >
-              <div
-                className="
-                  text-4xl
-                  font-semibold
-                  text-[var(--accent)]
-                "
-              >
+              <div className="text-4xl font-semibold text-[var(--accent)]">
                 {item.value}
               </div>
 
@@ -406,15 +399,7 @@ export function DoctorsPage() {
             </p>
           </div>
 
-          <div
-            className="
-              mt-10
-              flex
-              flex-wrap
-              justify-center
-              gap-3
-            "
-          >
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
             {filters.map((filter) => {
               const isActive = activeFilter === filter;
 
@@ -450,7 +435,15 @@ export function DoctorsPage() {
         {/* DOCTORS GRID */}
         <section className="mt-16">
           {filteredDoctors.length > 0 ? (
-            <div className="grid gap-8 lg:grid-cols-2">
+            <div
+              className="
+                grid
+                items-start
+                gap-8
+                md:grid-cols-2
+                xl:grid-cols-3
+              "
+            >
               {filteredDoctors.map((doctor, index) => (
                 <motion.article
                   key={doctor.name}
@@ -500,243 +493,240 @@ export function DoctorsPage() {
                     "
                   />
 
-                  <div className="grid md:grid-cols-[260px_1fr]">
-                    {/* IMAGE */}
+                  {/* IMAGE */}
+                  <div
+                    className="
+                      relative
+                      h-[430px]
+                      overflow-hidden
+                      sm:h-[460px]
+                    "
+                  >
+                    <img
+                      src={doctor.image}
+                      alt={doctor.name}
+                      loading="lazy"
+                      decoding="async"
+                      className="
+                        h-full
+                        w-full
+                        object-cover
+                        transition-transform
+                        duration-700
+                        group-hover:scale-105
+                      "
+                      style={{
+                        objectPosition: "50% 18%",
+                      }}
+                    />
+
                     <div
                       className="
-                        relative
-                        h-[360px]
-                        overflow-hidden
-                        md:h-full
+                        absolute
+                        inset-0
+                        bg-gradient-to-t
+                        from-[#03100f]/88
+                        via-[var(--accent)]/18
+                        to-transparent
+                      "
+                    />
+
+                    <div
+                      className="
+                        absolute
+                        left-5
+                        top-5
+                        rounded-full
+                        border
+                        border-white/18
+                        bg-white/14
+                        px-4
+                        py-2
+                        text-xs
+                        font-medium
+                        text-white
+                        backdrop-blur-xl
                       "
                     >
-                      <img
-                        src={doctor.image}
-                        alt={doctor.name}
-                        loading="lazy"
-                        decoding="async"
-                        className="
-                          h-full
-                          w-full
-                          object-cover
-                          transition-transform
-                          duration-700
-                          group-hover:scale-105
-                        "
-                        style={{
-                          objectPosition: "50% 18%",
-                        }}
-                      />
-
-                      <div
-                        className="
-                          absolute
-                          inset-0
-                          bg-gradient-to-t
-                          from-[#03100f]/86
-                          via-[var(--accent)]/20
-                          to-transparent
-                        "
-                      />
-
-                      <div
-                        className="
-                          absolute
-                          left-5
-                          top-5
-                          rounded-full
-                          border
-                          border-white/18
-                          bg-white/14
-                          px-4
-                          py-2
-                          text-xs
-                          font-medium
-                          text-white
-                          backdrop-blur-xl
-                        "
-                      >
-                        {doctor.exp}
-                      </div>
-
-                      <div
-                        className="
-                          absolute
-                          bottom-5
-                          left-5
-                          right-5
-                          text-white
-                        "
-                      >
-                        <div className="text-xs uppercase tracking-[0.22em] text-white/65">
-                          Врач клиники
-                        </div>
-
-                        <div className="mt-2 text-2xl font-semibold leading-tight">
-                          {doctor.name}
-                        </div>
-                      </div>
+                      {doctor.exp}
                     </div>
 
-                    {/* CONTENT */}
-                    <div className="relative p-7 md:p-8">
+                    <div
+                      className="
+                        absolute
+                        bottom-5
+                        left-5
+                        right-5
+                        text-white
+                      "
+                    >
                       <div
                         className="
                           text-xs
-                          font-semibold
                           uppercase
                           tracking-[0.22em]
-                          text-[var(--accent)]
+                          text-white/65
+                        "
+                      >
+                        Врач клиники
+                      </div>
+
+                      <div
+                        className="
+                          mt-2
+                          text-lg
+                          font-semibold
+                          leading-tight
+                          text-white/95
                         "
                       >
                         {doctor.role}
                       </div>
+                    </div>
+                  </div>
 
-                      <h3
-                        className="
-                          mt-3
-                          text-2xl
-                          font-semibold
-                          leading-tight
-                          text-[var(--foreground)]
-                          md:text-3xl
-                        "
-                      >
-                        {doctor.name}
-                      </h3>
+                  {/* CONTENT */}
+                  <div className="relative p-7">
+                    <h3
+                      className="
+                        text-2xl
+                        font-semibold
+                        leading-tight
+                        text-[var(--foreground)]
+                      "
+                    >
+                      {doctor.name}
+                    </h3>
 
-                      <p
-                        className="
-                          mt-4
-                          text-sm
-                          leading-relaxed
-                          text-[var(--text-soft)]
-                        "
-                      >
-                        {doctor.desc}
-                      </p>
+                    <p
+                      className="
+                        mt-4
+                        text-sm
+                        leading-relaxed
+                        text-[var(--text-soft)]
+                      "
+                    >
+                      {doctor.desc}
+                    </p>
 
-                      <div className="mt-6 flex flex-wrap gap-2">
-                        {doctor.specialization.slice(0, 4).map((spec) => (
-                          <span
-                            key={spec}
-                            className="
-                              rounded-full
-                              border
-                              border-[var(--accent-light)]/20
-                              bg-[var(--accent-light)]/8
-                              px-3
-                              py-1.5
-                              text-xs
-                              font-medium
-                              text-[var(--text-soft)]
-                            "
-                          >
-                            {spec}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div
-                        className="
-                          mt-6
-                          space-y-3
-                        "
-                      >
-                        {doctor.highlights.slice(0, 3).map((item) => (
-                          <div
-                            key={item}
-                            className="
-                              flex
-                              items-start
-                              gap-3
-                              rounded-2xl
-                              border
-                              border-[var(--accent-light)]/12
-                              bg-[var(--accent-light)]/5
-                              p-3.5
-                              text-sm
-                              leading-relaxed
-                              text-[var(--text-soft)]
-                            "
-                          >
-                            <span
-                              className="
-                                mt-[2px]
-                                flex
-                                h-5
-                                w-5
-                                shrink-0
-                                items-center
-                                justify-center
-                                rounded-full
-                                bg-[var(--accent-light)]/14
-                                text-xs
-                                text-[var(--accent)]
-                              "
-                            >
-                              ✓
-                            </span>
-
-                            <span>{item}</span>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div
-                        className="
-                          mt-7
-                          flex
-                          flex-col
-                          gap-3
-                          sm:flex-row
-                        "
-                      >
-                        <button
-                          type="button"
-                          onClick={() => setSelectedDoctor(doctor)}
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {doctor.specialization.slice(0, 4).map((spec) => (
+                        <span
+                          key={spec}
                           className="
-                            flex-1
-                            rounded-2xl
+                            rounded-full
                             border
                             border-[var(--accent-light)]/20
-                            bg-[var(--glass)]
-                            px-5
-                            py-3
-                            text-sm
-                            font-semibold
-                            text-[var(--accent)]
-                            transition-all
-                            duration-300
-                            hover:border-[var(--accent-light)]/40
-                            hover:bg-[var(--accent-light)]/6
+                            bg-[var(--accent-light)]/8
+                            px-3
+                            py-1.5
+                            text-xs
+                            font-medium
+                            text-[var(--text-soft)]
                           "
                         >
-                          Подробнее
-                        </button>
+                          {spec}
+                        </span>
+                      ))}
+                    </div>
 
-                        <button
-                          type="button"
-                          onClick={() => openBooking(doctor)}
+                    <div className="mt-6 space-y-3">
+                      {doctor.highlights.slice(0, 3).map((item) => (
+                        <div
+                          key={item}
                           className="
-                            flex-1
+                            flex
+                            items-start
+                            gap-3
                             rounded-2xl
-                            bg-[var(--accent-light)]
-                            px-5
-                            py-3
+                            border
+                            border-[var(--accent-light)]/12
+                            bg-[var(--accent-light)]/5
+                            p-3.5
                             text-sm
-                            font-semibold
-                            text-[#071412]
-                            shadow-[0_12px_40px_rgba(18,199,183,0.25)]
-                            transition-all
-                            duration-300
-                            hover:-translate-y-[2px]
-                            hover:brightness-110
+                            leading-relaxed
+                            text-[var(--text-soft)]
                           "
                         >
-                          Записаться
-                        </button>
-                      </div>
+                          <span
+                            className="
+                              mt-[2px]
+                              flex
+                              h-5
+                              w-5
+                              shrink-0
+                              items-center
+                              justify-center
+                              rounded-full
+                              bg-[var(--accent-light)]/14
+                              text-xs
+                              text-[var(--accent)]
+                            "
+                          >
+                            ✓
+                          </span>
+
+                          <span>{item}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div
+                      className="
+                        mt-7
+                        flex
+                        flex-col
+                        gap-3
+                        sm:flex-row
+                        md:flex-col
+                        lg:flex-row
+                        xl:flex-col
+                      "
+                    >
+                      <button
+                        type="button"
+                        onClick={() => setSelectedDoctor(doctor)}
+                        className="
+                          flex-1
+                          rounded-2xl
+                          border
+                          border-[var(--accent-light)]/20
+                          bg-[var(--glass)]
+                          px-5
+                          py-3
+                          text-sm
+                          font-semibold
+                          text-[var(--accent)]
+                          transition-all
+                          duration-300
+                          hover:border-[var(--accent-light)]/40
+                          hover:bg-[var(--accent-light)]/6
+                        "
+                      >
+                        Подробнее
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => openBooking(doctor)}
+                        className="
+                          flex-1
+                          rounded-2xl
+                          bg-[var(--accent-light)]
+                          px-5
+                          py-3
+                          text-sm
+                          font-semibold
+                          text-[#071412]
+                          shadow-[0_12px_40px_rgba(18,199,183,0.25)]
+                          transition-all
+                          duration-300
+                          hover:-translate-y-[2px]
+                          hover:brightness-110
+                        "
+                      >
+                        Записаться
+                      </button>
                     </div>
                   </div>
                 </motion.article>
@@ -954,7 +944,10 @@ export function DoctorsPage() {
 
               <button
                 type="button"
-                onClick={() => setBookingDoctor(doctors[0])}
+                onClick={() => {
+  setBookingDoctor(null);
+  setBookingOpen(true);
+}}
                 className="
                   mt-8
                   rounded-full
@@ -986,12 +979,15 @@ export function DoctorsPage() {
         />
       )}
 
-      <BookingModal
-        open={bookingDoctor !== null}
-        onClose={() => setBookingDoctor(null)}
-        doctor={bookingDoctor}
-        service={null}
-      />
+<BookingModal
+  open={bookingOpen}
+  onClose={() => {
+    setBookingOpen(false);
+    setBookingDoctor(null);
+  }}
+  doctor={bookingDoctor}
+  service={null}
+/>
     </main>
   );
 }

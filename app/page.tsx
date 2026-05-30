@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 
-import { Navbar } from "@/components/layout/navbar";
 import { Hero } from "@/components/sections/hero";
 
 import {
@@ -10,7 +9,6 @@ import {
   type Service,
 } from "@/components/sections/services";
 
-import { About } from "@/components/sections/about";
 import { BookingModal } from "@/components/ui/booking-modal";
 import { Doctors } from "@/components/sections/doctors";
 import { Testimonials } from "@/components/sections/testimonials";
@@ -53,22 +51,18 @@ export default function Home() {
 
   return (
     <>
-      
-
       <main className="bg-transparent text-zinc-900 dark:text-white">
         <Hero onBook={openGeneralBooking} />
 
         <Services
-  preview
-  onBookService={openServiceBooking}
-/>
+          preview
+          onBookService={openServiceBooking}
+        />
 
         <Doctors onBookDoctor={openDoctorBooking} />
 
         <div className="relative z-10">
           <Testimonials />
-
-          <About />
 
           <ContactMap />
         </div>

@@ -1,72 +1,44 @@
 "use client";
 
-import { motion } from "framer-motion";
-
-const sectionVariants = {
-  hidden: { opacity: 0, y: 30 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut" as const,
-      staggerChildren: 0.12,
-    },
+const reviews = [
+  {
+    name: "василиса е.",
+    level: "Знаток города 4 уровня",
+    date: "23 мая",
+    text:
+      "Было сложное удаление зуба, работал хирург Константин Андреевич. Мне все очень понравилось, у меня был проблемный зуб, тяжело удаляли, но благодаря профессионализму доктора, прекрасному дружелюбному общению, поддержке, все прошло очень хорошо. Спасибо администратору за оперативную запись, поскольку проблема была острая. Цена за такую сложную работу была очень адекватная. Могу клинику и врача советовать однозначно, спасибо большое за помощь!",
   },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.4,
-      ease: "easeOut" as const,
-    },
+  {
+    name: "Альбина Ч.",
+    level: "Знаток города 5 уровня",
+    date: "24 марта",
+    text:
+      "Приходила в данную стоматологию на проф. гигиену. Процедура прошла безболезненно, быстро, комфортно. Врач-гигиенист Бакланская Виктория...",
   },
-};
+  {
+    name: "Efim",
+    level: "Знаток города 3 уровня",
+    date: "28 ноября 2025",
+    text:
+      "Пришел в вечернее время 27 ноября 2025 года, болела десна, думал, что болит зуб. Пригласили в кабинет, оказали первую помощь, промыли антисептиком десну. Порекомендовали полоскать. Врач Олеся очень внимательная, настоящий профессионал. Весь персонал очень вежливый и приветливый. Осмотр был совершенно бесплатный. Спасибо администратору за решение, за доброту и хорошее отношение, и за подарок — отличную зубную щетку!",
+  },
+];
 
 export function Testimonials() {
   const yandexReviewsUrl =
-    "https://yandex.ru/maps/?text=OLGA%20Dental%20Clinic%20%D0%9C%D1%83%D1%80%D0%B8%D0%BD%D0%BE%20%D0%92%D0%BE%D1%80%D0%BE%D0%BD%D1%86%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9%20%D0%B1%D1%83%D0%BB%D1%8C%D0%B2%D0%B0%D1%80%202";
-
-  const reviews = [
-    {
-      name: "василиса е.",
-      level: "Знаток города 4 уровня",
-      date: "23 мая",
-      text:
-        "Было сложное удаление зуба, работал хирург Константин Андреевич. Мне все очень понравилось, у меня был проблемный зуб, тяжело удаляли, но благодаря профессионализму доктора, прекрасному дружелюбному общению, поддержке, все прошло очень хорошо. Спасибо администратору за оперативную запись, поскольку проблема была острая. Цена за такую сложную работу была очень адекватная. Могу клинику и врача советовать однозначно, спасибо большое за помощь!",
-    },
-    {
-      name: "Альбина Ч.",
-      level: "Знаток города 5 уровня",
-      date: "24 марта",
-      text:
-        "Приходила в данную стоматологию на проф. гигиену. Процедура прошла безболезненно, быстро, комфортно. Врач-гигиенист Бакланская Виктория...",
-    },
-    {
-      name: "Efim",
-      level: "Знаток города 3 уровня",
-      date: "28 ноября 2025",
-      text:
-        "Пришел в вечернее время 27 ноября 2025 года, болела десна, думал, что болит зуб. Пригласили в кабинет, оказали первую помощь, промыли антисептиком десну. Порекомендовали полоскать. Врач Олеся очень внимательная, настоящий профессионал. Весь персонал очень вежливый и приветливый. Осмотр был совершенно бесплатный. Спасибо администратору за решение, за доброту и хорошее отношение, и за подарок — отличную зубную щетку!",
-    },
-  ];
+    "https://yandex.ru/maps/org/olga/99713820273/";
 
   return (
-    <motion.section
+    <section
       id="testimonials"
-      variants={sectionVariants}
-      initial={false}
-      animate="show"
       className="
         relative
         overflow-hidden
         bg-[#071413]
-        py-32
+        py-24
         text-white
+        sm:py-28
+        lg:py-32
       "
     >
       {/* BACKGROUND */}
@@ -148,29 +120,13 @@ export function Testimonials() {
             Спокойный сервис, современное лечение и прозрачный подход —
             именно за это пациенты рекомендуют клинику своим близким.
           </p>
-
-          <p
-            className="
-              mt-5
-              max-w-2xl
-              text-sm
-              leading-relaxed
-              text-white/45
-            "
-          >
-            
-          </p>
         </div>
 
         {/* CARDS */}
-        <div className="mt-20 grid gap-8 lg:grid-cols-3">
+        <div className="mt-16 grid gap-8 lg:grid-cols-3">
           {reviews.map((review, idx) => (
-            <motion.div
+            <article
               key={`${review.name}-${idx}`}
-              variants={itemVariants}
-              whileHover={{
-                y: -8,
-              }}
               className="
                 group
                 relative
@@ -182,11 +138,10 @@ export function Testimonials() {
                 p-8
                 shadow-[0_10px_40px_rgba(0,0,0,0.25)]
                 backdrop-blur-xl
-                transition-all
+                transition-colors
                 duration-300
-                hover:border-[var(--accent-light)]/35
-                hover:bg-white/[0.12]
-                hover:shadow-[0_20px_60px_rgba(18,199,183,0.18)]
+                hover:border-[var(--accent-light)]/30
+                hover:bg-white/[0.10]
               "
             >
               {/* GLOW */}
@@ -201,9 +156,6 @@ export function Testimonials() {
                   rounded-full
                   bg-[var(--accent-light)]/10
                   blur-3xl
-                  transition-all
-                  duration-500
-                  group-hover:scale-125
                 "
               />
 
@@ -268,7 +220,7 @@ export function Testimonials() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </article>
           ))}
         </div>
 
@@ -330,6 +282,6 @@ export function Testimonials() {
           </a>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }
