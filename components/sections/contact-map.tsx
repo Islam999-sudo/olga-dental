@@ -370,6 +370,96 @@ export function ContactMap() {
                 </p>
               </div>
             </motion.div>
+            {/* VK */}
+<motion.div
+  whileHover={{ y: -4 }}
+  className="
+    relative
+    overflow-hidden
+    rounded-[30px]
+    border
+    border-[var(--accent-light)]/15
+    bg-[var(--card)]
+    p-7
+    shadow-[0_10px_40px_rgba(18,199,183,0.08)]
+    backdrop-blur-xl
+  "
+>
+  <div
+    className="
+      pointer-events-none
+      absolute
+      right-[-70px]
+      top-[-70px]
+      h-[170px]
+      w-[170px]
+      rounded-full
+      bg-[var(--accent-light)]/10
+      blur-3xl
+    "
+  />
+
+  <div className="relative">
+    <div
+      className="
+        text-sm
+        uppercase
+        tracking-[0.2em]
+        text-[var(--accent)]
+      "
+    >
+      Социальные сети
+    </div>
+
+    <div
+      className="
+        mt-3
+        text-xl
+        font-semibold
+        text-[var(--accent)]
+      "
+    >
+      Мы ВКонтакте
+    </div>
+
+    <p
+      className="
+        mt-3
+        text-sm
+        leading-relaxed
+        text-[var(--text-muted)]
+      "
+    >
+      Новости клиники, акции, полезные рекомендации врачей и реальные отзывы пациентов.
+    </p>
+
+    <a
+      href="https://vk.com/olgaclinic"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="
+        mt-5
+        inline-flex
+        items-center
+        gap-2
+        rounded-full
+        bg-[var(--accent-light)]
+        px-6
+        py-3
+        text-sm
+        font-semibold
+        text-[#071412]
+        shadow-[0_12px_40px_rgba(18,199,183,0.25)]
+        transition-all
+        duration-300
+        hover:-translate-y-[2px]
+        hover:brightness-110
+      "
+    >
+      VK Сообщество →
+    </a>
+  </div>
+</motion.div>
 
             {/* CTA */}
             <div className="flex flex-wrap gap-4">
