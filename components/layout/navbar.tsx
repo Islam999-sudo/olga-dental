@@ -240,8 +240,6 @@ export function Navbar() {
                   : pathname === item.href ||
                     pathname.startsWith(`${item.href}/`);
 
-              const isHome = item.href === "/";
-
               return (
                 <Link
                   key={item.href}
@@ -259,9 +257,7 @@ export function Navbar() {
                     duration-500
                     ${
                       isActive
-                        ? isHome
-                          ? "text-[#071412] dark:text-[#071412]"
-                          : "text-[var(--accent)]"
+                        ? "text-[var(--accent)]"
                         : "text-[var(--text-muted)] hover:text-[var(--accent)]"
                     }
                   `}
@@ -275,25 +271,11 @@ export function Navbar() {
                       duration-500
                       ${
                         isActive
-                          ? isHome
-                            ? "bg-[linear-gradient(135deg,var(--accent-light),rgba(18,199,183,0.72))]"
-                            : "bg-[var(--accent-light)]/10"
+                          ? "bg-[var(--accent-light)]/10"
                           : "bg-transparent group-hover:bg-[var(--accent-light)]/8"
                       }
                     `}
                   />
-
-                  {isActive && isHome && (
-                    <span
-                      className="
-                        pointer-events-none
-                        absolute
-                        inset-0
-                        rounded-full
-                        bg-[linear-gradient(135deg,rgba(255,255,255,0.42),transparent_55%)]
-                      "
-                    />
-                  )}
 
                   {isActive && (
                     <span
@@ -326,7 +308,7 @@ export function Navbar() {
 
                   <span className="relative z-10">{item.label}</span>
 
-                  {isActive && !isHome && (
+                  {isActive && (
                     <span
                       className="
                         absolute
@@ -338,21 +320,6 @@ export function Navbar() {
                         rounded-full
                         bg-[var(--accent-light)]
                         shadow-[0_0_18px_rgba(18,199,183,0.75)]
-                      "
-                    />
-                  )}
-
-                  {isActive && isHome && (
-                    <span
-                      className="
-                        absolute
-                        bottom-[5px]
-                        left-1/2
-                        h-[2px]
-                        w-8
-                        -translate-x-1/2
-                        rounded-full
-                        bg-[#071412]/45
                       "
                     />
                   )}
@@ -834,6 +801,7 @@ export function Navbar() {
                   type="button"
                   onClick={handleMobileBooking}
                   className="
+                    group
                     relative
                     flex
                     w-full
@@ -871,9 +839,7 @@ export function Navbar() {
                     "
                   />
 
-                  <span className="relative">
-                    Записаться на приём
-                  </span>
+                  <span className="relative">Записаться на приём</span>
                 </button>
               </div>
 
