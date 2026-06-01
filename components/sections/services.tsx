@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ServiceModal } from "@/components/ui/service-modal";
 
 export type Service = {
   title: string;
+  slug: string;
   price: string;
   image?: string;
   desc: string;
@@ -20,7 +21,8 @@ const smoothEase = [0.22, 1, 0.36, 1] as const;
 const services: Service[] = [
   {
     title: "Имплантация",
-    price: "от 25 000 ₽",
+    slug: "implantation",
+    price: "от 35 000 ₽",
     image: "/services/implantation.webp",
     desc: "Восстановление зубов с цифровым планированием и современными имплантами.",
     fullDesc:
@@ -35,7 +37,8 @@ const services: Service[] = [
   },
   {
     title: "Лечение кариеса",
-    price: "6 000 ₽",
+    slug: "caries",
+    price: "6 500 ₽",
     image: "/services/caries.webp",
     desc: "Акционное лечение кариеса одной или нескольких поверхностей зуба.",
     fullDesc:
@@ -49,6 +52,7 @@ const services: Service[] = [
   },
   {
     title: "Профессиональная гигиена",
+    slug: "hygiene",
     price: "4 000 ₽",
     image: "/services/hygiene.webp",
     desc: "Комплексная чистка Air-Flow для удаления налёта и профилактики.",
@@ -63,6 +67,7 @@ const services: Service[] = [
   },
   {
     title: "Виниры E-Max",
+    slug: "veneers",
     price: "от 22 700 ₽",
     image: "/services/veneers.webp",
     desc: "Эстетическое восстановление улыбки керамическими винирами.",
@@ -77,6 +82,7 @@ const services: Service[] = [
   },
   {
     title: "Удаление зубов",
+    slug: "extraction",
     price: "от 3 700 ₽",
     image: "/services/extraction.webp",
     desc: "Бережное удаление зубов любой сложности под анестезией.",
@@ -91,7 +97,8 @@ const services: Service[] = [
   },
   {
     title: "Лечение пульпита",
-    price: "от 10 000 ₽",
+    slug: "pulpitis",
+    price: "от 12 000 ₽",
     image: "/services/pulpitis.webp",
     desc: "Лечение воспаления нерва зуба с обработкой каналов.",
     fullDesc:
@@ -105,7 +112,8 @@ const services: Service[] = [
   },
   {
     title: "Лечение периодонтита",
-    price: "от 12 000 ₽",
+    slug: "periodontitis",
+    price: "от 15 000 ₽",
     image: "/services/periodontitis.webp",
     desc: "Комплексное лечение воспаления тканей вокруг корня зуба.",
     fullDesc:
@@ -119,6 +127,7 @@ const services: Service[] = [
   },
   {
     title: "Коронки",
+    slug: "crowns",
     price: "от 14 900 ₽",
     image: "/services/crowns.webp",
     desc: "Металлокерамические и циркониевые коронки для восстановления зубов.",
@@ -133,6 +142,7 @@ const services: Service[] = [
   },
   {
     title: "Съёмные протезы",
+    slug: "prosthetics",
     price: "от 9 500 ₽",
     image: "/services/prosthetics.webp",
     desc: "Полные и частичные акриловые протезы для восстановления зубного ряда.",
@@ -147,6 +157,7 @@ const services: Service[] = [
   },
   {
     title: "Синус-лифтинг",
+    slug: "sinus",
     price: "от 45 000 ₽",
     image: "/services/sinus.webp",
     desc: "Наращивание костной ткани перед установкой импланта.",
@@ -161,6 +172,7 @@ const services: Service[] = [
   },
   {
     title: "Ортодонтия",
+    slug: "orthodontics",
     price: "от 81 000 ₽",
     image: "/services/orthodontics.webp",
     desc: "Брекеты и элайнеры для коррекции прикуса.",
@@ -209,6 +221,41 @@ export function Services({
   const visibleServices = preview
     ? services.slice(0, 3)
     : services;
+
+  useEffect(() => {
+  if (preview) return;
+
+  const hash = window.location.hash.replace("#", "");
+
+  if (!hash) return;
+
+  const targetService = services.find(
+    (service) => service.slug === hash
+  );
+
+  if (!targetService) return;
+
+  const openServiceFromHash = () => {
+    const element = document.getElementById(hash);
+
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+
+    window.setTimeout(() => {
+      setSelectedService(targetService);
+    }, 450);
+  };
+
+  const timeoutId = window.setTimeout(openServiceFromHash, 350);
+
+  return () => {
+    window.clearTimeout(timeoutId);
+  };
+}, [preview]);
 
   return (
     <section
@@ -418,6 +465,7 @@ export function Services({
 
               return (
                 <motion.article
+                  id={service.slug}
                   key={service.title}
                   layout
                   initial={{
@@ -442,6 +490,7 @@ export function Services({
                     },
                   }}
                   style={{
+                    scrollMarginTop: "120px",
                     transformOrigin: "top center",
                     transformStyle: "preserve-3d",
                   }}

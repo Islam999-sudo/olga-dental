@@ -4,11 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 const clinicPhotos = [
-  {
-    src: "/clinic/clinic-1.webp",
-    title: "Зона приёма",
-    desc: "Спокойная атмосфера с первого визита.",
-  },
+
   {
     src: "/clinic/clinic-2.webp",
     title: "Кабинеты",
@@ -24,11 +20,7 @@ const clinicPhotos = [
     title: "Оборудование",
     desc: "Технологии для комфорта и предсказуемого результата.",
   },
-  {
-    src: "/clinic/clinic-5.webp",
-    title: "Клиника",
-    desc: ".",
-  },
+  
   {
     src: "/clinic/clinic-6.webp",
     title: "Комфорт",

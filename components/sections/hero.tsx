@@ -141,8 +141,7 @@ export function Hero({ onBook }: Props) {
               text-[var(--text-soft)]
             "
           >
-            Эстетика, имплантация и цифровая диагностика с акцентом на комфорт и
-            результат.
+            Эстетическая стоматология, имплантация, лечение и восстановление зубов с акцентом на комфорт пациента и долговечный результат.
           </p>
 
           {/* BUTTONS */}
@@ -219,7 +218,7 @@ export function Hero({ onBook }: Props) {
               </div>
 
               <a
-                href="tel:+78126026160"
+                href="tel:+78126036364"
                 className="
                   mt-2
                   inline-flex
@@ -230,7 +229,7 @@ export function Hero({ onBook }: Props) {
                   decoration-[var(--accent-light)]/40
                 "
               >
-                +7 (812) 60-261-60
+                +7 (812) 603-63-64
               </a>
             </div>
 
@@ -335,28 +334,7 @@ export function Hero({ onBook }: Props) {
             />
           </div>
 
-          <div
-            className="
-              pointer-events-none
-              absolute
-              -bottom-6
-              -left-6
-              rounded-[28px]
-              border border-[var(--accent-light)]/15
-              bg-[var(--card)]
-              p-6
-              shadow-[0_20px_60px_rgba(18,199,183,0.12)]
-              backdrop-blur-xl
-            "
-          >
-            <div className="text-sm text-[var(--text-muted)]">
-              Цифровая диагностика
-            </div>
 
-            <div className="mt-1 text-lg font-semibold text-[var(--accent)]">
-              Premium Care
-            </div>
-          </div>
         </div>
       </div>
     </section>

@@ -44,7 +44,7 @@ export const doctors: Doctor[] = [
     specialization: [
       "Профессиональная гигиена",
       "Профилактическая стоматология",
-      "Детская профилактика",
+      
     ],
 
     highlights: [
@@ -89,7 +89,7 @@ export const doctors: Doctor[] = [
     specialization: [
       "Терапевтическая стоматология",
       "Лечение зубов",
-      "Стоматология общей практики",
+      
     ],
 
     highlights: [

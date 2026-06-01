@@ -13,6 +13,7 @@ import { useBooking } from "@/components/providers/booking-provider";
 const navItems = [
   { href: "/", label: "Главная" },
   { href: "/services", label: "Услуги" },
+  { href: "/promotions", label: "Акции" },
   { href: "/doctors", label: "Врачи" },
   { href: "/about", label: "О клинике" },
   { href: "/contact", label: "Контакты" },
