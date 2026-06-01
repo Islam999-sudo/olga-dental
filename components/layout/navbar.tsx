@@ -499,7 +499,7 @@ export function Navbar() {
 
             {/* DESKTOP PHONE */}
             <a
-              href="tel:+78126026160"
+              href="tel:+78126036364"
               className="
                 hidden
                 items-center
@@ -805,7 +805,7 @@ export function Navbar() {
 
               <div className="relative z-10 space-y-3">
                 <a
-                  href="tel:+78126026160"
+                  href="tel:+78126036364"
                   onClick={closeMobileMenu}
                   className="
                     flex

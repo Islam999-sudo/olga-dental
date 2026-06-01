@@ -3,7 +3,25 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-const promotions = [
+type Promotion = {
+  title: string;
+  price: string;
+  description: string;
+  href: string;
+  benefits?: string[];
+};
+
+const promotions: Promotion[] = [
+  {
+    title: "Установка зуба под ключ",
+    price: "60 000 ₽",
+    description:
+      "В стоимость входит установка имплантата, операция, формирователь, слепки и коронка из диоксида циркония.",
+    href: "/services#implant-tooth-package",
+    benefits: [
+     
+    ],
+  },
   {
     title: "Комплексная гигиена полости рта",
     price: "от 4 000 ₽",
@@ -19,7 +37,6 @@ const promotions = [
     href: "/services#caries",
   },
 ];
-
 export default function PromotionsPage() {
   return (
     <section className="relative overflow-hidden pb-32 pt-36">
@@ -167,6 +184,29 @@ export default function PromotionsPage() {
               >
                 {promotion.description}
               </p>
+              {promotion.benefits && (
+  <div className="mt-5 grid gap-2">
+    {promotion.benefits.map((benefit) => (
+      <div
+        key={benefit}
+        className="
+          rounded-2xl
+          border
+          border-[var(--accent-light)]/15
+          bg-[var(--accent-light)]/6
+          px-4
+          py-2.5
+          text-sm
+          font-medium
+          text-[var(--text-soft)]
+        "
+      >
+        <span className="text-[var(--accent)]">✓</span>{" "}
+        {benefit}
+      </div>
+    ))}
+  </div>
+)}
 
               <Link
                 href={promotion.href}

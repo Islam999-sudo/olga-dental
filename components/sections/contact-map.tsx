@@ -8,7 +8,7 @@ export function ContactMap() {
   const [copied, setCopied] = useState(false);
 
   const address = "г. Мурино, Воронцовский бульвар, 2";
-  const phone = "+78126026160";
+  const phone = "+78126036364";
 
   /*
     Карта теперь открывает не просто адрес дома,
@@ -277,7 +277,7 @@ export function ContactMap() {
                     text-[var(--accent)]
                   "
                 >
-                  +7 (812) 602-61-60
+                  +7 (812) 603-63-64
                 </div>
 
                 <a
