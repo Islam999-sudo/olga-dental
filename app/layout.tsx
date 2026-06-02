@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     description:
       "Имплантация, лечение зубов, ортодонтия, профессиональная гигиена и протезирование в современной стоматологической клинике.",
 
-    url: "https://olgadental.ru",
+    url: "https://olga-clinic-murino.ru",
 
     siteName: "OLGA Dental Clinic",
 

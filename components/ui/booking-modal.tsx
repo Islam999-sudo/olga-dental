@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
+
 type Props = {
   open: boolean;
   onClose: () => void;
@@ -181,6 +182,8 @@ export function BookingModal({
 
     setPhone(formatPhoneFromDigits(nextDigits));
   };
+  
+  
 
   const handleSubmit = async () => {
     try {
@@ -198,7 +201,16 @@ export function BookingModal({
         alert("Введите корректный номер телефона");
         return;
       }
+const handleSubmit = async () => {
+  alert(
+    "Онлайн-запись временно недоступна.\n\nПозвоните по телефону:\n+7 (812) 603-63-64"
+  );
 
+  return;
+
+  
+};
+      
       const cooldown = localStorage.getItem("bookingCooldown");
 
       if (cooldown) {
@@ -225,7 +237,7 @@ export function BookingModal({
         service: service?.title || null,
       };
 
-      const response = await fetch("/api/book", {
+      const response = await fetch("/book.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

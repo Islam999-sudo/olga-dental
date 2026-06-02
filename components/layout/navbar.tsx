@@ -1,9 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { AnimatePresence, motion } from "framer-motion";
@@ -22,17 +19,22 @@ const navItems = [
 const smoothEase = [0.22, 1, 0.36, 1] as const;
 
 export function Navbar() {
-  const pathname = usePathname();
   const { openBooking } = useBooking();
 
   const [mounted, setMounted] = useState(false);
+  const [pathname, setPathname] = useState("/");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const { resolvedTheme, setTheme } = useTheme();
+
   const isDark = mounted && resolvedTheme === "dark";
 
   useEffect(() => {
     setMounted(true);
+
+    if (typeof window !== "undefined") {
+      setPathname(window.location.pathname);
+    }
   }, []);
 
   useEffect(() => {
@@ -56,6 +58,18 @@ export function Navbar() {
 
   const toggleTheme = () => {
     setTheme(isDark ? "light" : "dark");
+  };
+
+  const isActivePath = (href: string) => {
+    if (href === "/") {
+      return pathname === "/";
+    }
+
+    return (
+      pathname === href ||
+      pathname === `${href}/` ||
+      pathname.startsWith(`${href}/`)
+    );
   };
 
   return (
@@ -135,7 +149,7 @@ export function Navbar() {
           "
         >
           {/* LOGO */}
-          <Link
+          <a
             href="/"
             onClick={closeMobileMenu}
             className="
@@ -161,12 +175,11 @@ export function Navbar() {
                 "
               />
 
-              <Image
+              <img
                 src="/zub.png"
                 alt="OLGA Logo"
                 width={66}
                 height={66}
-                priority
                 className="
                   relative
                   h-[58px]
@@ -215,7 +228,7 @@ export function Navbar() {
                 Dental Clinic
               </span>
             </div>
-          </Link>
+          </a>
 
           {/* DESKTOP NAVIGATION */}
           <nav
@@ -234,14 +247,10 @@ export function Navbar() {
             "
           >
             {navItems.map((item) => {
-              const isActive =
-                item.href === "/"
-                  ? pathname === "/"
-                  : pathname === item.href ||
-                    pathname.startsWith(`${item.href}/`);
+              const isActive = isActivePath(item.href);
 
               return (
-                <Link
+                <a
                   key={item.href}
                   href={item.href}
                   className={`
@@ -323,7 +332,7 @@ export function Navbar() {
                       "
                     />
                   )}
-                </Link>
+                </a>
               );
             })}
           </nav>
@@ -703,14 +712,10 @@ export function Navbar() {
 
               <div className="relative z-10 mt-7 space-y-2">
                 {navItems.map((item) => {
-                  const isActive =
-                    item.href === "/"
-                      ? pathname === "/"
-                      : pathname === item.href ||
-                        pathname.startsWith(`${item.href}/`);
+                  const isActive = isActivePath(item.href);
 
                   return (
-                    <Link
+                    <a
                       key={item.href}
                       href={item.href}
                       onClick={closeMobileMenu}
@@ -752,7 +757,7 @@ export function Navbar() {
                       >
                         →
                       </span>
-                    </Link>
+                    </a>
                   );
                 })}
               </div>
