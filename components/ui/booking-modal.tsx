@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 
-
 type Props = {
   open: boolean;
   onClose: () => void;
@@ -15,6 +14,11 @@ type Props = {
     title: string;
   } | null;
 };
+
+const WEB3FORMS_ACCESS_KEY =
+  "5e0ecef0-6e5d-42ae-b425-f50a7e1a395a";
+
+const CLINIC_PHONE_DISPLAY = "+7 (812) 603-63-64";
 
 const getPhoneDigits = (value: string) => {
   return value.replace(/\D/g, "");
@@ -160,8 +164,6 @@ export function BookingModal({
       input.selectionStart === phone.length &&
       input.selectionEnd === phone.length;
 
-    // Если пользователь выделил часть номера или курсор не в конце —
-    // не мешаем обычному поведению браузера.
     if (hasSelection || !isCursorAtEnd) return;
 
     e.preventDefault();
@@ -182,8 +184,6 @@ export function BookingModal({
 
     setPhone(formatPhoneFromDigits(nextDigits));
   };
-  
-  
 
   const handleSubmit = async () => {
     try {
@@ -201,16 +201,8 @@ export function BookingModal({
         alert("Введите корректный номер телефона");
         return;
       }
-const handleSubmit = async () => {
-  alert(
-    "Онлайн-запись временно недоступна.\n\nПозвоните по телефону:\n+7 (812) 603-63-64"
-  );
 
-  return;
 
-  
-};
-      
       const cooldown = localStorage.getItem("bookingCooldown");
 
       if (cooldown) {
@@ -227,28 +219,53 @@ const handleSubmit = async () => {
       const formattedPhone = formatPhone(phone);
       const phoneDigits = normalizePhoneDigits(phone);
 
-      const payload = {
-        name: name.trim(),
-        phone: formattedPhone,
-        phoneDigits,
-        comment: comment.trim(),
-        source,
-        doctor: doctor?.name || null,
-        service: service?.title || null,
-      };
+      const response = await fetch(
+        "https://api.web3forms.com/submit",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_ACCESS_KEY,
 
-      const response = await fetch("/book.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+            subject: "Новая заявка OLGA Dental Clinic",
+
+            from_name: "OLGA Dental Clinic",
+
+            name: name.trim(),
+            phone: formattedPhone,
+            phone_digits: phoneDigits,
+            comment: comment.trim() || "—",
+
+            source,
+            doctor: doctor?.name || "—",
+            service: service?.title || "—",
+
+            message: `
+Новая заявка с сайта OLGA Dental Clinic
+
+Имя: ${name.trim()}
+Телефон: ${formattedPhone}
+Телефон только цифры: ${phoneDigits}
+
+Источник заявки: ${source}
+Врач: ${doctor?.name || "—"}
+Услуга: ${service?.title || "—"}
+
+Комментарий:
+${comment.trim() || "—"}
+            `.trim(),
+          }),
+        }
+      );
 
       const data = await response.json();
 
-      if (!response.ok) {
-        throw new Error(data.error || "Ошибка отправки");
+      if (!response.ok || !data.success) {
+        throw new Error(
+          data.message || "Не удалось отправить заявку"
+        );
       }
 
       localStorage.setItem("bookingCooldown", String(Date.now()));

@@ -8,7 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-
     sitemap: "https://olga-clinic-murino.ru/sitemap.xml",
   };
 }

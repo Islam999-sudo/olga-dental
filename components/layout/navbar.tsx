@@ -18,6 +18,22 @@ const navItems = [
 
 const smoothEase = [0.22, 1, 0.36, 1] as const;
 
+const normalizePath = (value: string) => {
+  if (!value) return "/";
+
+  let path = value.split("#")[0].split("?")[0];
+
+  if (path.endsWith(".html")) {
+    path = path.replace(".html", "");
+  }
+
+  if (path.length > 1 && path.endsWith("/")) {
+    path = path.slice(0, -1);
+  }
+
+  return path || "/";
+};
+
 export function Navbar() {
   const { openBooking } = useBooking();
 
@@ -33,7 +49,9 @@ export function Navbar() {
     setMounted(true);
 
     if (typeof window !== "undefined") {
-      setPathname(window.location.pathname);
+      setPathname(
+        `${window.location.pathname}${window.location.hash}`
+      );
     }
   }, []);
 
@@ -61,15 +79,14 @@ export function Navbar() {
   };
 
   const isActivePath = (href: string) => {
-    if (href === "/") {
-      return pathname === "/";
+    const currentPath = normalizePath(pathname);
+    const itemPath = normalizePath(href);
+
+    if (itemPath === "/") {
+      return currentPath === "/";
     }
 
-    return (
-      pathname === href ||
-      pathname === `${href}/` ||
-      pathname.startsWith(`${href}/`)
-    );
+    return currentPath === itemPath;
   };
 
   return (
@@ -564,7 +581,6 @@ export function Navbar() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <>
-            {/* OVERLAY */}
             <motion.button
               type="button"
               aria-label="Закрыть меню"
@@ -586,7 +602,6 @@ export function Navbar() {
               }}
             />
 
-            {/* PANEL */}
             <motion.aside
               className="
                 fixed
@@ -631,7 +646,6 @@ export function Navbar() {
                 ease: smoothEase,
               }}
             >
-              {/* PANEL GLOW */}
               <div className="pointer-events-none absolute inset-0 overflow-hidden">
                 <div
                   className="

@@ -9,32 +9,42 @@ import { BookingProvider } from "@/components/providers/booking-provider";
 import { Navbar } from "@/components/layout/navbar";
 import { GlobalBookingModal } from "@/components/global-booking-modal";
 
+const siteUrl = "https://olga-clinic-murino.ru";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(
-  "https://olga-clinic-murino.ru"
-),
+  metadataBase: new URL(siteUrl),
 
   title: {
-    default: "OLGA Dental Clinic — стоматология в Мурино",
+    default:
+      "Клиника Ольга Мурино — OLGA Dental Clinic | Стоматология в Мурино",
     template: "%s | OLGA Dental Clinic",
   },
 
   description:
-    "Современная стоматология в Мурино. Имплантация зубов, лечение кариеса, ортодонтия, профессиональная гигиена, протезирование и эстетическая стоматология.",
+    "Клиника Ольга в Мурино — современная стоматология OLGA Dental Clinic на Воронцовском бульваре, 2. Лечение зубов, имплантация, ортодонтия, профессиональная гигиена, протезирование и эстетическая стоматология.",
 
   keywords: [
+    "Клиника Ольга Мурино",
+    "Ольга клиника Мурино",
+    "стоматология Ольга Мурино",
+    "OLGA Dental Clinic Мурино",
+    "OLGA Clinic Мурино",
+    "OLGA Dental Clinic",
     "стоматология Мурино",
     "стоматолог Мурино",
-    "имплантация зубов",
-    "лечение зубов",
-    "лечение кариеса",
-    "ортодонтия",
-    "виниры",
-    "коронки",
-    "протезирование",
+    "стоматологическая клиника Мурино",
+    "Воронцовский бульвар 2 стоматология",
+    "стоматология Воронцовский бульвар",
+    "имплантация зубов Мурино",
+    "лечение зубов Мурино",
+    "лечение кариеса Мурино",
+    "ортодонтия Мурино",
+    "виниры Мурино",
+    "коронки Мурино",
+    "протезирование Мурино",
+    "профессиональная гигиена зубов Мурино",
     "синус-лифтинг",
     "удаление зубов",
-    "OLGA Dental Clinic",
   ],
 
   authors: [
@@ -46,12 +56,13 @@ export const metadata: Metadata = {
   creator: "OLGA Dental Clinic",
 
   openGraph: {
-    title: "OLGA Dental Clinic — стоматология в Мурино",
+    title:
+      "Клиника Ольга Мурино — OLGA Dental Clinic | Стоматология в Мурино",
 
     description:
-      "Имплантация, лечение зубов, ортодонтия, профессиональная гигиена и протезирование в современной стоматологической клинике.",
+      "Стоматологическая клиника Ольга в Мурино. Имплантация, лечение зубов, ортодонтия, профессиональная гигиена, протезирование и эстетическая стоматология.",
 
-    url: "https://olga-clinic-murino.ru",
+    url: siteUrl,
 
     siteName: "OLGA Dental Clinic",
 
@@ -59,25 +70,25 @@ export const metadata: Metadata = {
 
     type: "website",
 
-  images: [
-    {
-      url: "https://olga-clinic-murino.ru/og-image.jpg",
-      width: 1200,
-      height: 630,
-      alt: "OLGA Dental Clinic — стоматология в Мурино",
-    },
-  ],
-},
+    images: [
+      {
+        url: `${siteUrl}/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Клиника Ольга Мурино — OLGA Dental Clinic",
+      },
+    ],
+  },
 
   twitter: {
     card: "summary_large_image",
 
-    title: "OLGA Dental Clinic",
+    title: "Клиника Ольга Мурино — OLGA Dental Clinic",
 
     description:
-      "Современная стоматология в Мурино. Имплантация, лечение зубов и эстетическая стоматология.",
+      "Современная стоматология в Мурино на Воронцовском бульваре, 2. Лечение зубов, имплантация, ортодонтия и эстетическая стоматология.",
 
-    images: ["/og-image.jpg"],
+    images: [`${siteUrl}/og-image.jpg`],
   },
 
   robots: {
@@ -94,16 +105,56 @@ export const metadata: Metadata = {
   },
 };
 
+const clinicJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Dentist",
+  name: "OLGA Dental Clinic",
+  alternateName: [
+    "Клиника Ольга",
+    "Клиника Ольга Мурино",
+    "Ольга клиника Мурино",
+    "Стоматология Ольга Мурино",
+    "OLGA Clinic",
+  ],
+  url: siteUrl,
+  image: `${siteUrl}/og-image.jpg`,
+  logo: `${siteUrl}/zub.png`,
+  telephone: "+7-812-603-63-64",
+  priceRange: "₽₽",
+  medicalSpecialty: "Dentistry",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Мурино",
+    streetAddress: "Воронцовский бульвар, 2",
+    addressCountry: "RU",
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
+      opens: "10:00",
+      closes: "21:00",
+    },
+  ],
+  sameAs: ["https://vk.com/olgaclinic"],
+  hasMap: "https://yandex.ru/maps/org/olga/99713820273/",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="ru"
-      suppressHydrationWarning
-    >
+    <html lang="ru" suppressHydrationWarning>
       <body
         className="
           bg-zinc-50
@@ -115,6 +166,14 @@ export default function RootLayout({
           dark:text-white
         "
       >
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(clinicJsonLd),
+          }}
+        />
+
         <ThemeProvider>
           <BookingProvider>
             <ScrollToTop />
@@ -124,9 +183,7 @@ export default function RootLayout({
             <GlobalBookingModal />
 
             <div className="min-h-screen flex flex-col">
-              <main className="flex-1">
-                {children}
-              </main>
+              <main className="flex-1">{children}</main>
             </div>
           </BookingProvider>
         </ThemeProvider>
