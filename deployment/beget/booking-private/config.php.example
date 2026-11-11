@@ -33,6 +33,9 @@ return [
     // database verification, clinic acceptance testing and backups.
     'accept_bookings' => false,
 
+    // Staff inbox is also disabled until the access policy is approved.
+    'admin_enabled' => false,
+
     // Draft retention period; confirm policy and legal obligations.
     'retention_days' => 30,
 ];
