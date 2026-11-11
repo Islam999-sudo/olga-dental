@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import { BookingProvider } from "@/components/providers/booking-provider";
 
 import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
 import { GlobalBookingModal } from "@/components/global-booking-modal";
 
 const siteUrl = "https://olga-clinic-murino.ru";
@@ -186,6 +187,7 @@ export default function RootLayout({
 
             <div className="min-h-screen flex flex-col">
               <main className="flex-1">{children}</main>
+              <Footer />
             </div>
           </BookingProvider>
         </ThemeProvider>
