@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Clock3, MapPin, Phone } from "lucide-react";
+import { AnalyticsSettingsButton } from "@/components/yandex-metrika";
 
 const navigation = [
   { href: "/", label: "Главная" },
@@ -146,6 +147,7 @@ export function Footer() {
             <span className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
               <Link href="/privacy" className="underline decoration-[var(--accent-light)]/30 underline-offset-4 hover:text-[var(--accent)]">Политика (проект)</Link>
               <Link href="/consent" className="underline decoration-[var(--accent-light)]/30 underline-offset-4 hover:text-[var(--accent)]">Согласие (проект)</Link>
+              <AnalyticsSettingsButton />
             </span>
           </p>
           <p className="max-w-2xl text-xs leading-6 text-[var(--text-muted)] sm:text-right">
