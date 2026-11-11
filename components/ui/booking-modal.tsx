@@ -407,8 +407,8 @@ export function BookingModal({
                 text-[var(--text-soft)]
               "
             >
-              Оставьте данные, и администратор свяжется с вами для подтверждения
-              записи.
+              Укажите имя и номер телефона — администратор перезвонит,
+              уточнит детали и подтвердит запись на приём.
             </p>
 
             <div className="mt-7 space-y-4">
@@ -463,9 +463,6 @@ export function BookingModal({
                 "
               />
 
-              <p className="rounded-2xl border border-[var(--accent-light)]/15 bg-[var(--accent-light)]/5 px-4 py-3 text-xs leading-relaxed text-[var(--text-soft)]">
-                Для обратного звонка достаточно имени и телефона. Не указывайте диагнозы и сведения о здоровье: медицинские вопросы обсудите непосредственно с клиникой.
-              </p>
               <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-[var(--accent-light)]/20 bg-[var(--glass)] px-4 py-4 text-sm leading-relaxed text-[var(--text-soft)]">
                 <input
                   type="checkbox"
@@ -474,7 +471,7 @@ export function BookingModal({
                   className="mt-1 h-5 w-5 shrink-0 accent-[var(--accent)]"
                 />
                 <span>
-                  Даю отдельное согласие ООО «ОРДВИК» на обработку имени и телефона для обратного звонка.{" "}
+                  Согласен на обработку имени и телефона ООО «ОРДВИК» для связи по записи.{" "}
                   <Link href="/consent" target="_blank" rel="noopener noreferrer" className="font-semibold text-[var(--accent)] underline underline-offset-2">
                     Текст согласия
                   </Link>{" · "}
@@ -484,10 +481,10 @@ export function BookingModal({
                 </span>
               </label>
               {!canSubmitRealBooking() && (
-                <p role="status" className="rounded-2xl border border-amber-500/25 bg-amber-500/10 px-4 py-3 text-sm leading-6 text-[var(--text-soft)]">
+                <p role="status" className="px-1 text-xs leading-5 text-[var(--text-muted)]">
                   {onProductionHost()
                     ? "Онлайн-запись временно недоступна. Позвоните в клинику по номеру +7 (812) 603-63-64."
-                    : "Тестовый режим. Данные не отправляются и не сохраняются. Подключение реальной записи ожидает юридического согласования и настройки Beget."}
+                    : "Тестовая версия: заявки не отправляются."}
                 </p>
               )}
               {errorMessage && <p role="alert" className="text-sm font-medium text-red-600 dark:text-red-300">{errorMessage}</p>}
