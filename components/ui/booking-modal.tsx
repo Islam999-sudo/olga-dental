@@ -135,6 +135,9 @@ export function BookingModal({
 
     openedAtRef.current = Date.now();
 
+    // Conversion metric only, without patient details or identifiers.
+    window.ym?.(105008013, "reachGoal", "booking_open");
+
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setSent(false);
