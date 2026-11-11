@@ -1,0 +1,38 @@
+<?php
+declare(strict_types=1);
+
+/**
+ * Copy manually to booking-private/config.php (OUTSIDE public_html).
+ * NEVER commit your real config, DB password or encryption keys.
+ */
+return [
+    'db_host' => 'localhost',
+    'db_name' => 'REPLACE_WITH_NEW_DATABASE',
+    'db_user' => 'REPLACE_WITH_DATABASE_USER',
+    'db_pass' => 'REPLACE_WITH_STRONG_DATABASE_PASSWORD',
+
+    // Generate independent keys using:
+    // php -r "echo base64_encode(random_bytes(32)), PHP_EOL;"
+    'encryption_key_b64' => 'REPLACE_WITH_BASE64_32_BYTE_SECRET',
+    'rate_key_b64' => 'REPLACE_WITH_DIFFERENT_BASE64_32_BYTE_SECRET',
+
+    // Generate a password hash using:
+    // php -r "echo password_hash('LONG_UNIQUE_ADMIN_PASSWORD', PASSWORD_DEFAULT), PHP_EOL;"
+    'admin_password_hash' => 'REPLACE_WITH_PHP_PASSWORD_HASH',
+
+    // Exact origin matching: never add *.vercel.app or wildcard origins.
+    'allowed_origins' => [
+        'https://olga-clinic-murino.ru',
+        'https://www.olga-clinic-murino.ru',
+    ],
+
+    // Replace only after the policy/consent have been legally approved.
+    'consent_version' => 'PENDING_APPROVAL',
+
+    // FAIL-CLOSED: do not change this before legal review,
+    // database verification, clinic acceptance testing and backups.
+    'accept_bookings' => false,
+
+    // Draft retention period; confirm policy and legal obligations.
+    'retention_days' => 30,
+];
