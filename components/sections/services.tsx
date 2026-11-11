@@ -1,210 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ServiceModal } from "@/components/ui/service-modal";
 
-export type Service = {
-  title: string;
-  slug: string;
-  price: string;
-  image?: string;
-  desc: string;
-  fullDesc: string;
-  benefits: string[];
-  featured?: boolean;
-};
-
-const smoothEase = [0.22, 1, 0.36, 1] as const;
-
-const services: Service[] = [
-  {
-    title: "Имплантация",
-    slug: "implantation",
-    price: "от 35 000 ₽",
-    image: "/services/implantation.webp",
-    desc: "Восстановление зубов с цифровым планированием и современными имплантами.",
-    fullDesc:
-      "Имплантация помогает восстановить утраченные зубы и вернуть нормальную жевательную функцию. Лечение планируется индивидуально с учётом состояния костной ткани и будущей ортопедической конструкции.",
-    benefits: [
-      "Цифровое планирование",
-      "Современные импланты",
-      "Естественная эстетика",
-      "Долгосрочный результат",
-    ],
-    featured: true,
-  },
-  
-  {
-  title: "Установка зуба под ключ",
-  slug: "implant-tooth-package",
-  price: "60 000 ₽",
-  image: "/services/zub.webp",
-  desc: "Комплексное восстановление зуба: имплантат, операция, формирователь, слепки и циркониевая коронка.",
-  fullDesc:
-    "Установка зуба под ключ — это комплексное предложение для восстановления утраченного зуба. В стоимость входит установка имплантата, операция, формирователь десны, снятие слепков и коронка из диоксида циркония.",
-  benefits: [
-    "Установка имплантата",
-    "Операция",
-    "Формирователь десны",
-    "Слепки",
-    "Коронка из диоксида циркония",
-  ],
-},
-
-  {
-    title: "Лечение кариеса",
-    slug: "caries",
-    price: "6 500 ₽",
-    image: "/services/caries.webp",
-    desc: "Акционное лечение кариеса одной или нескольких поверхностей зуба.",
-    fullDesc:
-      "Кариес разрушает твёрдые ткани зуба и без лечения может привести к осложнениям. Мы восстанавливаем зуб современными материалами с сохранением естественной формы и эстетики.",
-    benefits: [
-      "Акционная цена",
-      "Эстетичная реставрация",
-      "Современные материалы",
-      "Сохранение тканей зуба",
-    ],
-  },
-  {
-    title: "Профессиональная гигиена",
-    slug: "hygiene",
-    price: "4 000 ₽",
-    image: "/services/hygiene.webp",
-    desc: "Комплексная чистка Air-Flow для удаления налёта и профилактики.",
-    fullDesc:
-      "Профессиональная гигиена помогает удалить мягкий налёт, улучшить состояние дёсен и снизить риск кариеса. Процедура проводится с использованием Air-Flow.",
-    benefits: [
-      "Air-Flow чистка",
-      "Профилактика кариеса",
-      "Свежесть и чистота",
-      "Бережное воздействие",
-    ],
-  },
-  {
-    title: "Виниры E-Max",
-    slug: "veneers",
-    price: "от 22 700 ₽",
-    image: "/services/veneers.webp",
-    desc: "Эстетическое восстановление улыбки керамическими винирами.",
-    fullDesc:
-      "Виниры E-Max помогают улучшить форму, цвет и эстетику зубов. Это решение для пациентов, которые хотят получить красивую и естественную улыбку.",
-    benefits: [
-      "Естественный внешний вид",
-      "Керамика E-Max",
-      "Эстетика улыбки",
-      "Индивидуальная форма",
-    ],
-  },
-  {
-    title: "Удаление зубов",
-    slug: "extraction",
-    price: "от 3 700 ₽",
-    image: "/services/extraction.webp",
-    desc: "Бережное удаление зубов любой сложности под анестезией.",
-    fullDesc:
-      "Если зуб невозможно сохранить, проводится удаление. Процедура выполняется под местной анестезией с акцентом на безопасность и комфорт пациента.",
-    benefits: [
-      "Местная анестезия",
-      "Удаление зубов мудрости",
-      "Бережный подход",
-      "Минимум стресса",
-    ],
-  },
-  {
-    title: "Лечение пульпита",
-    slug: "pulpitis",
-    price: "от 12 000 ₽",
-    image: "/services/pulpitis.webp",
-    desc: "Лечение воспаления нерва зуба с обработкой каналов.",
-    fullDesc:
-      "Пульпит — воспаление внутренних тканей зуба, которое часто сопровождается сильной болью. Лечение направлено на устранение воспаления, обработку каналов и сохранение зуба.",
-    benefits: [
-      "Лечение каналов",
-      "Современная анестезия",
-      "Снятие острой боли",
-      "Сохранение зуба",
-    ],
-  },
-  {
-    title: "Лечение периодонтита",
-    slug: "periodontitis",
-    price: "от 15 000 ₽",
-    image: "/services/periodontitis.webp",
-    desc: "Комплексное лечение воспаления тканей вокруг корня зуба.",
-    fullDesc:
-      "Периодонтит возникает при воспалении тканей вокруг корня зуба и может приводить к осложнениям. Лечение требует точной диагностики, обработки каналов и контроля воспаления.",
-    benefits: [
-      "Точная диагностика",
-      "Лечение воспаления",
-      "Контроль осложнений",
-      "Восстановление функции зуба",
-    ],
-  },
-  {
-    title: "Коронки",
-    slug: "crowns",
-    price: "от 14 900 ₽",
-    image: "/services/crowns.webp",
-    desc: "Металлокерамические и циркониевые коронки для восстановления зубов.",
-    fullDesc:
-      "Коронки применяются для восстановления разрушенных зубов и протезирования на имплантах. Доступны варианты из металлокерамики и диоксида циркония.",
-    benefits: [
-      "Восстановление зуба",
-      "Цирконий и металлокерамика",
-      "Протезирование на имплантах",
-      "Надёжная фиксация",
-    ],
-  },
-  {
-    title: "Съёмные протезы",
-    slug: "prosthetics",
-    price: "от 9 500 ₽",
-    image: "/services/prosthetics.webp",
-    desc: "Полные и частичные акриловые протезы для восстановления зубного ряда.",
-    fullDesc:
-      "Съёмные акриловые протезы позволяют восстановить один, несколько или все зубы. Конструкция подбирается индивидуально и помогает вернуть жевательную функцию.",
-    benefits: [
-      "Полные и частичные протезы",
-      "Доступное восстановление",
-      "Естественный внешний вид",
-      "Индивидуальное изготовление",
-    ],
-  },
-  {
-    title: "Синус-лифтинг",
-    slug: "sinus",
-    price: "от 45 000 ₽",
-    image: "/services/sinus.webp",
-    desc: "Наращивание костной ткани перед установкой импланта.",
-    fullDesc:
-      "Синус-лифтинг проводится при недостаточном объёме костной ткани в области верхней челюсти. Это подготовительный этап перед имплантацией.",
-    benefits: [
-      "Подготовка к имплантации",
-      "Костная пластика",
-      "Микрохирургический подход",
-      "Планирование результата",
-    ],
-  },
-  {
-    title: "Ортодонтия",
-    slug: "orthodontics",
-    price: "от 81 000 ₽",
-    image: "/services/orthodontics.webp",
-    desc: "Брекеты и элайнеры для коррекции прикуса.",
-    fullDesc:
-      "Ортодонтическое лечение помогает исправить прикус и положение зубов. Доступны брекет-системы, частичные системы и элайнеры.",
-    benefits: [
-      "Брекеты Damon Q2",
-      "Элайнеры Eurokappa",
-      "Коррекция прикуса",
-      "План лечения под пациента",
-    ],
-  },
-];
-
+import { services, type Service } from "@/lib/services";
+export type { Service } from "@/lib/services";
 
 const advantages = [
   {
@@ -234,49 +34,11 @@ export function Services({
   onBookService,
   preview = false,
 }: Props) {
-  const [selectedService, setSelectedService] =
-    useState<Service | null>(null);
-
-  const visibleServices = preview
+const visibleServices = preview
     ? services.slice(0, 3)
     : services;
 
-  useEffect(() => {
-  if (preview) return;
-
-  const hash = window.location.hash.replace("#", "");
-
-  if (!hash) return;
-
-  const targetService = services.find(
-    (service) => service.slug === hash
-  );
-
-  if (!targetService) return;
-
-  const openServiceFromHash = () => {
-    const element = document.getElementById(hash);
-
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-
-    window.setTimeout(() => {
-      setSelectedService(targetService);
-    }, 450);
-  };
-
-  const timeoutId = window.setTimeout(openServiceFromHash, 350);
-
-  return () => {
-    window.clearTimeout(timeoutId);
-  };
-}, [preview]);
-
-  return (
+return (
     <section
       id="services"
       className={`
@@ -698,9 +460,8 @@ export function Services({
                         {service.price}
                       </div>
 
-                      <button
-                        type="button"
-                        onClick={() => setSelectedService(service)}
+                      <Link
+                        href={`/services/${service.slug}`}
                         className={
                           isFeatured
                             ? `
@@ -733,7 +494,7 @@ export function Services({
                         }
                       >
                         Подробнее
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </motion.article>
@@ -967,16 +728,6 @@ export function Services({
           </div>
         )}
       </div>
-
-      <ServiceModal
-        open={selectedService !== null}
-        service={selectedService}
-        onClose={() => setSelectedService(null)}
-        onBook={(service) => {
-          setSelectedService(null);
-          onBookService(service);
-        }}
-      />
-    </section>
+</section>
   );
 }
