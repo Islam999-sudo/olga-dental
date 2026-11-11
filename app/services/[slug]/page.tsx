@@ -9,7 +9,6 @@ import {
   Check,
   ChevronDown,
   CircleHelp,
-  ClipboardList,
   HeartPulse,
   Info,
   ShieldCheck,
@@ -227,7 +226,6 @@ export default async function ServiceDetailPage({ params }: Params) {
                 <p className="text-xs font-semibold uppercase tracking-[.2em] text-[var(--text-muted)]">Стоимость по каталогу</p>
                 <p className="mt-3 text-3xl font-semibold text-[var(--accent)] sm:text-4xl">{service.price}</p>
                 <p className="mt-5 max-w-[68ch] text-base leading-[1.9] text-[var(--text-soft)]">{article.pricing}</p>
-                <div className="mt-7"><ServiceBookingButton service={service} /></div>
               </div>
             </section>
 
@@ -248,17 +246,7 @@ export default async function ServiceDetailPage({ params }: Params) {
 
           </article>
 
-          <aside className="space-y-5 lg:sticky lg:top-28" aria-label="Навигация по странице и запись">
-            <div className="rounded-[28px] border border-[var(--accent-light)]/20 bg-[var(--card)] p-6 shadow-[0_14px_50px_rgba(18,199,183,.08)]">
-              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[.18em] text-[var(--accent)]">
-                <ClipboardList aria-hidden="true" size={16} />
-                Консультация
-              </div>
-              <p className="mt-4 text-sm leading-6 text-[var(--text-muted)]">Стоимость по каталогу</p>
-              <p className="mt-1 text-3xl font-semibold text-[var(--foreground)]">{service.price}</p>
-              <p className="mt-3 text-sm leading-6 text-[var(--text-soft)]">Точный план и окончательная сумма определяются после осмотра.</p>
-              <div className="mt-6"><ServiceBookingButton service={service} /></div>
-            </div>
+          <aside className="space-y-5 lg:sticky lg:top-28" aria-label="Навигация по странице">
             <nav aria-label="Содержание статьи" className="rounded-[28px] border border-[var(--accent-light)]/15 bg-[var(--card)] p-6">
               <h2 className="mb-5 text-sm font-semibold text-[var(--foreground)]">Содержание</h2>
               <ul className="space-y-1">
