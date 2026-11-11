@@ -14,7 +14,12 @@ header('Content-Security-Policy: default-src \'none\'; style-src \'unsafe-inline
 
 try {
     require dirname(__DIR__, 2) . '/booking-private/bootstrap.php';
-    booking_config();
+    $configuration = booking_config();
+    // The staff inbox must be explicitly enabled after access review.
+    if (($configuration['admin_enabled'] ?? false) !== true) {
+        http_response_code(503);
+        exit('Панель заявок ещё не активирована.');
+    }
 
     // Require HTTPS even when only the login form is displayed.
     if (($_SERVER['HTTPS'] ?? '') !== 'on') {
