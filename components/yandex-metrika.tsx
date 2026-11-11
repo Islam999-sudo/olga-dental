@@ -1,43 +1,67 @@
 "use client";
 
-import Script from "next/script";
-import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect, Suspense } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
-const counterId = process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID;
-const validId = counterId && /^\d+$/.test(counterId);
+// Public Yandex Metrika counter ID. No private keys are stored in the source.
+const COUNTER_ID = 105008013;
+const PRODUCTION_HOSTS = new Set([
+  "olga-clinic-murino.ru",
+  "www.olga-clinic-murino.ru",
+]);
+
+type YandexFunction = ((...args: unknown[]) => void) & {
+  a?: unknown[][];
+  l?: number;
+};
 
 declare global {
   interface Window {
-    ym?: (...args: unknown[]) => void;
+    ym?: YandexFunction;
   }
 }
 
-function PageViews({ id }: { id: number }) {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  useEffect(() => {
-    if (!window.ym) return;
-    const query = searchParams.toString();
-    const url = pathname + (query ? "?" + query : "");
-    window.ym(id, "hit", url);
-  }, [id, pathname, searchParams]);
-  return null;
+function initMetrika() {
+  if (window.ym) return;
+
+  // Queue calls until the external tag loads, as in the official snippet.
+  const ym = ((...args: unknown[]) => {
+    (ym.a ??= []).push(args);
+  }) as YandexFunction;
+
+  ym.l = Date.now();
+  window.ym = ym;
+
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = `https://mc.yandex.ru/metrika/tag.js?id=${COUNTER_ID}`;
+  document.head.appendChild(script);
+
+  // SPA pageviews are sent manually for each route.
+  window.ym(COUNTER_ID, "init", {
+    defer: true,
+    clickmap: true,
+    trackLinks: true,
+    accurateTrackBounce: true,
+    webvisor: false,
+    sendTitle: false,
+  });
 }
 
 export function YandexMetrika() {
-  if (!validId) return null;
-  const id = Number(counterId);
-  return (
-    <>
-      <Script
-        id="yandex-metrika"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1;k.src=r;a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js?id=${id}","ym");ym(${id},"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:false,defer:true});`
-        }}
-      />
-      <Suspense fallback={null}><PageViews id={id} /></Suspense>
-    </>
-  );
+  const pathname = usePathname();
+
+  useEffect(() => {
+    // The client's analytics must not be polluted by Vercel previews,
+    // staging deployments, localhost, or other unapproved hostnames.
+    if (!PRODUCTION_HOSTS.has(window.location.hostname.toLowerCase())) return;
+
+    initMetrika();
+
+    // Do not send query strings: these can sometimes contain personal data.
+    // Send each client-side page transition exactly once per route change.
+    window.ym?.(COUNTER_ID, "hit", `${window.location.origin}${pathname}`);
+  }, [pathname]);
+
+  return null;
 }
