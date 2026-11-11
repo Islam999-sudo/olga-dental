@@ -143,6 +143,10 @@ export function Footer() {
         <div className="flex flex-col gap-4 py-7 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
           <p className="text-xs leading-6 text-[var(--text-muted)] sm:text-sm">
             © {year} OLGA Dental Clinic. Все права защищены.
+            <span className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
+              <Link href="/privacy" className="underline decoration-[var(--accent-light)]/30 underline-offset-4 hover:text-[var(--accent)]">Политика (проект)</Link>
+              <Link href="/consent" className="underline decoration-[var(--accent-light)]/30 underline-offset-4 hover:text-[var(--accent)]">Согласие (проект)</Link>
+            </span>
           </p>
           <p className="max-w-2xl text-xs leading-6 text-[var(--text-muted)] sm:text-right">
             Информация на сайте носит ознакомительный характер и не заменяет
