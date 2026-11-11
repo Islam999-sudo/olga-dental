@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
 type Props = {
   open: boolean;
@@ -15,8 +16,17 @@ type Props = {
   } | null;
 };
 
-const WEB3FORMS_ACCESS_KEY =
-  "5e0ecef0-6e5d-42ae-b425-f50a7e1a395a";
+const BOOKING_API_PATH = "/api/booking.php";
+const CONSENT_VERSION = process.env.NEXT_PUBLIC_BOOKING_CONSENT_VERSION ?? "PENDING_APPROVAL";
+const BOOKING_ENABLED = process.env.NEXT_PUBLIC_BOOKING_ENABLED === "true";
+const ALLOWED_HOSTS = new Set(["olga-clinic-murino.ru", "www.olga-clinic-murino.ru"]);
+
+function canSubmitRealBooking(): boolean {
+  return BOOKING_ENABLED && CONSENT_VERSION !== "PENDING_APPROVAL"
+    && typeof window !== "undefined"
+    && window.location.protocol === "https:"
+    && ALLOWED_HOSTS.has(window.location.hostname.toLowerCase());
+}
 
 const CLINIC_PHONE_DISPLAY = "+7 (812) 603-63-64";
 
@@ -98,7 +108,9 @@ export function BookingModal({
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [comment, setComment] = useState("");
+  const [consent, setConsent] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [demoSuccess, setDemoSuccess] = useState(false);
 
   const openedAtRef = useRef(0);
 
@@ -186,107 +198,63 @@ export function BookingModal({
   };
 
   const handleSubmit = async () => {
+    setErrorMessage("");
+    if (!name.trim() || !isValidRussianPhone(phone)) {
+      setErrorMessage("Укажите имя и корректный номер телефона.");
+      return;
+    }
+    if (!consent) {
+      setErrorMessage("Для отправки заявки необходимо отдельное согласие на обработку данных.");
+      return;
+    }
+
+    // Preview/demo: form feedback only, absolutely no transmission.
+    if (!canSubmitRealBooking()) {
+      setDemoSuccess(true);
+      setSent(true);
+      return;
+    }
+
+    const cooldown = localStorage.getItem("bookingCooldown");
+    if (cooldown && Date.now() - Number(cooldown) < 15000) {
+      setErrorMessage("Подождите немного перед повторной отправкой.");
+      return;
+    }
+
+    setLoading(true);
     try {
-      if (!name.trim()) {
-        alert("Введите имя");
-        return;
-      }
-
-      if (!phone.trim()) {
-        alert("Введите телефон");
-        return;
-      }
-
-      if (!isValidRussianPhone(phone)) {
-        alert("Введите корректный номер телефона");
-        return;
-      }
-
-
-      const cooldown = localStorage.getItem("bookingCooldown");
-
-      if (cooldown) {
-        const diff = Date.now() - Number(cooldown);
-
-        if (diff < 15000) {
-          alert("Подождите немного перед повторной отправкой");
-          return;
-        }
-      }
-
-      setLoading(true);
-
-      const formattedPhone = formatPhone(phone);
-      const phoneDigits = normalizePhoneDigits(phone);
-
-      const response = await fetch(
-        "https://api.web3forms.com/submit",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            access_key: WEB3FORMS_ACCESS_KEY,
-
-            subject: "Новая заявка OLGA Dental Clinic",
-
-            from_name: "OLGA Dental Clinic",
-
-            name: name.trim(),
-            phone: formattedPhone,
-            phone_digits: phoneDigits,
-            comment: comment.trim() || "—",
-
-            source,
-            doctor: doctor?.name || "—",
-            service: service?.title || "—",
-
-            message: `
-Новая заявка с сайта OLGA Dental Clinic
-
-Имя: ${name.trim()}
-Телефон: ${formattedPhone}
-Телефон только цифры: ${phoneDigits}
-
-Источник заявки: ${source}
-Врач: ${doctor?.name || "—"}
-Услуга: ${service?.title || "—"}
-
-Комментарий:
-${comment.trim() || "—"}
-            `.trim(),
-          }),
-        }
-      );
-
-      const data = await response.json();
-
-      if (!response.ok || !data.success) {
-        throw new Error(
-          data.message || "Не удалось отправить заявку"
-        );
-      }
+      const response = await fetch(BOOKING_API_PATH, {
+        method: "POST",
+        credentials: "same-origin",
+        cache: "no-store",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          phone: formatPhone(phone),
+          source,
+          doctor: doctor?.name || "",
+          service: service?.title || "",
+          consent: true,
+          consent_version: CONSENT_VERSION,
+          website: "",
+        }),
+      });
+      const payload: { success?: boolean; message?: string } = await response.json();
+      if (!response.ok || !payload.success) throw new Error("Booking failed");
 
       localStorage.setItem("bookingCooldown", String(Date.now()));
-
+      window.ym?.(105008013, "reachGoal", "booking_success");
+      setDemoSuccess(false);
       setSent(true);
-
-      setTimeout(() => {
+      window.setTimeout(() => {
         setSent(false);
         setName("");
         setPhone("");
-        setComment("");
+        setConsent(false);
         onClose();
-      }, 2000);
-    } catch (error) {
-      console.error("BOOKING ERROR:", error);
-
-      if (error instanceof Error) {
-        alert(error.message);
-      } else {
-        alert("Не удалось отправить заявку");
-      }
+      }, 2400);
+    } catch {
+      setErrorMessage("Не удалось отправить заявку. Пожалуйста, позвоните в клинику.");
     } finally {
       setLoading(false);
     }
