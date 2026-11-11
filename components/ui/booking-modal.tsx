@@ -21,11 +21,15 @@ const CONSENT_VERSION = process.env.NEXT_PUBLIC_BOOKING_CONSENT_VERSION ?? "PEND
 const BOOKING_ENABLED = process.env.NEXT_PUBLIC_BOOKING_ENABLED === "true";
 const ALLOWED_HOSTS = new Set(["olga-clinic-murino.ru", "www.olga-clinic-murino.ru"]);
 
-function canSubmitRealBooking(): boolean {
-  return BOOKING_ENABLED && CONSENT_VERSION !== "PENDING_APPROVAL"
-    && typeof window !== "undefined"
+function onProductionHost(): boolean {
+  return typeof window !== "undefined"
     && window.location.protocol === "https:"
     && ALLOWED_HOSTS.has(window.location.hostname.toLowerCase());
+}
+
+function canSubmitRealBooking(): boolean {
+  return BOOKING_ENABLED && CONSENT_VERSION !== "PENDING_APPROVAL"
+    && onProductionHost();
 }
 
 const CLINIC_PHONE_DISPLAY = "+7 (812) 603-63-64";
@@ -212,6 +216,10 @@ export function BookingModal({
 
     // Preview/demo: form feedback only, absolutely no transmission.
     if (!canSubmitRealBooking()) {
+      if (onProductionHost()) {
+        setErrorMessage("Онлайн-запись временно недоступна. Пожалуйста, позвоните в клинику.");
+        return;
+      }
       setDemoSuccess(true);
       setSent(true);
       return;
@@ -474,7 +482,9 @@ export function BookingModal({
               </label>
               {!canSubmitRealBooking() && (
                 <p role="status" className="rounded-2xl border border-amber-500/25 bg-amber-500/10 px-4 py-3 text-sm leading-6 text-[var(--text-soft)]">
-                  Тестовый режим. Данные не отправляются и не сохраняются. Подключение реальной записи ожидает юридического согласования и настройки Beget.
+                  {onProductionHost()
+                    ? "Онлайн-запись временно недоступна. Позвоните в клинику по номеру +7 (812) 603-63-64."
+                    : "Тестовый режим. Данные не отправляются и не сохраняются. Подключение реальной записи ожидает юридического согласования и настройки Beget."}
                 </p>
               )}
               {errorMessage && <p role="alert" className="text-sm font-medium text-red-600 dark:text-red-300">{errorMessage}</p>}
@@ -507,29 +517,23 @@ export function BookingModal({
                 Отмена
               </button>
 
-              <button
-                type="button"
-                onClick={handleSubmit}
-                disabled={loading}
-                className="
-                  flex-1
-                  rounded-2xl
-                  bg-[var(--accent-light)]
-                  py-3
-                  text-sm
-                  font-medium
-                  text-[#071412]
-                  shadow-lg
-                  shadow-[var(--accent-light)]/30
-                  transition
-                  hover:-translate-y-[2px]
-                  hover:brightness-110
-                  disabled:cursor-not-allowed
-                  disabled:opacity-60
-                "
-              >
-                {loading ? "Отправка..." : canSubmitRealBooking() ? "Отправить заявку" : "Проверить форму"}
-              </button>
+              {onProductionHost() && !canSubmitRealBooking() ? (
+                <a
+                  href="tel:+78126036364"
+                  className="flex flex-1 items-center justify-center rounded-2xl bg-[var(--accent-light)] px-4 py-3 text-center text-sm font-medium text-[#071412] shadow-lg shadow-[var(--accent-light)]/30 transition hover:brightness-110"
+                >
+                  Позвонить в клинику
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  onClick={handleSubmit}
+                  disabled={loading}
+                  className="flex-1 rounded-2xl bg-[var(--accent-light)] py-3 text-sm font-medium text-[#071412] shadow-lg shadow-[var(--accent-light)]/30 transition hover:-translate-y-[2px] hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {loading ? "Отправка..." : canSubmitRealBooking() ? "Отправить заявку" : "Проверить форму"}
+                </button>
+              )}
             </div>
           </div>
         ) : (
@@ -559,7 +563,7 @@ export function BookingModal({
                 text-[var(--accent)]
               "
             >
-              Заявка отправлена
+              {demoSuccess ? "Форма проверена" : "Заявка отправлена"}
             </h2>
 
             <p className="mt-3 text-sm text-[var(--text-soft)]">
