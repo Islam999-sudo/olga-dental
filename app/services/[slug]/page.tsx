@@ -146,7 +146,7 @@ export default async function ServiceDetailPage({ params }: Params) {
         </header>
 
         <div className="mt-16 grid items-start gap-10 lg:mt-24 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-12">
-          <main className="min-w-0 space-y-16 sm:space-y-20">
+          <article className="min-w-0 space-y-16 sm:space-y-20">
 
             <section id="about" className="scroll-mt-28">
               <SectionHead eyebrow="Разбираемся в деталях" title={"Что нужно знать об услуге"} />
@@ -234,7 +234,7 @@ export default async function ServiceDetailPage({ params }: Params) {
             <section id="questions" className="scroll-mt-28">
               <SectionHead eyebrow="Ответы на вопросы" title="Часто спрашивают" description="Собрали темы, которые полезно обсудить перед началом лечения." />
               <div className="space-y-3">
-                {article.faq.map((item, i) => (
+                {article.faq.map((item) => (
                   <details key={item.question} className="group rounded-[22px] border border-[var(--accent-light)]/15 bg-[var(--card)] px-5 py-1 sm:px-7">
                     <summary className="flex cursor-pointer list-none items-center justify-between gap-5 py-5 text-left font-semibold leading-7 text-[var(--foreground)] [&::-webkit-details-marker]:hidden">
                       <span>{item.question}</span>
@@ -246,7 +246,7 @@ export default async function ServiceDetailPage({ params }: Params) {
               </div>
             </section>
 
-          </main>
+          </article>
 
           <aside className="space-y-5 lg:sticky lg:top-28" aria-label="Навигация по странице и запись">
             <div className="rounded-[28px] border border-[var(--accent-light)]/20 bg-[var(--card)] p-6 shadow-[0_14px_50px_rgba(18,199,183,.08)]">
