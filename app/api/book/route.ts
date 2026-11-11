@@ -1,17 +1,7 @@
 import { Resend } from "resend";
 
-const apiKey = process.env.RESEND_API_KEY;
-const bookingEmail = process.env.BOOKING_EMAIL;
-
-if (!apiKey) {
-  throw new Error("RESEND_API_KEY is missing");
-}
-
-if (!bookingEmail) {
-  throw new Error("BOOKING_EMAIL is missing");
-}
-
-const resend = new Resend(apiKey);
+// Configure these secrets in the deployment environment to enable real bookings.
+// Missing credentials must not break the public site during build.
 
 /* =========================================================
    SIMPLE RATE LIMIT
@@ -145,6 +135,17 @@ export async function POST(req: Request) {
        EMAIL
     ========================================================= */
 
+    const apiKey = process.env.RESEND_API_KEY;
+    const bookingEmail = process.env.BOOKING_EMAIL;
+
+    if (!apiKey || !bookingEmail) {
+      return Response.json(
+        { success: false, error: "Онлайн-запись временно недоступна. Пожалуйста, позвоните в клинику." },
+        { status: 503 }
+      );
+    }
+
+    const resend = new Resend(apiKey);
     const result = await resend.emails.send({
       from: "OLGA Clinic <onboarding@resend.dev>",
 
