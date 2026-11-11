@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 import { services, type Service } from "@/lib/services";
 export type { Service } from "@/lib/services";
 
+const smoothEase = [0.22, 1, 0.36, 1] as const;
+
 const advantages = [
   {
     title: "Прозрачные цены",
