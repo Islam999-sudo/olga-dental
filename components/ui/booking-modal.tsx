@@ -155,6 +155,8 @@ export function BookingModal({
     if (diff < 350) return;
 
     setSent(false);
+    setErrorMessage("");
+    setDemoSuccess(false);
     onClose();
   };
 
@@ -450,30 +452,32 @@ export function BookingModal({
                 "
               />
 
-              <textarea
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
-                placeholder="Комментарий"
-                rows={4}
-                maxLength={1000}
-                className="
-                  w-full
-                  resize-none
-                  rounded-2xl
-                  border
-                  border-[var(--accent-light)]/15
-                  bg-[var(--glass)]
-                  px-4
-                  py-3.5
-                  text-[var(--foreground)]
-                  outline-none
-                  transition
-                  placeholder:text-[var(--text-muted)]
-                  focus:border-[var(--accent-light)]
-                  focus:ring-4
-                  focus:ring-[var(--accent-light)]/10
-                "
-              />
+              <p className="rounded-2xl border border-[var(--accent-light)]/15 bg-[var(--accent-light)]/5 px-4 py-3 text-xs leading-relaxed text-[var(--text-soft)]">
+                Для обратного звонка достаточно имени и телефона. Не указывайте диагнозы и сведения о здоровье: медицинские вопросы обсудите непосредственно с клиникой.
+              </p>
+              <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-[var(--accent-light)]/20 bg-[var(--glass)] px-4 py-4 text-sm leading-relaxed text-[var(--text-soft)]">
+                <input
+                  type="checkbox"
+                  checked={consent}
+                  onChange={(e) => setConsent(e.target.checked)}
+                  className="mt-1 h-5 w-5 shrink-0 accent-[var(--accent)]"
+                />
+                <span>
+                  Даю отдельное согласие ООО «ОРДВИК» на обработку имени и телефона для обратного звонка.{" "}
+                  <Link href="/consent" target="_blank" rel="noopener noreferrer" className="font-semibold text-[var(--accent)] underline underline-offset-2">
+                    Текст согласия
+                  </Link>{" · "}
+                  <Link href="/privacy" target="_blank" rel="noopener noreferrer" className="font-semibold text-[var(--accent)] underline underline-offset-2">
+                    Политика обработки данных
+                  </Link>
+                </span>
+              </label>
+              {!canSubmitRealBooking() && (
+                <p role="status" className="rounded-2xl border border-amber-500/25 bg-amber-500/10 px-4 py-3 text-sm leading-6 text-[var(--text-soft)]">
+                  Тестовый режим. Данные не отправляются и не сохраняются. Подключение реальной записи ожидает юридического согласования и настройки Beget.
+                </p>
+              )}
+              {errorMessage && <p role="alert" className="text-sm font-medium text-red-600 dark:text-red-300">{errorMessage}</p>}
             </div>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
@@ -524,7 +528,7 @@ export function BookingModal({
                   disabled:opacity-60
                 "
               >
-                {loading ? "Отправка..." : "Отправить"}
+                {loading ? "Отправка..." : canSubmitRealBooking() ? "Отправить заявку" : "Проверить форму"}
               </button>
             </div>
           </div>
@@ -559,7 +563,7 @@ export function BookingModal({
             </h2>
 
             <p className="mt-3 text-sm text-[var(--text-soft)]">
-              Мы свяжемся с вами в ближайшее время
+              {demoSuccess ? "Это демонстрация: заявка не отправлена, данные не сохранены." : "Мы свяжемся с вами в ближайшее время."}
             </p>
           </div>
         )}
