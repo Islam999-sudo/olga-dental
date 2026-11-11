@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Beget patient-booking secrets: never commit actual config or DB dumps
+/deployment/beget/booking-private/config.php
+/deployment/beget/**/*.sql.gz
+/deployment/beget/**/*.sql.zip
