@@ -1,0 +1,39 @@
+name: OLGA Booking PHP Safety Checks
+
+on:
+  push:
+    branches:
+      - preview/soni-development
+    paths:
+      - "deployment/beget/**"
+      - "components/ui/booking-modal.tsx"
+      - ".github/workflows/booking-php-checks.yml"
+  pull_request:
+    paths:
+      - "deployment/beget/**"
+      - "components/ui/booking-modal.tsx"
+
+permissions:
+  contents: read
+
+jobs:
+  php-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          extensions: pdo_mysql, openssl
+          tools: none
+      - name: Syntax-check PHP files
+        run: |
+          set -eu
+          find deployment/beget -name '*.php' -type f -print0 | xargs -0 -n 1 php -l
+          php -l deployment/beget/booking-private/config.php.example
+      - name: Prevent client-side patient-data dispatch to third parties
+        run: |
+          set -eu
+          ! grep -i 'api.web3forms.com' components/ui/booking-modal.tsx
+          ! test -f deployment/beget/booking-private/config.php
+          ! find public -type f -name '*.php' | grep -q .
