@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { YandexMetrika } from "@/components/yandex-metrika";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { BookingProvider } from "@/components/providers/booking-provider";
 
@@ -174,6 +175,7 @@ export default function RootLayout({
           }}
         />
 
+        <YandexMetrika />
         <ThemeProvider>
           <BookingProvider>
             <ScrollToTop />
