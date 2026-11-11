@@ -19,6 +19,11 @@ try {
     require dirname(__DIR__, 2) . '/booking-private/bootstrap.php';
     $config = booking_config();
 
+    // Deny any unencrypted submission, even if a caller spoofs Origin.
+    if (($_SERVER['HTTPS'] ?? '') !== 'on') {
+        booking_reply(403, ['success' => false, 'message' => 'Требуется защищённое соединение.']);
+    }
+
     // Launch is explicitly disabled until the legal documents and Beget
     // database configuration are verified by the clinic.
     if (($config['accept_bookings'] ?? false) !== true) {
@@ -71,7 +76,7 @@ try {
     }
 
     $name = trim($body['name']);
-    $phone = preg_replace('/\D/u', '', $body['phone']);
+    $phone = preg_replace('/\D/', '', $body['phone']);
     if (strlen($name) < 2 || strlen($name) > 180 || !preg_match('/^[\p{L}\p{M}\s\'-]{2,60}$/u', $name)) {
         booking_reply(400, ['success' => false, 'message' => 'Проверьте имя.']);
     }
