@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const clinicPhotos = [
@@ -384,8 +385,10 @@ export function AboutPageContent() {
                   md:min-h-[520px]
                 "
               >
-                <img
+                <Image
                   src="/clinic/clinic-4.webp"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 55vw"
                   alt="Интерьер клиники OLGA Dental"
                   loading="eager"
                   onError={(e) => {
@@ -472,8 +475,10 @@ export function AboutPageContent() {
                       bg-[var(--accent-light)]/8
                     "
                   >
-                    <img
+                    <Image
                       src={photo.src}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
                       alt={photo.title}
                       loading="lazy"
                       onError={(e) => {
@@ -599,8 +604,10 @@ export function AboutPageContent() {
                   }
                 `}
               >
-                <img
+                <Image
                   src={photo.src}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
                   alt={photo.title}
                   loading="lazy"
                   onError={(e) => {
