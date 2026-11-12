@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 import { services } from "@/lib/services";
@@ -338,8 +339,10 @@ return (
                     />
 
                     {service.image && (
-                      <img
+                      <Image
                         src={service.image}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
                         alt={service.title}
                         loading="lazy"
                         onError={(e) => {
