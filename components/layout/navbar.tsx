@@ -1,6 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { AnimatePresence, motion } from "framer-motion";
@@ -17,6 +20,7 @@ const navItems = [
 ];
 
 const smoothEase = [0.22, 1, 0.36, 1] as const;
+const subscribeToHydration = () => () => {};
 
 const normalizePath = (value: string) => {
   if (!value) return "/";
@@ -37,23 +41,13 @@ const normalizePath = (value: string) => {
 export function Navbar() {
   const { openBooking } = useBooking();
 
-  const [mounted, setMounted] = useState(false);
-  const [pathname, setPathname] = useState("/");
+  const mounted = useSyncExternalStore(subscribeToHydration, () => true, () => false);
+  const pathname = usePathname() || "/";
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const { resolvedTheme, setTheme } = useTheme();
 
   const isDark = mounted && resolvedTheme === "dark";
-
-  useEffect(() => {
-    setMounted(true);
-
-    if (typeof window !== "undefined") {
-      setPathname(
-        `${window.location.pathname}${window.location.hash}`
-      );
-    }
-  }, []);
 
   useEffect(() => {
     if (!mobileMenuOpen) return;
@@ -166,7 +160,7 @@ export function Navbar() {
           "
         >
           {/* LOGO */}
-          <a
+          <Link
             href="/"
             onClick={closeMobileMenu}
             className="
@@ -192,7 +186,7 @@ export function Navbar() {
                 "
               />
 
-              <img
+              <Image
                 src="/zub.png"
                 alt="OLGA Logo"
                 width={66}
@@ -245,7 +239,7 @@ export function Navbar() {
                 Dental Clinic
               </span>
             </div>
-          </a>
+          </Link>
 
           {/* DESKTOP NAVIGATION */}
           <nav
@@ -267,7 +261,7 @@ export function Navbar() {
               const isActive = isActivePath(item.href);
 
               return (
-                <a
+                <Link
                   key={item.href}
                   href={item.href}
                   className={`
@@ -349,7 +343,7 @@ export function Navbar() {
                       "
                     />
                   )}
-                </a>
+                </Link>
               );
             })}
           </nav>
@@ -729,7 +723,7 @@ export function Navbar() {
                   const isActive = isActivePath(item.href);
 
                   return (
-                    <a
+                    <Link
                       key={item.href}
                       href={item.href}
                       onClick={closeMobileMenu}
@@ -771,7 +765,7 @@ export function Navbar() {
                       >
                         →
                       </span>
-                    </a>
+                    </Link>
                   );
                 })}
               </div>
