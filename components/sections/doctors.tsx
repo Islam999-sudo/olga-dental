@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 import { doctors, Doctor } from "@/data/doctors";
 import { DoctorModal } from "@/components/ui/doctor-modal";
@@ -350,9 +351,24 @@ export function Doctors({ onBookDoctor }: Props) {
                       sm:h-[520px]
                       sm:w-[360px]
                     "
+                    role="button"
+                    tabIndex={isActive ? 0 : -1}
+                    aria-label={`Открыть профиль врача: ${d.name}`}
                     onClick={() => {
-  if (dragBlockedRef.current) return;
-}}
+                      if (dragBlockedRef.current) return;
+                      if (!isActive) {
+                        setActive(index);
+                        return;
+                      }
+                      setSelected(d);
+                    }}
+                    onKeyDown={(event) => {
+                      if (!isActive) return;
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        setSelected(d);
+                      }
+                    }}
                   >
                     <motion.div
                       whileHover={
@@ -375,11 +391,13 @@ export function Doctors({ onBookDoctor }: Props) {
                       "
                     >
                       {/* IMAGE */}
-                      <img
+                      <Image
                         src={d.image}
+                        fill
+                        sizes="(max-width: 640px) 292px, 360px"
                         alt={d.name}
                         draggable={false}
-                        loading="eager"
+                        loading={isActive ? "eager" : "lazy"}
                         decoding="async"
                         className="
                           pointer-events-none
@@ -630,6 +648,16 @@ export function Doctors({ onBookDoctor }: Props) {
       </div>
 
 
+      {selected && (
+        <DoctorModal
+          doctor={selected}
+          onClose={() => setSelected(null)}
+          onBook={(doctor) => {
+            setSelected(null);
+            onBookDoctor(doctor);
+          }}
+        />
+      )}
     </section>
   );
 }
