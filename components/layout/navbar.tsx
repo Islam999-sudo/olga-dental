@@ -516,7 +516,7 @@ export function Navbar() {
             {/* DESKTOP BOOK */}
             <button
               type="button"
-              onClick={openBooking}
+              onClick={() => openBooking()}
               className="
                 hidden
                 rounded-full
