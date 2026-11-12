@@ -1,0 +1,48 @@
+name: OLGA Frontend Quality Audit
+
+on:
+  push:
+    branches:
+      - preview/soni-development
+    paths:
+      - "app/**"
+      - "components/**"
+      - "data/**"
+      - "lib/**"
+      - "package.json"
+      - "package-lock.json"
+      - "next.config.ts"
+      - "tsconfig.json"
+      - ".github/workflows/frontend-quality.yml"
+  pull_request:
+    paths:
+      - "app/**"
+      - "components/**"
+      - "data/**"
+      - "lib/**"
+      - "package.json"
+      - "package-lock.json"
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: ESLint
+        run: npm run lint
+      - name: TypeScript
+        run: npx tsc --noEmit
+      - name: Production static build
+        run: npm run build
