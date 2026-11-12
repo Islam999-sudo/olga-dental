@@ -6,7 +6,6 @@ import { reveal } from "@/lib/motion";
 
 export function ContactMap() {
   const [copied, setCopied] = useState(false);
-  const [mapLoaded, setMapLoaded] = useState(false);
 
   const address = "г. Мурино, Воронцовский бульвар, 2";
   const phone = "+78126036364";
@@ -593,38 +592,14 @@ export function ContactMap() {
               </div>
             </motion.div>
 
-            {mapLoaded ? (
-              <iframe
-                src={yandexMapUrl}
-                className="h-[520px] w-full border-0 lg:h-full"
-                loading="lazy"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-                title="OLGA Dental Clinic на Яндекс.Картах"
-              />
-            ) : (
-              <div className="relative z-[2] flex min-h-[520px] w-full flex-col items-center justify-center gap-5 bg-[var(--glass)] px-6 pb-28 pt-12 text-center">
-                <span aria-hidden="true" className="flex h-16 w-16 items-center justify-center rounded-full border border-[var(--accent-light)]/25 bg-[var(--card)] text-3xl text-[var(--accent)] shadow-soft">
-                  ⌖
-                </span>
-                <div>
-                  <h3 className="text-xl font-semibold text-[var(--foreground)]">
-                    Карта расположения клиники
-                  </h3>
-                  <p className="mx-auto mt-3 max-w-xs text-sm leading-6 text-[var(--text-soft)]">
-                    Яндекс.Карты загрузятся после вашего нажатия.
-                    При этом браузер соединится с внешним сервисом Яндекса.
-                  </p>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setMapLoaded(true)}
-                  className="rounded-full bg-[var(--accent-light)] px-7 py-3.5 text-sm font-semibold text-[#071412] shadow-[0_10px_30px_rgba(18,199,183,.2)] transition hover:-translate-y-0.5 hover:brightness-110"
-                >
-                  Показать карту
-                </button>
-              </div>
-            )}
+            <iframe
+              src={yandexMapUrl}
+              className="h-[520px] w-full border-0 lg:h-full"
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+              title="OLGA Dental Clinic на Яндекс.Картах"
+            />
           </motion.div>
         </div>
       </div>
