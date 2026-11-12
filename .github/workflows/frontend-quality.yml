@@ -44,6 +44,8 @@ jobs:
           cache: npm
       - name: Install locked dependencies
         run: npm ci
+      - name: Check services, article slugs and image assets
+        run: node scripts/verify-content.mjs
       - name: ESLint
         run: npm run lint
       - name: TypeScript
