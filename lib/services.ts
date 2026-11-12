@@ -9,8 +9,6 @@ export type Service = {
   featured?: boolean;
 };
 
-const smoothEase = [0.22, 1, 0.36, 1] as const;
-
 export const services: Service[] = [
   {
     title: "Имплантация",
