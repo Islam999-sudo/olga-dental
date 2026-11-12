@@ -5,6 +5,7 @@ type Props = {
 };
 
 import Link from "next/link";
+import Image from "next/image";
 export function Hero({ onBook }: Props) {
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
@@ -312,8 +313,11 @@ export function Hero({ onBook }: Props) {
               shadow-[0_30px_80px_rgba(18,199,183,0.18)]
             "
           >
-            <img
+            <Image
               src="/hero/my-photo.jpg"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="h-full w-full object-cover"
               style={{
                 objectPosition: "50% 35%",
