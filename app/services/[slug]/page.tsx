@@ -69,12 +69,12 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     title: service.title + " в Мурино — лечение, цены и этапы",
     description:
       service.desc + " Этапы лечения, показания, уход и ответы на частые вопросы. OLGA Dental Clinic, Мурино.",
-    alternates: { canonical: "/services/" + slug },
+    alternates: { canonical: "/services/" + slug + "/" },
     openGraph: {
       title: service.title + " — OLGA Dental Clinic",
       description: article.lead,
       type: "article",
-      url: "/services/" + slug,
+      url: "/services/" + slug + "/",
     },
   };
 }
