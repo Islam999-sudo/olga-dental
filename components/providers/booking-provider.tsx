@@ -10,12 +10,12 @@ import {
 type BookingContextType = {
   isOpen: boolean;
 
-  doctor: any | null;
-  service: any | null;
+  doctor: { name: string } | null;
+  service: { title: string } | null;
 
   openBooking: (
-    doctor?: any,
-    service?: any
+    doctor?: { name: string },
+    service?: { title: string }
   ) => void;
 
   closeBooking: () => void;
@@ -31,12 +31,12 @@ export function BookingProvider({
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const [doctor, setDoctor] = useState<any | null>(null);
-  const [service, setService] = useState<any | null>(null);
+  const [doctor, setDoctor] = useState<{ name: string } | null>(null);
+  const [service, setService] = useState<{ title: string } | null>(null);
 
   const openBooking = (
-    doctorData?: any,
-    serviceData?: any
+    doctorData?: { name: string },
+    serviceData?: { title: string }
   ) => {
     setDoctor(doctorData ?? null);
     setService(serviceData ?? null);
