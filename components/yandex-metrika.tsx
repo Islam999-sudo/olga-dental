@@ -1,12 +1,12 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import Link from "next/link";
 
 const COUNTER_ID = 105008013;
 const CONSENT_KEY = "olga-analytics-consent-v1";
-const REOPEN_EVENT = "olga:analytics-settings";
+const PREFERENCE_CHANGED = "olga:analytics-preference-changed";
 const PRODUCTION_HOSTS = new Set([
   "olga-clinic-murino.ru",
   "www.olga-clinic-murino.ru",
@@ -26,13 +26,46 @@ declare global {
 }
 
 function productionHost(): boolean {
-  return typeof window !== "undefined"
-    && PRODUCTION_HOSTS.has(window.location.hostname.toLowerCase());
+  return typeof window !== "undefined" &&
+    PRODUCTION_HOSTS.has(window.location.hostname.toLowerCase());
 }
 
-function setTrackingDisabled(disabled: boolean) {
-  // Official Yandex Metrika opt-out switch.
-  window.disableYaCounter105008013 = disabled;
+function subscribeToChoice(onStoreChange: () => void) {
+  window.addEventListener("storage", onStoreChange);
+  window.addEventListener(PREFERENCE_CHANGED, onStoreChange);
+  return () => {
+    window.removeEventListener("storage", onStoreChange);
+    window.removeEventListener(PREFERENCE_CHANGED, onStoreChange);
+  };
+}
+
+function storedChoice(): Choice {
+  if (!productionHost()) return "declined";
+  try {
+    const value = window.localStorage.getItem(CONSENT_KEY);
+    return value === "accepted" || value === "declined" ? value : "pending";
+  } catch {
+    return "pending";
+  }
+}
+
+function serverChoice(): Choice {
+  return "loading";
+}
+
+function useAnalyticsChoice(): Choice {
+  return useSyncExternalStore(subscribeToChoice, storedChoice, serverChoice);
+}
+
+function updateChoice(value: "accepted" | "declined" | "pending") {
+  try {
+    if (value === "pending") window.localStorage.removeItem(CONSENT_KEY);
+    else window.localStorage.setItem(CONSENT_KEY, value);
+  } catch {
+    // Tracking is optional even when persistent storage is unavailable.
+  }
+  window.disableYaCounter105008013 = value !== "accepted";
+  window.dispatchEvent(new Event(PREFERENCE_CHANGED));
 }
 
 function initMetrika(): void {
@@ -58,20 +91,14 @@ function initMetrika(): void {
   });
 }
 
-function storedChoice(): Choice {
-  try {
-    const value = window.localStorage.getItem(CONSENT_KEY);
-    return value === "accepted" || value === "declined" ? value : "pending";
-  } catch {
-    return "pending";
-  }
-}
-
 export function AnalyticsSettingsButton() {
+  const choice = useAnalyticsChoice();
+  if (!productionHost() || choice === "loading") return null;
+
   return (
     <button
       type="button"
-      onClick={() => window.dispatchEvent(new Event(REOPEN_EVENT))}
+      onClick={() => updateChoice("pending")}
       className="text-left text-xs text-[var(--text-muted)] underline decoration-[var(--accent-light)]/30 underline-offset-4 transition hover:text-[var(--accent)]"
     >
       Настройки аналитики
@@ -81,47 +108,16 @@ export function AnalyticsSettingsButton() {
 
 export function YandexMetrika() {
   const pathname = usePathname();
-  const [choice, setChoice] = useState<Choice>("loading");
-  const [activeHost, setActiveHost] = useState(false);
+  const choice = useAnalyticsChoice();
+  const activeHost = productionHost();
 
   useEffect(() => {
-    const isProduction = productionHost();
-    setActiveHost(isProduction);
-
-    // Prevent any counter activity before explicitly allowed.
-    if (!isProduction) {
-      setTrackingDisabled(true);
-      setChoice("declined");
-      return;
-    }
-
-    const readPreference = () => {
-      const selected = storedChoice();
-      setTrackingDisabled(selected !== "accepted");
-      setChoice(selected);
-    };
-
-    readPreference();
-
-    const openSettings = () => {
-      setTrackingDisabled(true);
-      setChoice("pending");
-    };
-    window.addEventListener(REOPEN_EVENT, openSettings);
-    window.addEventListener("storage", readPreference);
-    return () => {
-      window.removeEventListener(REOPEN_EVENT, openSettings);
-      window.removeEventListener("storage", readPreference);
-    };
-  }, []);
-
-  useEffect(() => {
+    // Deny tracking until a visitor has explicitly opted in.
+    window.disableYaCounter105008013 = !activeHost || choice !== "accepted";
     if (!activeHost || choice !== "accepted") return;
 
-    setTrackingDisabled(false);
     initMetrika();
-
-    // Do not record query strings or fragments containing visitor information.
+    // Pageviews never include query strings or fragments.
     window.ym?.(COUNTER_ID, "hit", window.location.origin + pathname);
   }, [activeHost, choice, pathname]);
 
@@ -131,23 +127,14 @@ export function YandexMetrika() {
     const onClick = (event: MouseEvent) => {
       const target = event.target;
       if (!(target instanceof Element)) return;
-      const link = target.closest("a[href^='tel:']");
-      if (link) window.ym?.(COUNTER_ID, "reachGoal", "phone_click");
+      if (target.closest("a[href^='tel:']")) {
+        window.ym?.(COUNTER_ID, "reachGoal", "phone_click");
+      }
     };
 
     document.addEventListener("click", onClick);
     return () => document.removeEventListener("click", onClick);
   }, [activeHost, choice]);
-
-  const select = (next: "accepted" | "declined") => {
-    setTrackingDisabled(next !== "accepted");
-    try {
-      window.localStorage.setItem(CONSENT_KEY, next);
-    } catch {
-      // Analytics is optional, even if storage is blocked.
-    }
-    setChoice(next);
-  };
 
   if (!activeHost || choice !== "pending") return null;
 
@@ -168,18 +155,12 @@ export function YandexMetrika() {
         </Link>.
       </p>
       <div className="mt-5 flex flex-wrap gap-3">
-        <button
-          type="button"
-          onClick={() => select("declined")}
-          className="rounded-full border border-[var(--accent-light)]/30 px-5 py-2.5 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--accent-light)]/10"
-        >
+        <button type="button" onClick={() => updateChoice("declined")}
+          className="rounded-full border border-[var(--accent-light)]/30 px-5 py-2.5 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--accent-light)]/10">
           Отклонить
         </button>
-        <button
-          type="button"
-          onClick={() => select("accepted")}
-          className="rounded-full bg-[var(--accent-light)] px-5 py-2.5 text-sm font-semibold text-[#071412] transition hover:brightness-110"
-        >
+        <button type="button" onClick={() => updateChoice("accepted")}
+          className="rounded-full bg-[var(--accent-light)] px-5 py-2.5 text-sm font-semibold text-[#071412] transition hover:brightness-110">
           Разрешить аналитику
         </button>
       </div>
