@@ -52,3 +52,11 @@ jobs:
         run: npx tsc --noEmit
       - name: Production static build
         run: npm run build
+      - name: Verify Beget-compatible static export
+        run: |
+          test -f out/index.html
+          test -f out/services/index.html
+          test -f out/services/implantation/index.html
+          test -f out/services/caries/index.html
+          test -f out/privacy/index.html
+          test -f out/consent/index.html
