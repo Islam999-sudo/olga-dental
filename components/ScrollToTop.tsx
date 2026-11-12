@@ -10,7 +10,7 @@ export function ScrollToTop() {
     if (typeof window !== "undefined") {
       window.scrollTo({
         top: 0,
-        behavior: "smooth",
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
       });
     }
   }, [pathname]);
