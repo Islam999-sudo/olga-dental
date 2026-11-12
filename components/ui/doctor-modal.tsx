@@ -1,8 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useSyncExternalStore } from "react";
+import Image from "next/image";
 import { createPortal } from "react-dom";
 import { Doctor } from "@/data/doctors";
+
+const subscribeToHydration = () => () => {};
 
 type Props = {
   doctor: Doctor;
@@ -15,11 +18,9 @@ export function DoctorModal({
   onClose,
   onBook,
 }: Props) {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(subscribeToHydration, () => true, () => false);
 
   useEffect(() => {
-    setMounted(true);
-
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
@@ -137,8 +138,10 @@ export function DoctorModal({
                 shadow-[0_24px_80px_rgba(18,199,183,0.16)]
               "
             >
-              <img
+              <Image
   src={doctor.image}
+  fill
+  sizes="(min-width: 768px) 410px, 100vw"
   alt={doctor.name}
   loading="eager"
   decoding="async"
