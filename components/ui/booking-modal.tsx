@@ -32,8 +32,6 @@ function canSubmitRealBooking(): boolean {
     && onProductionHost();
 }
 
-const CLINIC_PHONE_DISPLAY = "+7 (812) 603-63-64";
-
 const getPhoneDigits = (value: string) => {
   return value.replace(/\D/g, "");
 };
