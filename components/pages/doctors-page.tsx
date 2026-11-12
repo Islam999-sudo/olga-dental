@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 import { doctors, type Doctor } from "@/data/doctors";
 import { DoctorModal } from "@/components/ui/doctor-modal";
@@ -496,8 +497,10 @@ export function DoctorsPage() {
                       sm:h-[460px]
                     "
                   >
-                    <img
+                    <Image
                       src={doctor.image}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 360px"
                       alt={doctor.name}
                       loading="lazy"
                       decoding="async"
