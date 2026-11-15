@@ -1,0 +1,286 @@
+{
+  "timestamp": "2026-11-15T19:37:14.087Z",
+  "browser": "156.0.8078.79",
+  "origin": "https://olga-clinic-murino.ru",
+  "out": "/tmp/olga-enabled/out",
+  "networkPolicy": "Every HTTP request intercepted; no route.continue used. App static files fulfilled from isolated enabled export. Booking responses synthetic. Production host DNS/network never reached.",
+  "cases": [
+    {
+      "name": "Successful request and exactly one POST",
+      "mode": "success",
+      "pass": true,
+      "calls": [
+        {
+          "method": "POST",
+          "url": "https://olga-clinic-murino.ru/api/booking.php",
+          "keys": [
+            "consent",
+            "consent_version",
+            "doctor",
+            "name",
+            "phone",
+            "request_id",
+            "service",
+            "source",
+            "website"
+          ],
+          "consent": true,
+          "source": "general",
+          "request_id": "8de2af6e-a40b-4e9d-9634-4fc87d04df95",
+          "idempotency_key": null
+        }
+      ],
+      "errors": [],
+      "durationMs": 3198
+    },
+    {
+      "name": "Server failure 500",
+      "mode": "500",
+      "pass": true,
+      "calls": [
+        {
+          "method": "POST",
+          "url": "https://olga-clinic-murino.ru/api/booking.php",
+          "keys": [
+            "consent",
+            "consent_version",
+            "doctor",
+            "name",
+            "phone",
+            "request_id",
+            "service",
+            "source",
+            "website"
+          ],
+          "consent": true,
+          "source": "general",
+          "request_id": "d021d5a8-ad30-4e4f-a500-94aea827de8d",
+          "idempotency_key": null
+        }
+      ],
+      "errors": [],
+      "durationMs": 4099
+    },
+    {
+      "name": "Server failure malformed",
+      "mode": "malformed",
+      "pass": true,
+      "calls": [
+        {
+          "method": "POST",
+          "url": "https://olga-clinic-murino.ru/api/booking.php",
+          "keys": [
+            "consent",
+            "consent_version",
+            "doctor",
+            "name",
+            "phone",
+            "request_id",
+            "service",
+            "source",
+            "website"
+          ],
+          "consent": true,
+          "source": "general",
+          "request_id": "c34a8ae2-5903-4a92-b5f5-26d56bc110be",
+          "idempotency_key": null
+        }
+      ],
+      "errors": [],
+      "durationMs": 3167
+    },
+    {
+      "name": "Server failure network",
+      "mode": "network",
+      "pass": true,
+      "calls": [
+        {
+          "method": "POST",
+          "url": "https://olga-clinic-murino.ru/api/booking.php",
+          "keys": [
+            "consent",
+            "consent_version",
+            "doctor",
+            "name",
+            "phone",
+            "request_id",
+            "service",
+            "source",
+            "website"
+          ],
+          "consent": true,
+          "source": "general",
+          "request_id": "d25fe583-43ab-4081-b1d1-913e4831ac9d",
+          "idempotency_key": null
+        }
+      ],
+      "errors": [],
+      "durationMs": 3189
+    },
+    {
+      "name": "Bounded network timeout",
+      "mode": "timeout",
+      "pass": true,
+      "calls": [
+        {
+          "method": "POST",
+          "url": "https://olga-clinic-murino.ru/api/booking.php",
+          "keys": [
+            "consent",
+            "consent_version",
+            "doctor",
+            "name",
+            "phone",
+            "request_id",
+            "service",
+            "source",
+            "website"
+          ],
+          "consent": true,
+          "source": "general",
+          "request_id": "175d7e2a-8a61-49cf-af81-1ed4b9194d67",
+          "idempotency_key": null
+        }
+      ],
+      "errors": [],
+      "durationMs": 18221
+    },
+    {
+      "name": "Retry preserves idempotency identifier",
+      "mode": "retry",
+      "pass": true,
+      "calls": [
+        {
+          "method": "POST",
+          "url": "https://olga-clinic-murino.ru/api/booking.php",
+          "keys": [
+            "consent",
+            "consent_version",
+            "doctor",
+            "name",
+            "phone",
+            "request_id",
+            "service",
+            "source",
+            "website"
+          ],
+          "consent": true,
+          "source": "general",
+          "request_id": "4e0446f9-560a-47b5-a36d-2392c6882e79",
+          "idempotency_key": null
+        },
+        {
+          "method": "POST",
+          "url": "https://olga-clinic-murino.ru/api/booking.php",
+          "keys": [
+            "consent",
+            "consent_version",
+            "doctor",
+            "name",
+            "phone",
+            "request_id",
+            "service",
+            "source",
+            "website"
+          ],
+          "consent": true,
+          "source": "general",
+          "request_id": "4e0446f9-560a-47b5-a36d-2392c6882e79",
+          "idempotency_key": null
+        }
+      ],
+      "errors": [],
+      "durationMs": 3229
+    },
+    {
+      "name": "Unavailable localStorage does not break submission",
+      "mode": "success",
+      "pass": true,
+      "calls": [
+        {
+          "method": "POST",
+          "url": "https://olga-clinic-murino.ru/api/booking.php",
+          "keys": [
+            "consent",
+            "consent_version",
+            "doctor",
+            "name",
+            "phone",
+            "request_id",
+            "service",
+            "source",
+            "website"
+          ],
+          "consent": true,
+          "source": "general",
+          "request_id": "47d27d16-0b44-440c-9c71-216ba262d7ef",
+          "idempotency_key": null
+        }
+      ],
+      "errors": [],
+      "durationMs": 3046
+    },
+    {
+      "name": "Double click sends one request",
+      "mode": "pending",
+      "pass": true,
+      "calls": [
+        {
+          "method": "POST",
+          "url": "https://olga-clinic-murino.ru/api/booking.php",
+          "keys": [
+            "consent",
+            "consent_version",
+            "doctor",
+            "name",
+            "phone",
+            "request_id",
+            "service",
+            "source",
+            "website"
+          ],
+          "consent": true,
+          "source": "general",
+          "request_id": "e86d4bd7-ec32-49a4-a5cd-1532f6506652",
+          "idempotency_key": null
+        }
+      ],
+      "errors": [],
+      "durationMs": 4544
+    },
+    {
+      "name": "Closing pending dialog does not leak success into new dialog",
+      "mode": "pending",
+      "pass": true,
+      "calls": [
+        {
+          "method": "POST",
+          "url": "https://olga-clinic-murino.ru/api/booking.php",
+          "keys": [
+            "consent",
+            "consent_version",
+            "doctor",
+            "name",
+            "phone",
+            "request_id",
+            "service",
+            "source",
+            "website"
+          ],
+          "consent": true,
+          "source": "general",
+          "request_id": "e97948f1-c7bc-4bce-91b2-800d375d0eaf",
+          "idempotency_key": null
+        }
+      ],
+      "errors": [],
+      "durationMs": 5306
+    }
+  ],
+  "unexpected": [],
+  "summary": {
+    "total": 9,
+    "passed": 9,
+    "failed": 0
+  }
+}

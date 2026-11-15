@@ -1,0 +1,48 @@
+php-integration	Isolated synthetic API, admin and MySQL regression	﻿2026-11-15T19:47:52.2557828Z ##[group]Run python3 deployment/beget/tests/security-integration.py
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:52.2558499Z [36;1mpython3 deployment/beget/tests/security-integration.py[0m
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:52.2613820Z shell: /usr/bin/bash -e {0}
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:52.2614110Z ##[endgroup]
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:52.7093383Z PASS: existing-schema migration applied
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:52.8164076Z PASS: DB session uses UTC
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:52.8724185Z PASS: method rejected
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:52.9305328Z PASS: TLS required
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:52.9884922Z PASS: origin rejected
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:53.0467504Z PASS: content type rejected
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:53.1048154Z PASS: oversized payload rejected
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:53.1631416Z PASS: malformed JSON rejected
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:53.2220337Z PASS: consent missing
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:53.2820441Z PASS: consent version rejected
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:53.3426228Z PASS: name type rejected
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:53.4003388Z PASS: name injection rejected
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:53.4580603Z PASS: phone rejected
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:53.5156912Z PASS: source rejected
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:53.5734454Z PASS: doctor type rejected
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:53.6314833Z PASS: honeypot rejected
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:53.6894624Z PASS: request ID rejected
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:53.7565762Z PASS: concurrent replay creates one request
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:53.7566347Z PASS: valid request accepted
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:53.7566679Z PASS: PII absent from response
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:53.9225356Z PASS: identical replay accepted once
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:53.9819620Z PASS: changed replay rejected
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:54.2799176Z PASS: fresh requests accepted before limit
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:54.3415738Z PASS: rate limit enforced
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:54.4013793Z PASS: replay works despite rate limit
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:54.5085874Z PASS: stored payload encrypted
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:54.5669933Z PASS: admin HTTP rejected
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:54.6249774Z PASS: anonymous sees login, no requests
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:54.6250134Z PASS: session cookie flags
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:54.6830361Z PASS: CSRF rejected
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:55.6863301Z PASS: login brute force limited
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:55.9119180Z PASS: successful login rotates session
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:55.9712918Z PASS: authorized inbox escapes XSS
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:56.0294506Z PASS: idle session expires after 15 minutes
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:56.3223377Z PASS: logout invalidates old session
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:56.8238327Z PASS: retention runs while intake paused
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:57.0471890Z Traceback (most recent call last):
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:57.0475096Z   File "/home/runner/work/olga-dental/olga-dental/deployment/beget/tests/security-integration.py", line 165, in <module>
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:57.0476321Z     check("intake flag fails closed", request(body=payload())[0] == 503)
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:57.0476957Z     ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:57.0477869Z   File "/home/runner/work/olga-dental/olga-dental/deployment/beget/tests/security-integration.py", line 32, in check
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:57.0478723Z     raise AssertionError(label)
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:57.0479276Z AssertionError: intake flag fails closed
+php-integration	Isolated synthetic API, admin and MySQL regression	2026-11-15T19:47:57.0634919Z ##[error]Process completed with exit code 1.

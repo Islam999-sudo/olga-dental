@@ -1,0 +1,62 @@
+{
+  "date": "2026-11-15",
+  "repository": "Islam999-sudo/olga-dental",
+  "branch": "audit/olga-quality-2026",
+  "testedApplicationCommit": "e3d33759be9b383b492f96624172f3f5d8fa5033",
+  "deployment": {
+    "id": "dpl_2jtDxjNDaFpFNFd1sVkmvdzGJHhr",
+    "url": "https://olga-dental-preview-acafhi2uc-jozz-s-projects.vercel.app",
+    "state": "READY",
+    "environment": "preview",
+    "target": null,
+    "source": "git"
+  },
+  "method": "Read-only authenticated Vercel connector HTTP fetch. Existing Deployment Protection retained. Authentication/share credentials excluded. These checks are HTTP sampling, not a deployed browser-flow test.",
+  "homepage": {
+    "status": 200,
+    "headers": {
+      "cache-control": "public, max-age=0, must-revalidate",
+      "content-type": "text/html; charset=utf-8",
+      "x-robots-tag": "noindex, nofollow, noarchive"
+    },
+    "newLogo": true,
+    "canonical": true
+  },
+  "routes": [
+    {
+      "path": "/services/caries/",
+      "status": 200,
+      "robots": "noindex, nofollow, noarchive",
+      "title": "Лечение кариеса в Мурино — лечение, цены и этапы | OLGA Dental Clinic",
+      "canonical": "https://olga-clinic-murino.ru/services/caries/",
+      "hasPHPSource": false,
+      "legalDraft": false
+    },
+    {
+      "path": "/privacy/",
+      "status": 200,
+      "robots": "noindex, nofollow, noarchive",
+      "title": "Проект политики обработки персональных данных | OLGA Dental Clinic",
+      "hasPHPSource": false,
+      "legalDraft": true
+    },
+    {
+      "path": "/api/booking.php",
+      "status": 403,
+      "hasPHPSource": false,
+      "legalDraft": false
+    },
+    {
+      "path": "/clinic-admin/index.php",
+      "status": 403,
+      "hasPHPSource": false,
+      "legalDraft": false
+    }
+  ],
+  "limits": [
+    "Production Beget not contacted",
+    "PHP/admin paths returned 403 in preview; this does not establish Beget configuration",
+    "No PHP or admin code in static export verified separately by verify-export.mjs",
+    "No production booking requests made"
+  ]
+}

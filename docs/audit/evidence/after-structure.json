@@ -1,0 +1,156 @@
+[
+  {
+    "route": "/404/",
+    "h1": 1,
+    "main": 1,
+    "canonical": false,
+    "title": "Клиника Ольга Мурино — OLGA Dental Clinic | Стоматология в Мурино"
+  },
+  {
+    "route": "/_not-found/",
+    "h1": 1,
+    "main": 1,
+    "canonical": false,
+    "title": "Клиника Ольга Мурино — OLGA Dental Clinic | Стоматология в Мурино"
+  },
+  {
+    "route": "/about/",
+    "h1": 1,
+    "main": 1,
+    "canonical": true,
+    "title": "О клинике в Мурино | OLGA Dental Clinic"
+  },
+  {
+    "route": "/consent/",
+    "h1": 1,
+    "main": 1,
+    "canonical": false,
+    "title": "Проект согласия на обработку данных | OLGA Dental Clinic"
+  },
+  {
+    "route": "/contact/",
+    "h1": 1,
+    "main": 1,
+    "canonical": true,
+    "title": "Контакты клиники в Мурино | OLGA Dental Clinic"
+  },
+  {
+    "route": "/doctors/",
+    "h1": 1,
+    "main": 1,
+    "canonical": true,
+    "title": "Врачи клиники в Мурино | OLGA Dental Clinic"
+  },
+  {
+    "route": "/",
+    "h1": 1,
+    "main": 1,
+    "canonical": true,
+    "title": "Клиника Ольга Мурино — OLGA Dental Clinic | Стоматология в Мурино"
+  },
+  {
+    "route": "/privacy/",
+    "h1": 1,
+    "main": 1,
+    "canonical": false,
+    "title": "Проект политики обработки персональных данных | OLGA Dental Clinic"
+  },
+  {
+    "route": "/promotions/",
+    "h1": 1,
+    "main": 1,
+    "canonical": true,
+    "title": "Акции стоматологии в Мурино | OLGA Dental Clinic"
+  },
+  {
+    "route": "/services/caries/",
+    "h1": 1,
+    "main": 1,
+    "canonical": true,
+    "title": "Лечение кариеса в Мурино — лечение, цены и этапы | OLGA Dental Clinic"
+  },
+  {
+    "route": "/services/crowns/",
+    "h1": 1,
+    "main": 1,
+    "canonical": true,
+    "title": "Коронки в Мурино — лечение, цены и этапы | OLGA Dental Clinic"
+  },
+  {
+    "route": "/services/extraction/",
+    "h1": 1,
+    "main": 1,
+    "canonical": true,
+    "title": "Удаление зубов в Мурино — лечение, цены и этапы | OLGA Dental Clinic"
+  },
+  {
+    "route": "/services/hygiene/",
+    "h1": 1,
+    "main": 1,
+    "canonical": true,
+    "title": "Профессиональная гигиена в Мурино — лечение, цены и этапы | OLGA Dental Clinic"
+  },
+  {
+    "route": "/services/implant-tooth-package/",
+    "h1": 1,
+    "main": 1,
+    "canonical": true,
+    "title": "Установка зуба под ключ в Мурино — лечение, цены и этапы | OLGA Dental Clinic"
+  },
+  {
+    "route": "/services/implantation/",
+    "h1": 1,
+    "main": 1,
+    "canonical": true,
+    "title": "Имплантация в Мурино — лечение, цены и этапы | OLGA Dental Clinic"
+  },
+  {
+    "route": "/services/",
+    "h1": 1,
+    "main": 1,
+    "canonical": true,
+    "title": "Стоматологические услуги в Мурино | OLGA Dental Clinic"
+  },
+  {
+    "route": "/services/orthodontics/",
+    "h1": 1,
+    "main": 1,
+    "canonical": true,
+    "title": "Ортодонтия в Мурино — лечение, цены и этапы | OLGA Dental Clinic"
+  },
+  {
+    "route": "/services/periodontitis/",
+    "h1": 1,
+    "main": 1,
+    "canonical": true,
+    "title": "Лечение периодонтита в Мурино — лечение, цены и этапы | OLGA Dental Clinic"
+  },
+  {
+    "route": "/services/prosthetics/",
+    "h1": 1,
+    "main": 1,
+    "canonical": true,
+    "title": "Съёмные протезы в Мурино — лечение, цены и этапы | OLGA Dental Clinic"
+  },
+  {
+    "route": "/services/pulpitis/",
+    "h1": 1,
+    "main": 1,
+    "canonical": true,
+    "title": "Лечение пульпита в Мурино — лечение, цены и этапы | OLGA Dental Clinic"
+  },
+  {
+    "route": "/services/sinus/",
+    "h1": 1,
+    "main": 1,
+    "canonical": true,
+    "title": "Синус-лифтинг в Мурино — лечение, цены и этапы | OLGA Dental Clinic"
+  },
+  {
+    "route": "/services/veneers/",
+    "h1": 1,
+    "main": 1,
+    "canonical": true,
+    "title": "Виниры E-Max в Мурино — лечение, цены и этапы | OLGA Dental Clinic"
+  }
+]

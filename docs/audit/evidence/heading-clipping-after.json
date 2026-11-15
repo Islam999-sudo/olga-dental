@@ -1,0 +1,213 @@
+[
+  {
+    "width": 320,
+    "route": "/",
+    "clips": []
+  },
+  {
+    "width": 320,
+    "route": "/services/",
+    "clips": []
+  },
+  {
+    "width": 320,
+    "route": "/doctors/",
+    "clips": []
+  },
+  {
+    "width": 320,
+    "route": "/contact/",
+    "clips": []
+  },
+  {
+    "width": 320,
+    "route": "/privacy/",
+    "clips": []
+  },
+  {
+    "width": 320,
+    "route": "/services/caries/",
+    "clips": []
+  },
+  {
+    "width": 390,
+    "route": "/",
+    "clips": [
+      {
+        "text": "Бакланская Виктория Андреевна",
+        "width": 390,
+        "bounds": [
+          {
+            "left": 248.94692993164062,
+            "right": 434.3019104003906
+          },
+          {
+            "left": 248.94692993164062,
+            "right": 341.1783752441406
+          }
+        ]
+      },
+      {
+        "text": "Грязнова Екатерина Дмитриевна",
+        "width": 390,
+        "bounds": [
+          {
+            "left": -54.485939025878906,
+            "right": 118.51807403564453
+          },
+          {
+            "left": -54.485939025878906,
+            "right": 52.41845703125
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "route": "/services/",
+    "clips": []
+  },
+  {
+    "width": 390,
+    "route": "/doctors/",
+    "clips": []
+  },
+  {
+    "width": 390,
+    "route": "/contact/",
+    "clips": []
+  },
+  {
+    "width": 390,
+    "route": "/privacy/",
+    "clips": []
+  },
+  {
+    "width": 390,
+    "route": "/services/caries/",
+    "clips": []
+  },
+  {
+    "width": 430,
+    "route": "/",
+    "clips": [
+      {
+        "text": "Бакланская Виктория Андреевна",
+        "width": 430,
+        "bounds": [
+          {
+            "left": 268.9471435546875,
+            "right": 454.30206298828125
+          },
+          {
+            "left": 268.9471435546875,
+            "right": 361.1785888671875
+          }
+        ]
+      },
+      {
+        "text": "Грязнова Екатерина Дмитриевна",
+        "width": 430,
+        "bounds": [
+          {
+            "left": -34.48607635498047,
+            "right": 138.51789093017578
+          },
+          {
+            "left": -34.48607635498047,
+            "right": 72.41828918457031
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "width": 430,
+    "route": "/services/",
+    "clips": []
+  },
+  {
+    "width": 430,
+    "route": "/doctors/",
+    "clips": []
+  },
+  {
+    "width": 430,
+    "route": "/contact/",
+    "clips": []
+  },
+  {
+    "width": 430,
+    "route": "/privacy/",
+    "clips": []
+  },
+  {
+    "width": 430,
+    "route": "/services/caries/",
+    "clips": []
+  },
+  {
+    "width": 768,
+    "route": "/",
+    "clips": [
+      {
+        "text": "Бакланская Виктория Андреевна",
+        "width": 768,
+        "bounds": [
+          {
+            "left": 645.57861328125,
+            "right": 793.7506103515625
+          },
+          {
+            "left": 645.57861328125,
+            "right": 766.1416015625
+          },
+          {
+            "left": 645.57861328125,
+            "right": 785.2510375976562
+          }
+        ]
+      },
+      {
+        "text": "Грязнова Екатерина Дмитриевна",
+        "width": 768,
+        "bounds": [
+          {
+            "left": -142.97312927246094,
+            "right": 121.09492492675781
+          },
+          {
+            "left": -142.97312927246094,
+            "right": 22.253326416015625
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "route": "/services/",
+    "clips": []
+  },
+  {
+    "width": 768,
+    "route": "/doctors/",
+    "clips": []
+  },
+  {
+    "width": 768,
+    "route": "/contact/",
+    "clips": []
+  },
+  {
+    "width": 768,
+    "route": "/privacy/",
+    "clips": []
+  },
+  {
+    "width": 768,
+    "route": "/services/caries/",
+    "clips": []
+  }
+]

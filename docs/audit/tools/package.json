@@ -1,0 +1,22 @@
+{
+  "name": "olga-qa",
+  "version": "1.0.0",
+  "description": "Isolated, synthetic browser audit tooling for OLGA Dental Clinic",
+  "scripts": {
+    "audit:browser": "node browser-audit.mjs",
+    "audit:booking": "node booking-mock.mjs",
+    "audit:analytics": "node analytics-mock.mjs",
+    "audit:headings": "node heading-clipping.mjs",
+    "audit:focused": "node focused-after.mjs",
+    "audit:extras": "node extras.mjs",
+    "audit:interactions": "node interactions.mjs",
+    "audit:smoke": "node final-smoke.mjs",
+    "audit:validation": "node validation-followup.mjs"
+  },
+  "type": "commonjs",
+  "dependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "playwright-core": "1.65.1"
+  },
+  "private": true
+}

@@ -1,0 +1,24 @@
+{
+  "test": "Empty booking validates with native required constraints",
+  "pass": false,
+  "details": {
+    "invalid": [
+      {
+        "label": "Ваше имя",
+        "required": true,
+        "valueMissing": true,
+        "validationMessage": "Please fill out this field."
+      },
+      {
+        "label": "Номер телефона",
+        "required": true,
+        "valueMissing": true,
+        "validationMessage": "Please fill out this field."
+      }
+    ],
+    "focusOnInvalid": false,
+    "formValid": false
+  },
+  "apiCalls": [],
+  "explains": "Diagnostic hypothesis only: native validation does NOT handle submission because form has noValidate. focusOnInvalid=false disproves the initial hypothesis. See validation-followup-after.json for actual custom validation."
+}

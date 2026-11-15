@@ -1,0 +1,2214 @@
+[
+  {
+    "file": "desktop-1.report.json",
+    "source": "controlled-before",
+    "sourceCommit": "b52dc6849d94baac48c32aa0d35f4e62126f74a2",
+    "url": "http://127.0.0.1:4180/",
+    "fetchTime": "2026-11-15T19:49:20.893Z",
+    "lighthouseVersion": "13.6.0",
+    "environment": {
+      "networkUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "benchmarkIndex": 2608.5,
+      "credits": {
+        "axe-core": "4.14.0"
+      }
+    },
+    "configSettings": {
+      "output": [
+        "json",
+        "html"
+      ],
+      "maxWaitForFcp": 30000,
+      "maxWaitForLoad": 45000,
+      "pauseAfterFcpMs": 1000,
+      "pauseAfterLoadMs": 1000,
+      "networkQuietThresholdMs": 1000,
+      "cpuQuietThresholdMs": 1000,
+      "formFactor": "desktop",
+      "throttling": {
+        "rttMs": 40,
+        "throughputKbps": 10240,
+        "requestLatencyMs": 0,
+        "downloadThroughputKbps": 0,
+        "uploadThroughputKbps": 0,
+        "cpuSlowdownMultiplier": 1
+      },
+      "throttlingMethod": "simulate",
+      "screenEmulation": {
+        "mobile": false,
+        "width": 1350,
+        "height": 940,
+        "deviceScaleFactor": 1,
+        "disabled": false
+      },
+      "emulatedUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+      "auditMode": false,
+      "gatherMode": false,
+      "clearStorageTypes": [
+        "file_systems",
+        "shader_cache",
+        "service_workers",
+        "cache_storage"
+      ],
+      "disableStorageReset": false,
+      "debugNavigation": false,
+      "channel": "cli",
+      "usePassiveGathering": false,
+      "disableFullPageScreenshot": false,
+      "skipAboutBlank": false,
+      "blankPage": "about:blank",
+      "ignoreStatusCode": false,
+      "locale": "en-US",
+      "blockedUrlPatterns": null,
+      "additionalTraceCategories": null,
+      "extraHeaders": null,
+      "precomputedLanternData": null,
+      "onlyAudits": null,
+      "onlyCategories": [
+        "performance",
+        "accessibility",
+        "best-practices",
+        "seo"
+      ],
+      "skipAudits": null
+    },
+    "categories": {
+      "performance": {
+        "score": 0.8
+      },
+      "accessibility": {
+        "score": 0.96
+      },
+      "best-practices": {
+        "score": 1
+      },
+      "seo": {
+        "score": 1
+      }
+    },
+    "metrics": {
+      "largest-contentful-paint": {
+        "value": 3685.3504999999996,
+        "unit": "millisecond",
+        "display": "3.7 s"
+      },
+      "first-contentful-paint": {
+        "value": 375.3505,
+        "unit": "millisecond",
+        "display": "0.4 s"
+      },
+      "cumulative-layout-shift": {
+        "value": 0,
+        "unit": "unitless",
+        "display": "0"
+      },
+      "total-blocking-time": {
+        "value": 13,
+        "unit": "millisecond",
+        "display": "10 ms"
+      },
+      "speed-index": {
+        "value": 980.7296751593335,
+        "unit": "millisecond",
+        "display": "1.0 s"
+      },
+      "server-response-time": {
+        "value": 1,
+        "unit": "millisecond",
+        "display": "Root document took 0 ms"
+      },
+      "bootup-time": {
+        "value": 329.66699999999923,
+        "unit": "millisecond",
+        "display": "0.3 s"
+      },
+      "mainthread-work-breakdown": {
+        "value": 701.1799999999994,
+        "unit": "millisecond",
+        "display": "0.7 s"
+      },
+      "total-byte-weight": {
+        "value": 5341526,
+        "unit": "byte",
+        "display": "Total size was 5,216 KiB"
+      }
+    },
+    "network": [
+      {
+        "url": "http://127.0.0.1:4180/",
+        "resourceType": "Document",
+        "resourceSize": 105804,
+        "transferSize": 105994,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "http://127.0.0.1:4180/hero/my-photo.jpg",
+        "resourceType": "Image",
+        "resourceSize": 160327,
+        "transferSize": 160518,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low",
+        "isLinkPreload": true
+      },
+      {
+        "url": "http://127.0.0.1:4180/Doctors/fed.webp",
+        "resourceType": "Image",
+        "resourceSize": 274094,
+        "transferSize": 274285,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low",
+        "isLinkPreload": true
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/0ypgvcj7fxvm2.css",
+        "resourceType": "Stylesheet",
+        "resourceSize": 98501,
+        "transferSize": 98689,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/033g87j5nlof8.js",
+        "resourceType": "Script",
+        "resourceSize": 28754,
+        "transferSize": 28949,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low",
+        "isLinkPreload": true
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/0pqt~8bl3ukh4.js",
+        "resourceType": "Script",
+        "resourceSize": 44414,
+        "transferSize": 44609,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/10u3y4bw1ayzs.js",
+        "resourceType": "Script",
+        "resourceSize": 227314,
+        "transferSize": 227510,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/06.8ksq1x9s18.js",
+        "resourceType": "Script",
+        "resourceSize": 145085,
+        "transferSize": 145281,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/turbopack-1386zi0bg__rs.js",
+        "resourceType": "Script",
+        "resourceSize": 10580,
+        "transferSize": 10775,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/0257sn2hj_uao.js",
+        "resourceType": "Script",
+        "resourceSize": 61095,
+        "transferSize": 61290,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/17jo776hq38ki.js",
+        "resourceType": "Script",
+        "resourceSize": 134386,
+        "transferSize": 134582,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/0d3shmwh5_nmn.js",
+        "resourceType": "Script",
+        "resourceSize": 54646,
+        "transferSize": 54841,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/01chsg3qq1_j2.js",
+        "resourceType": "Script",
+        "resourceSize": 63578,
+        "transferSize": 63773,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/zub.png",
+        "resourceType": "Image",
+        "resourceSize": 1494215,
+        "transferSize": 1494406,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/implantation.webp",
+        "resourceType": "Image",
+        "resourceSize": 125286,
+        "transferSize": 125477,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/zub.webp",
+        "resourceType": "Image",
+        "resourceSize": 158592,
+        "transferSize": 158783,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/caries.webp",
+        "resourceType": "Image",
+        "resourceSize": 133564,
+        "transferSize": 133755,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/Doctors/bak.webp",
+        "resourceType": "Image",
+        "resourceSize": 42302,
+        "transferSize": 42492,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/Doctors/kos.webp",
+        "resourceType": "Image",
+        "resourceSize": 92602,
+        "transferSize": 92792,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/Doctors/bah.webp",
+        "resourceType": "Image",
+        "resourceSize": 44464,
+        "transferSize": 44654,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/Doctors/che.webp",
+        "resourceType": "Image",
+        "resourceSize": 40256,
+        "transferSize": 40446,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/Doctors/fedor.webp",
+        "resourceType": "Image",
+        "resourceSize": 50488,
+        "transferSize": 50678,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/Doctors/gra.webp",
+        "resourceType": "Image",
+        "resourceSize": 58188,
+        "transferSize": 58378,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/icon.ico?icon.08f3~a.t65_nh.ico",
+        "resourceType": "Other",
+        "resourceSize": 1547814,
+        "transferSize": 1548020,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "High"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/",
+        "resourceType": "Fetch",
+        "resourceSize": 0,
+        "transferSize": 190,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "High"
+      },
+      {
+        "url": "http://127.0.0.1:4180/contact/",
+        "resourceType": "Fetch",
+        "resourceSize": 0,
+        "transferSize": 189,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "High"
+      },
+      {
+        "url": "http://127.0.0.1:4180/about/",
+        "resourceType": "Fetch",
+        "resourceSize": 0,
+        "transferSize": 189,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "High"
+      },
+      {
+        "url": "http://127.0.0.1:4180/doctors/",
+        "resourceType": "Fetch",
+        "resourceSize": 0,
+        "transferSize": 190,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "High"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+        "resourceType": "Fetch",
+        "resourceSize": 316,
+        "transferSize": 504,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/contact/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+        "resourceType": "Fetch",
+        "resourceSize": 315,
+        "transferSize": 503,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/doctors/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+        "resourceType": "Fetch",
+        "resourceSize": 315,
+        "transferSize": 503,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/about/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+        "resourceType": "Fetch",
+        "resourceSize": 313,
+        "transferSize": 501,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/promotions/",
+        "resourceType": "Fetch",
+        "resourceSize": 0,
+        "transferSize": 189,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "High"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+        "resourceType": "Fetch",
+        "resourceSize": 4548,
+        "transferSize": 4737,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/__next._index.txt?_rsc=yIp22O3xgPPxC28X",
+        "resourceType": "Fetch",
+        "resourceSize": 16749,
+        "transferSize": 16939,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/promotions/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+        "resourceType": "Fetch",
+        "resourceSize": 318,
+        "transferSize": 506,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/__next.services.txt?_rsc=sqRjqjppYnUgeCLZ",
+        "resourceType": "Fetch",
+        "resourceSize": 525,
+        "transferSize": 713,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/__next.services.__PAGE__.txt?_rsc=sf1YpdcMRkAgPkSR",
+        "resourceType": "Fetch",
+        "resourceSize": 712,
+        "transferSize": 900,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/contact/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+        "resourceType": "Fetch",
+        "resourceSize": 4548,
+        "transferSize": 4737,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/contact/__next.contact.txt?_rsc=JFWGu_dmBAb9P0LW",
+        "resourceType": "Fetch",
+        "resourceSize": 525,
+        "transferSize": 713,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/contact/__next.contact.__PAGE__.txt?_rsc=BiuOixuigeBXVJn7",
+        "resourceType": "Fetch",
+        "resourceSize": 714,
+        "transferSize": 902,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/07s~s-o4204ku.js",
+        "resourceType": "Script",
+        "resourceSize": 21745,
+        "transferSize": 21940,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/about/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+        "resourceType": "Fetch",
+        "resourceSize": 4548,
+        "transferSize": 4737,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/about/__next.about.txt?_rsc=n4tDNspjD4yS_Xnd",
+        "resourceType": "Fetch",
+        "resourceSize": 525,
+        "transferSize": 713,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/about/__next.about.__PAGE__.txt?_rsc=hzcUC6YqarYE9pKE",
+        "resourceType": "Fetch",
+        "resourceSize": 720,
+        "transferSize": 908,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/0avrt09e7b32l.js",
+        "resourceType": "Script",
+        "resourceSize": 9140,
+        "transferSize": 9334,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/doctors/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+        "resourceType": "Fetch",
+        "resourceSize": 4548,
+        "transferSize": 4737,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/0d_gsmp8uirwk.js",
+        "resourceType": "Script",
+        "resourceSize": 18734,
+        "transferSize": 18929,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/doctors/__next.doctors.txt?_rsc=0VIaccRHle8qAGr3",
+        "resourceType": "Fetch",
+        "resourceSize": 525,
+        "transferSize": 713,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/doctors/__next.doctors.__PAGE__.txt?_rsc=R-5Glde3w-XSeXe_",
+        "resourceType": "Fetch",
+        "resourceSize": 715,
+        "transferSize": 903,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/promotions/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+        "resourceType": "Fetch",
+        "resourceSize": 4548,
+        "transferSize": 4737,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/promotions/__next.promotions.txt?_rsc=dH47gKjY6YrWqyCj",
+        "resourceType": "Fetch",
+        "resourceSize": 525,
+        "transferSize": 713,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/0xu_8tt~5ccwd.js",
+        "resourceType": "Script",
+        "resourceSize": 27704,
+        "transferSize": 27899,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/promotions/__next.promotions.__PAGE__.txt?_rsc=Ddqm6bQDeiNSWIz_",
+        "resourceType": "Fetch",
+        "resourceSize": 1024,
+        "transferSize": 1213,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+        "resourceType": "Fetch",
+        "resourceSize": 4548,
+        "transferSize": 4737,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/__next.__PAGE__.txt?_rsc=8nTjltbQWvg6NcbE",
+        "resourceType": "Fetch",
+        "resourceSize": 1024,
+        "transferSize": 1213,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/0tu353y4.olgd.js",
+        "resourceType": "Script",
+        "resourceSize": 3824,
+        "transferSize": 4018,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      }
+    ],
+    "notes": []
+  },
+  {
+    "file": "mobile-1.report.json",
+    "source": "controlled-before",
+    "sourceCommit": "b52dc6849d94baac48c32aa0d35f4e62126f74a2",
+    "url": "http://127.0.0.1:4180/",
+    "fetchTime": "2026-11-15T19:47:57.246Z",
+    "lighthouseVersion": "13.6.0",
+    "environment": {
+      "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+      "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "benchmarkIndex": 2622,
+      "credits": {
+        "axe-core": "4.14.0"
+      }
+    },
+    "configSettings": {
+      "output": [
+        "json",
+        "html"
+      ],
+      "maxWaitForFcp": 30000,
+      "maxWaitForLoad": 45000,
+      "pauseAfterFcpMs": 1000,
+      "pauseAfterLoadMs": 1000,
+      "networkQuietThresholdMs": 1000,
+      "cpuQuietThresholdMs": 1000,
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "throttlingMethod": "simulate",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+      "auditMode": false,
+      "gatherMode": false,
+      "clearStorageTypes": [
+        "file_systems",
+        "shader_cache",
+        "service_workers",
+        "cache_storage"
+      ],
+      "disableStorageReset": false,
+      "debugNavigation": false,
+      "channel": "cli",
+      "usePassiveGathering": false,
+      "disableFullPageScreenshot": false,
+      "skipAboutBlank": false,
+      "blankPage": "about:blank",
+      "ignoreStatusCode": false,
+      "locale": "en-US",
+      "blockedUrlPatterns": null,
+      "additionalTraceCategories": null,
+      "extraHeaders": null,
+      "precomputedLanternData": null,
+      "onlyAudits": null,
+      "onlyCategories": [
+        "performance",
+        "accessibility",
+        "best-practices",
+        "seo"
+      ],
+      "skipAudits": null
+    },
+    "categories": {
+      "performance": {
+        "score": 0.94
+      },
+      "accessibility": {
+        "score": 0.96
+      },
+      "best-practices": {
+        "score": 1
+      },
+      "seo": {
+        "score": 1
+      }
+    },
+    "metrics": {
+      "largest-contentful-paint": {
+        "value": 1806.485461320999,
+        "unit": "millisecond",
+        "display": "1.8 s"
+      },
+      "first-contentful-paint": {
+        "value": 1806.485461320999,
+        "unit": "millisecond",
+        "display": "1.8 s"
+      },
+      "cumulative-layout-shift": {
+        "value": 0,
+        "unit": "unitless",
+        "display": "0"
+      },
+      "total-blocking-time": {
+        "value": 216.5,
+        "unit": "millisecond",
+        "display": "220 ms"
+      },
+      "speed-index": {
+        "value": 3587.453426460756,
+        "unit": "millisecond",
+        "display": "3.6 s"
+      },
+      "server-response-time": {
+        "value": 7,
+        "unit": "millisecond",
+        "display": "Root document took 10 ms"
+      },
+      "bootup-time": {
+        "value": 1148.611999999988,
+        "unit": "millisecond",
+        "display": "1.1 s"
+      },
+      "mainthread-work-breakdown": {
+        "value": 3167.047999999977,
+        "unit": "millisecond",
+        "display": "3.2 s"
+      },
+      "total-byte-weight": {
+        "value": 4923410,
+        "unit": "byte",
+        "display": "Total size was 4,808 KiB"
+      }
+    },
+    "network": [
+      {
+        "url": "http://127.0.0.1:4180/",
+        "resourceType": "Document",
+        "resourceSize": 105804,
+        "transferSize": 105994,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "http://127.0.0.1:4180/hero/my-photo.jpg",
+        "resourceType": "Image",
+        "resourceSize": 160327,
+        "transferSize": 160518,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low",
+        "isLinkPreload": true
+      },
+      {
+        "url": "http://127.0.0.1:4180/Doctors/fed.webp",
+        "resourceType": "Image",
+        "resourceSize": 274094,
+        "transferSize": 274285,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low",
+        "isLinkPreload": true
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/0ypgvcj7fxvm2.css",
+        "resourceType": "Stylesheet",
+        "resourceSize": 98501,
+        "transferSize": 98689,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/033g87j5nlof8.js",
+        "resourceType": "Script",
+        "resourceSize": 28754,
+        "transferSize": 28949,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low",
+        "isLinkPreload": true
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/0pqt~8bl3ukh4.js",
+        "resourceType": "Script",
+        "resourceSize": 44414,
+        "transferSize": 44609,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/10u3y4bw1ayzs.js",
+        "resourceType": "Script",
+        "resourceSize": 227314,
+        "transferSize": 227510,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/06.8ksq1x9s18.js",
+        "resourceType": "Script",
+        "resourceSize": 145085,
+        "transferSize": 145281,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/turbopack-1386zi0bg__rs.js",
+        "resourceType": "Script",
+        "resourceSize": 10580,
+        "transferSize": 10775,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/0257sn2hj_uao.js",
+        "resourceType": "Script",
+        "resourceSize": 61095,
+        "transferSize": 61290,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/17jo776hq38ki.js",
+        "resourceType": "Script",
+        "resourceSize": 134386,
+        "transferSize": 134582,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/0d3shmwh5_nmn.js",
+        "resourceType": "Script",
+        "resourceSize": 54646,
+        "transferSize": 54841,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/01chsg3qq1_j2.js",
+        "resourceType": "Script",
+        "resourceSize": 63578,
+        "transferSize": 63773,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/zub.png",
+        "resourceType": "Image",
+        "resourceSize": 1494215,
+        "transferSize": 1494406,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/implantation.webp",
+        "resourceType": "Image",
+        "resourceSize": 125286,
+        "transferSize": 125477,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/zub.webp",
+        "resourceType": "Image",
+        "resourceSize": 158592,
+        "transferSize": 158783,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/caries.webp",
+        "resourceType": "Image",
+        "resourceSize": 133564,
+        "transferSize": 133755,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/icon.ico?icon.08f3~a.t65_nh.ico",
+        "resourceType": "Other",
+        "resourceSize": 1547814,
+        "transferSize": 1548020,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "High"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/",
+        "resourceType": "Fetch",
+        "resourceSize": 0,
+        "transferSize": 190,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "High"
+      },
+      {
+        "url": "http://127.0.0.1:4180/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+        "resourceType": "Fetch",
+        "resourceSize": 4548,
+        "transferSize": 4737,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/__next._index.txt?_rsc=yIp22O3xgPPxC28X",
+        "resourceType": "Fetch",
+        "resourceSize": 16749,
+        "transferSize": 16939,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/__next.__PAGE__.txt?_rsc=8nTjltbQWvg6NcbE",
+        "resourceType": "Fetch",
+        "resourceSize": 1024,
+        "transferSize": 1213,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+        "resourceType": "Fetch",
+        "resourceSize": 316,
+        "transferSize": 504,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+        "resourceType": "Fetch",
+        "resourceSize": 4548,
+        "transferSize": 4737,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/__next.services.txt?_rsc=sqRjqjppYnUgeCLZ",
+        "resourceType": "Fetch",
+        "resourceSize": 525,
+        "transferSize": 713,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/__next.services.__PAGE__.txt?_rsc=sf1YpdcMRkAgPkSR",
+        "resourceType": "Fetch",
+        "resourceSize": 712,
+        "transferSize": 900,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/07s~s-o4204ku.js",
+        "resourceType": "Script",
+        "resourceSize": 21745,
+        "transferSize": 21940,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      }
+    ],
+    "notes": []
+  },
+  {
+    "file": "mobile-2.report.json",
+    "source": "controlled-before",
+    "sourceCommit": "b52dc6849d94baac48c32aa0d35f4e62126f74a2",
+    "url": "http://127.0.0.1:4180/",
+    "fetchTime": "2026-11-15T19:48:39.142Z",
+    "lighthouseVersion": "13.6.0",
+    "environment": {
+      "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+      "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "benchmarkIndex": 2594.5,
+      "credits": {
+        "axe-core": "4.14.0"
+      }
+    },
+    "configSettings": {
+      "output": [
+        "json",
+        "html"
+      ],
+      "maxWaitForFcp": 30000,
+      "maxWaitForLoad": 45000,
+      "pauseAfterFcpMs": 1000,
+      "pauseAfterLoadMs": 1000,
+      "networkQuietThresholdMs": 1000,
+      "cpuQuietThresholdMs": 1000,
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "throttlingMethod": "simulate",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+      "auditMode": false,
+      "gatherMode": false,
+      "clearStorageTypes": [
+        "file_systems",
+        "shader_cache",
+        "service_workers",
+        "cache_storage"
+      ],
+      "disableStorageReset": false,
+      "debugNavigation": false,
+      "channel": "cli",
+      "usePassiveGathering": false,
+      "disableFullPageScreenshot": false,
+      "skipAboutBlank": false,
+      "blankPage": "about:blank",
+      "ignoreStatusCode": false,
+      "locale": "en-US",
+      "blockedUrlPatterns": null,
+      "additionalTraceCategories": null,
+      "extraHeaders": null,
+      "precomputedLanternData": null,
+      "onlyAudits": null,
+      "onlyCategories": [
+        "performance",
+        "accessibility",
+        "best-practices",
+        "seo"
+      ],
+      "skipAudits": null
+    },
+    "categories": {
+      "performance": {
+        "score": 0.96
+      },
+      "accessibility": {
+        "score": 0.96
+      },
+      "best-practices": {
+        "score": 1
+      },
+      "seo": {
+        "score": 1
+      }
+    },
+    "metrics": {
+      "largest-contentful-paint": {
+        "value": 1808.1072,
+        "unit": "millisecond",
+        "display": "1.8 s"
+      },
+      "first-contentful-paint": {
+        "value": 1808.1072,
+        "unit": "millisecond",
+        "display": "1.8 s"
+      },
+      "cumulative-layout-shift": {
+        "value": 0,
+        "unit": "unitless",
+        "display": "0"
+      },
+      "total-blocking-time": {
+        "value": 145,
+        "unit": "millisecond",
+        "display": "150 ms"
+      },
+      "speed-index": {
+        "value": 3272.629386107185,
+        "unit": "millisecond",
+        "display": "3.3 s"
+      },
+      "server-response-time": {
+        "value": 1,
+        "unit": "millisecond",
+        "display": "Root document took 0 ms"
+      },
+      "bootup-time": {
+        "value": 1001.8919999999641,
+        "unit": "millisecond",
+        "display": "1.0 s"
+      },
+      "mainthread-work-breakdown": {
+        "value": 2703.139999999953,
+        "unit": "millisecond",
+        "display": "2.7 s"
+      },
+      "total-byte-weight": {
+        "value": 4923410,
+        "unit": "byte",
+        "display": "Total size was 4,808 KiB"
+      }
+    },
+    "network": [
+      {
+        "url": "http://127.0.0.1:4180/",
+        "resourceType": "Document",
+        "resourceSize": 105804,
+        "transferSize": 105994,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "http://127.0.0.1:4180/hero/my-photo.jpg",
+        "resourceType": "Image",
+        "resourceSize": 160327,
+        "transferSize": 160518,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low",
+        "isLinkPreload": true
+      },
+      {
+        "url": "http://127.0.0.1:4180/Doctors/fed.webp",
+        "resourceType": "Image",
+        "resourceSize": 274094,
+        "transferSize": 274285,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low",
+        "isLinkPreload": true
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/0ypgvcj7fxvm2.css",
+        "resourceType": "Stylesheet",
+        "resourceSize": 98501,
+        "transferSize": 98689,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/033g87j5nlof8.js",
+        "resourceType": "Script",
+        "resourceSize": 28754,
+        "transferSize": 28949,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low",
+        "isLinkPreload": true
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/0pqt~8bl3ukh4.js",
+        "resourceType": "Script",
+        "resourceSize": 44414,
+        "transferSize": 44609,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/10u3y4bw1ayzs.js",
+        "resourceType": "Script",
+        "resourceSize": 227314,
+        "transferSize": 227510,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/06.8ksq1x9s18.js",
+        "resourceType": "Script",
+        "resourceSize": 145085,
+        "transferSize": 145281,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/turbopack-1386zi0bg__rs.js",
+        "resourceType": "Script",
+        "resourceSize": 10580,
+        "transferSize": 10775,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/0257sn2hj_uao.js",
+        "resourceType": "Script",
+        "resourceSize": 61095,
+        "transferSize": 61290,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/17jo776hq38ki.js",
+        "resourceType": "Script",
+        "resourceSize": 134386,
+        "transferSize": 134582,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/0d3shmwh5_nmn.js",
+        "resourceType": "Script",
+        "resourceSize": 54646,
+        "transferSize": 54841,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/01chsg3qq1_j2.js",
+        "resourceType": "Script",
+        "resourceSize": 63578,
+        "transferSize": 63773,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/zub.png",
+        "resourceType": "Image",
+        "resourceSize": 1494215,
+        "transferSize": 1494406,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/implantation.webp",
+        "resourceType": "Image",
+        "resourceSize": 125286,
+        "transferSize": 125477,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/zub.webp",
+        "resourceType": "Image",
+        "resourceSize": 158592,
+        "transferSize": 158783,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/caries.webp",
+        "resourceType": "Image",
+        "resourceSize": 133564,
+        "transferSize": 133755,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/icon.ico?icon.08f3~a.t65_nh.ico",
+        "resourceType": "Other",
+        "resourceSize": 1547814,
+        "transferSize": 1548020,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "High"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/",
+        "resourceType": "Fetch",
+        "resourceSize": 0,
+        "transferSize": 190,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "High"
+      },
+      {
+        "url": "http://127.0.0.1:4180/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+        "resourceType": "Fetch",
+        "resourceSize": 4548,
+        "transferSize": 4737,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/__next._index.txt?_rsc=yIp22O3xgPPxC28X",
+        "resourceType": "Fetch",
+        "resourceSize": 16749,
+        "transferSize": 16939,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/__next.__PAGE__.txt?_rsc=8nTjltbQWvg6NcbE",
+        "resourceType": "Fetch",
+        "resourceSize": 1024,
+        "transferSize": 1213,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+        "resourceType": "Fetch",
+        "resourceSize": 316,
+        "transferSize": 504,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+        "resourceType": "Fetch",
+        "resourceSize": 4548,
+        "transferSize": 4737,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/__next.services.txt?_rsc=sqRjqjppYnUgeCLZ",
+        "resourceType": "Fetch",
+        "resourceSize": 525,
+        "transferSize": 713,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/__next.services.__PAGE__.txt?_rsc=sf1YpdcMRkAgPkSR",
+        "resourceType": "Fetch",
+        "resourceSize": 712,
+        "transferSize": 900,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/07s~s-o4204ku.js",
+        "resourceType": "Script",
+        "resourceSize": 21745,
+        "transferSize": 21940,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      }
+    ],
+    "notes": []
+  },
+  {
+    "file": "mobile-3.report.json",
+    "source": "controlled-before",
+    "sourceCommit": "b52dc6849d94baac48c32aa0d35f4e62126f74a2",
+    "url": "http://127.0.0.1:4180/",
+    "fetchTime": "2026-11-15T19:48:52.979Z",
+    "lighthouseVersion": "13.6.0",
+    "environment": {
+      "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+      "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "benchmarkIndex": 2714.5,
+      "credits": {
+        "axe-core": "4.14.0"
+      }
+    },
+    "configSettings": {
+      "output": [
+        "json",
+        "html"
+      ],
+      "maxWaitForFcp": 30000,
+      "maxWaitForLoad": 45000,
+      "pauseAfterFcpMs": 1000,
+      "pauseAfterLoadMs": 1000,
+      "networkQuietThresholdMs": 1000,
+      "cpuQuietThresholdMs": 1000,
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "throttlingMethod": "simulate",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+      "auditMode": false,
+      "gatherMode": false,
+      "clearStorageTypes": [
+        "file_systems",
+        "shader_cache",
+        "service_workers",
+        "cache_storage"
+      ],
+      "disableStorageReset": false,
+      "debugNavigation": false,
+      "channel": "cli",
+      "usePassiveGathering": false,
+      "disableFullPageScreenshot": false,
+      "skipAboutBlank": false,
+      "blankPage": "about:blank",
+      "ignoreStatusCode": false,
+      "locale": "en-US",
+      "blockedUrlPatterns": null,
+      "additionalTraceCategories": null,
+      "extraHeaders": null,
+      "precomputedLanternData": null,
+      "onlyAudits": null,
+      "onlyCategories": [
+        "performance",
+        "accessibility",
+        "best-practices",
+        "seo"
+      ],
+      "skipAudits": null
+    },
+    "categories": {
+      "performance": {
+        "score": 0.9
+      },
+      "accessibility": {
+        "score": 0.96
+      },
+      "best-practices": {
+        "score": 1
+      },
+      "seo": {
+        "score": 1
+      }
+    },
+    "metrics": {
+      "largest-contentful-paint": {
+        "value": 1804.7445714747414,
+        "unit": "millisecond",
+        "display": "1.8 s"
+      },
+      "first-contentful-paint": {
+        "value": 1804.7445714747414,
+        "unit": "millisecond",
+        "display": "1.8 s"
+      },
+      "cumulative-layout-shift": {
+        "value": 0,
+        "unit": "unitless",
+        "display": "0"
+      },
+      "total-blocking-time": {
+        "value": 277.62771426262907,
+        "unit": "millisecond",
+        "display": "280 ms"
+      },
+      "speed-index": {
+        "value": 4373.106431212235,
+        "unit": "millisecond",
+        "display": "4.4 s"
+      },
+      "server-response-time": {
+        "value": 0,
+        "unit": "millisecond",
+        "display": "Root document took 0 ms"
+      },
+      "bootup-time": {
+        "value": 755.4079999999934,
+        "unit": "millisecond",
+        "display": "0.8 s"
+      },
+      "mainthread-work-breakdown": {
+        "value": 2876.8479999999863,
+        "unit": "millisecond",
+        "display": "2.9 s"
+      },
+      "total-byte-weight": {
+        "value": 4923410,
+        "unit": "byte",
+        "display": "Total size was 4,808 KiB"
+      }
+    },
+    "network": [
+      {
+        "url": "http://127.0.0.1:4180/",
+        "resourceType": "Document",
+        "resourceSize": 105804,
+        "transferSize": 105994,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "http://127.0.0.1:4180/hero/my-photo.jpg",
+        "resourceType": "Image",
+        "resourceSize": 160327,
+        "transferSize": 160518,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low",
+        "isLinkPreload": true
+      },
+      {
+        "url": "http://127.0.0.1:4180/Doctors/fed.webp",
+        "resourceType": "Image",
+        "resourceSize": 274094,
+        "transferSize": 274285,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low",
+        "isLinkPreload": true
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/0ypgvcj7fxvm2.css",
+        "resourceType": "Stylesheet",
+        "resourceSize": 98501,
+        "transferSize": 98689,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/033g87j5nlof8.js",
+        "resourceType": "Script",
+        "resourceSize": 28754,
+        "transferSize": 28949,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low",
+        "isLinkPreload": true
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/0pqt~8bl3ukh4.js",
+        "resourceType": "Script",
+        "resourceSize": 44414,
+        "transferSize": 44609,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/10u3y4bw1ayzs.js",
+        "resourceType": "Script",
+        "resourceSize": 227314,
+        "transferSize": 227510,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/06.8ksq1x9s18.js",
+        "resourceType": "Script",
+        "resourceSize": 145085,
+        "transferSize": 145281,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/turbopack-1386zi0bg__rs.js",
+        "resourceType": "Script",
+        "resourceSize": 10580,
+        "transferSize": 10775,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/0257sn2hj_uao.js",
+        "resourceType": "Script",
+        "resourceSize": 61095,
+        "transferSize": 61290,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/17jo776hq38ki.js",
+        "resourceType": "Script",
+        "resourceSize": 134386,
+        "transferSize": 134582,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/0d3shmwh5_nmn.js",
+        "resourceType": "Script",
+        "resourceSize": 54646,
+        "transferSize": 54841,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/01chsg3qq1_j2.js",
+        "resourceType": "Script",
+        "resourceSize": 63578,
+        "transferSize": 63773,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/zub.png",
+        "resourceType": "Image",
+        "resourceSize": 1494215,
+        "transferSize": 1494406,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/implantation.webp",
+        "resourceType": "Image",
+        "resourceSize": 125286,
+        "transferSize": 125477,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/zub.webp",
+        "resourceType": "Image",
+        "resourceSize": 158592,
+        "transferSize": 158783,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/caries.webp",
+        "resourceType": "Image",
+        "resourceSize": 133564,
+        "transferSize": 133755,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/icon.ico?icon.08f3~a.t65_nh.ico",
+        "resourceType": "Other",
+        "resourceSize": 1547814,
+        "transferSize": 1548020,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "High"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/",
+        "resourceType": "Fetch",
+        "resourceSize": 0,
+        "transferSize": 190,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "High"
+      },
+      {
+        "url": "http://127.0.0.1:4180/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+        "resourceType": "Fetch",
+        "resourceSize": 4548,
+        "transferSize": 4737,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/__next._index.txt?_rsc=yIp22O3xgPPxC28X",
+        "resourceType": "Fetch",
+        "resourceSize": 16749,
+        "transferSize": 16939,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/__next.__PAGE__.txt?_rsc=8nTjltbQWvg6NcbE",
+        "resourceType": "Fetch",
+        "resourceSize": 1024,
+        "transferSize": 1213,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+        "resourceType": "Fetch",
+        "resourceSize": 316,
+        "transferSize": 504,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+        "resourceType": "Fetch",
+        "resourceSize": 4548,
+        "transferSize": 4737,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/__next.services.txt?_rsc=sqRjqjppYnUgeCLZ",
+        "resourceType": "Fetch",
+        "resourceSize": 525,
+        "transferSize": 713,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/__next.services.__PAGE__.txt?_rsc=sf1YpdcMRkAgPkSR",
+        "resourceType": "Fetch",
+        "resourceSize": 712,
+        "transferSize": 900,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/07s~s-o4204ku.js",
+        "resourceType": "Script",
+        "resourceSize": 21745,
+        "transferSize": 21940,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      }
+    ],
+    "notes": []
+  },
+  {
+    "file": "service-mobile-1.report.json",
+    "source": "controlled-before",
+    "sourceCommit": "b52dc6849d94baac48c32aa0d35f4e62126f74a2",
+    "url": "http://127.0.0.1:4180/services/caries/",
+    "fetchTime": "2026-11-15T19:49:49.847Z",
+    "lighthouseVersion": "13.6.0",
+    "environment": {
+      "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+      "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "benchmarkIndex": 2777,
+      "credits": {
+        "axe-core": "4.14.0"
+      }
+    },
+    "configSettings": {
+      "output": [
+        "json",
+        "html"
+      ],
+      "maxWaitForFcp": 30000,
+      "maxWaitForLoad": 45000,
+      "pauseAfterFcpMs": 1000,
+      "pauseAfterLoadMs": 1000,
+      "networkQuietThresholdMs": 1000,
+      "cpuQuietThresholdMs": 1000,
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "throttlingMethod": "simulate",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+      "auditMode": false,
+      "gatherMode": false,
+      "clearStorageTypes": [
+        "file_systems",
+        "shader_cache",
+        "service_workers",
+        "cache_storage"
+      ],
+      "disableStorageReset": false,
+      "debugNavigation": false,
+      "channel": "cli",
+      "usePassiveGathering": false,
+      "disableFullPageScreenshot": false,
+      "skipAboutBlank": false,
+      "blankPage": "about:blank",
+      "ignoreStatusCode": false,
+      "locale": "en-US",
+      "blockedUrlPatterns": null,
+      "additionalTraceCategories": null,
+      "extraHeaders": null,
+      "precomputedLanternData": null,
+      "onlyAudits": null,
+      "onlyCategories": [
+        "performance",
+        "accessibility",
+        "best-practices",
+        "seo"
+      ],
+      "skipAudits": null
+    },
+    "categories": {
+      "performance": {
+        "score": 0.96
+      },
+      "accessibility": {
+        "score": 1
+      },
+      "best-practices": {
+        "score": 1
+      },
+      "seo": {
+        "score": 1
+      }
+    },
+    "metrics": {
+      "largest-contentful-paint": {
+        "value": 1953.7768999999998,
+        "unit": "millisecond",
+        "display": "2.0 s"
+      },
+      "first-contentful-paint": {
+        "value": 1953.7768999999998,
+        "unit": "millisecond",
+        "display": "2.0 s"
+      },
+      "cumulative-layout-shift": {
+        "value": 0,
+        "unit": "unitless",
+        "display": "0"
+      },
+      "total-blocking-time": {
+        "value": 125,
+        "unit": "millisecond",
+        "display": "130 ms"
+      },
+      "speed-index": {
+        "value": 2553.326291442307,
+        "unit": "millisecond",
+        "display": "2.6 s"
+      },
+      "server-response-time": {
+        "value": 1,
+        "unit": "millisecond",
+        "display": "Root document took 0 ms"
+      },
+      "bootup-time": {
+        "value": 872.7880000000047,
+        "unit": "millisecond",
+        "display": "0.9 s"
+      },
+      "mainthread-work-breakdown": {
+        "value": 2651.5319999999597,
+        "unit": "millisecond",
+        "display": "2.7 s"
+      },
+      "total-byte-weight": {
+        "value": 4286034,
+        "unit": "byte",
+        "display": "Total size was 4,186 KiB"
+      }
+    },
+    "network": [
+      {
+        "url": "http://127.0.0.1:4180/services/caries/",
+        "resourceType": "Document",
+        "resourceSize": 136898,
+        "transferSize": 137088,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/caries.webp",
+        "resourceType": "Image",
+        "resourceSize": 133564,
+        "transferSize": 133755,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low",
+        "isLinkPreload": true
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/0ypgvcj7fxvm2.css",
+        "resourceType": "Stylesheet",
+        "resourceSize": 98501,
+        "transferSize": 98689,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/033g87j5nlof8.js",
+        "resourceType": "Script",
+        "resourceSize": 28754,
+        "transferSize": 28949,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low",
+        "isLinkPreload": true
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/0pqt~8bl3ukh4.js",
+        "resourceType": "Script",
+        "resourceSize": 44414,
+        "transferSize": 44609,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/10u3y4bw1ayzs.js",
+        "resourceType": "Script",
+        "resourceSize": 227314,
+        "transferSize": 227510,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/06.8ksq1x9s18.js",
+        "resourceType": "Script",
+        "resourceSize": 145085,
+        "transferSize": 145281,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/turbopack-1386zi0bg__rs.js",
+        "resourceType": "Script",
+        "resourceSize": 10580,
+        "transferSize": 10775,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/0257sn2hj_uao.js",
+        "resourceType": "Script",
+        "resourceSize": 61095,
+        "transferSize": 61290,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/17jo776hq38ki.js",
+        "resourceType": "Script",
+        "resourceSize": 134386,
+        "transferSize": 134582,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/0d3shmwh5_nmn.js",
+        "resourceType": "Script",
+        "resourceSize": 54646,
+        "transferSize": 54841,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/031o5587x~g4r.js",
+        "resourceType": "Script",
+        "resourceSize": 576,
+        "transferSize": 769,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/zub.png",
+        "resourceType": "Image",
+        "resourceSize": 1494215,
+        "transferSize": 1494406,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/icon.ico?icon.08f3~a.t65_nh.ico",
+        "resourceType": "Other",
+        "resourceSize": 1547814,
+        "transferSize": 1548020,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "High"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/",
+        "resourceType": "Fetch",
+        "resourceSize": 0,
+        "transferSize": 190,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "High"
+      },
+      {
+        "url": "http://127.0.0.1:4180/",
+        "resourceType": "Fetch",
+        "resourceSize": 0,
+        "transferSize": 190,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "High"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/caries/__next._head.txt?_rsc=9PmHk0HPBHRg04pD",
+        "resourceType": "Fetch",
+        "resourceSize": 4127,
+        "transferSize": 4316,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/caries/__next._index.txt?_rsc=fjPmYnu_wmAlQMKQ",
+        "resourceType": "Fetch",
+        "resourceSize": 16869,
+        "transferSize": 17059,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/__next._tree.txt?_rsc=iCt4-MLJT5_6Aups",
+        "resourceType": "Fetch",
+        "resourceSize": 316,
+        "transferSize": 504,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/__next._tree.txt?_rsc=iCt4-MLJT5_6Aups",
+        "resourceType": "Fetch",
+        "resourceSize": 244,
+        "transferSize": 432,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/caries/__next.services.txt?_rsc=NGrVg5giTG5Mlk5x",
+        "resourceType": "Fetch",
+        "resourceSize": 525,
+        "transferSize": 713,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/caries/__next.services.$d$slug.txt?_rsc=ALMT3axz-4Ys5XNk",
+        "resourceType": "Fetch",
+        "resourceSize": 525,
+        "transferSize": 713,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/caries/__next.services.$d$slug.__PAGE__.txt?_rsc=ou4nYQedC3HVNB7U",
+        "resourceType": "Fetch",
+        "resourceSize": 43863,
+        "transferSize": 44053,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/__next._head.txt?_rsc=9PmHk0HPBHRg04pD",
+        "resourceType": "Fetch",
+        "resourceSize": 4548,
+        "transferSize": 4737,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/services/__next.services.__PAGE__.txt?_rsc=-Lt6yXq-L9tfPKbk",
+        "resourceType": "Fetch",
+        "resourceSize": 712,
+        "transferSize": 900,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/__next._head.txt?_rsc=9PmHk0HPBHRg04pD",
+        "resourceType": "Fetch",
+        "resourceSize": 4548,
+        "transferSize": 4737,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/__next.__PAGE__.txt?_rsc=6IRUuUN2mJI1w3ZL",
+        "resourceType": "Fetch",
+        "resourceSize": 1024,
+        "transferSize": 1213,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/07s~s-o4204ku.js",
+        "resourceType": "Script",
+        "resourceSize": 21745,
+        "transferSize": 21940,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      },
+      {
+        "url": "http://127.0.0.1:4180/_next/static/chunks/01chsg3qq1_j2.js",
+        "resourceType": "Script",
+        "resourceSize": 63578,
+        "transferSize": 63773,
+        "statusCode": 200,
+        "protocol": "http/1.0",
+        "priority": "Low"
+      }
+    ],
+    "notes": []
+  }
+]

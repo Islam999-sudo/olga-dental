@@ -1,0 +1,6 @@
+{
+  "method": "Delay every local JS response 1800 ms; scroll server-rendered HTML before hydration; compare after hydration.",
+  "before": 1200,
+  "after": 0,
+  "pass": false
+}

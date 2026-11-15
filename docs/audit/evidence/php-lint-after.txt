@@ -1,0 +1,7 @@
+No syntax errors detected in deployment/beget/public_html/api/booking.php
+No syntax errors detected in deployment/beget/public_html/clinic-admin/index.php
+No syntax errors detected in deployment/beget/booking-private/maintenance.php
+No syntax errors detected in deployment/beget/booking-private/bootstrap.php
+No syntax errors detected in deployment/beget/tests/encryption-smoke.php
+No syntax errors detected in deployment/beget/booking-private/config.php.example
+PASS: encrypted roundtrip, plaintext isolation, GCM tamper protection.

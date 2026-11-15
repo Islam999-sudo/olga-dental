@@ -1,0 +1,6 @@
+2026-11-15 UTC — source comparison against b52dc6849d94baac48c32aa0d35f4e62126f74a2
+
+git diff --exit-code b52dc684 -- data lib/services.ts lib/service-articles.ts lib/service-articles-advanced.ts lib/service-articles-restorative.ts app/privacy/page.tsx app/consent/page.tsx public/Doctors public/clinic public/services public/hero public/zub.png public/og-image.jpg
+
+Exit status: 0. No changes to doctor records, reviews data, service catalogue/prices, medical articles, draft legal text, original doctor/clinic/service/hero photographs, original logo or OG image.
+The derived brand/logo-210.webp is an additional asset. Component changes concern behavior, semantics, responsive typography, contrast and image loading; site contact details are preserved.

@@ -1,0 +1,31 @@
+[
+  {
+    "test": "promotions to hygiene anchor",
+    "url": "http://127.0.0.1:4173/services/#hygiene",
+    "y": 0,
+    "targetTop": 1972
+  },
+  {
+    "test": "direct URL caries anchor",
+    "url": "http://127.0.0.1:4173/services/#caries",
+    "y": 1221,
+    "targetTop": 215.5
+  },
+  {
+    "test": "service detail about anchor",
+    "url": "http://127.0.0.1:4173/services/caries/#about",
+    "y": 540,
+    "targetTop": 208
+  },
+  {
+    "test": "back restores previous page scroll",
+    "original": {
+      "url": "http://127.0.0.1:4173/",
+      "y": 1200,
+      "targetTop": null
+    },
+    "url": "http://127.0.0.1:4173/",
+    "y": 0,
+    "targetTop": null
+  }
+]

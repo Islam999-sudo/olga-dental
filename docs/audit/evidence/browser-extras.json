@@ -1,0 +1,70 @@
+{
+  "timestamp": "2026-11-15T19:39:55.993Z",
+  "method": "Headless Chromium. Zoom coverage: 1366x768 desktop at 200% represented by 683x384 CSS viewport with deviceScaleFactor2 (reflow equivalence, not Chrome UI zoom). Keyboard coverage: viewport reduced to390x420, not a real system keyboard. Actual iOS Safari/safe-area unavailable.",
+  "checks": [
+    {
+      "name": "Booking backdrop click closes and unlocks scroll",
+      "pass": true,
+      "details": true
+    },
+    {
+      "name": "Doctor backdrop click closes",
+      "pass": true,
+      "details": true
+    },
+    {
+      "name": "Drawer backdrop click closes",
+      "pass": true,
+      "details": true
+    },
+    {
+      "name": "Rotation and reduced height keep booking scrollable",
+      "pass": true,
+      "details": true
+    },
+    {
+      "name": "200% equivalent reflow /",
+      "pass": true,
+      "details": true
+    },
+    {
+      "name": "200% equivalent reflow /services/",
+      "pass": true,
+      "details": true
+    },
+    {
+      "name": "200% equivalent reflow /doctors/",
+      "pass": true,
+      "details": true
+    },
+    {
+      "name": "200% equivalent reflow /contact/",
+      "pass": true,
+      "details": true
+    },
+    {
+      "name": "200% equivalent reflow /privacy/",
+      "pass": true,
+      "details": true
+    },
+    {
+      "name": "200% equivalent reflow /services/caries/",
+      "pass": true,
+      "details": true
+    },
+    {
+      "name": "200% equivalent booking controls remain reachable",
+      "pass": true,
+      "details": true
+    },
+    {
+      "name": "Reduced motion CSS and drawer action",
+      "pass": true,
+      "details": {
+        "prefers": true,
+        "cssAnimationDuration": "1e-05s",
+        "dialogEditable": true
+      }
+    }
+  ]
+}

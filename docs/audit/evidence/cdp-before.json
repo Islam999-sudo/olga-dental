@@ -1,0 +1,1269 @@
+{
+  "label": "before",
+  "url": "http://127.0.0.1:4173",
+  "timestamp": "2026-11-15T11:58:39.229Z",
+  "browser": "156.0.8078.79",
+  "conditions": {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "deviceScaleFactor": 1,
+    "mobileEmulation": true,
+    "headless": true,
+    "network": "unthrottled local HTTP, external requests allowed",
+    "cpu": "unthrottled",
+    "idleWindowMs": 5000
+  },
+  "load": {
+    "audit": {
+      "cls": 0,
+      "lcp": [
+        {
+          "startTime": 500,
+          "size": 64056,
+          "url": "",
+          "element": "H1"
+        }
+      ],
+      "longtasks": [
+        {
+          "startTime": 382.1000000000349,
+          "duration": 75
+        },
+        {
+          "startTime": 606.5,
+          "duration": 51
+        }
+      ],
+      "interactions": []
+    },
+    "navigation": [
+      {
+        "name": "http://127.0.0.1:4173/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 461.9000000000233,
+        "navigationId": 4585,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.0",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 2,
+        "domainLookupStart": 2,
+        "domainLookupEnd": 2,
+        "connectStart": 2,
+        "secureConnectionStart": 0,
+        "connectEnd": 2,
+        "requestStart": 12,
+        "responseStart": 12.600000000034925,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 12.600000000034925,
+        "responseEnd": 13.200000000011642,
+        "transferSize": 106104,
+        "encodedBodySize": 105804,
+        "decodedBodySize": 105804,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 369.4000000000233,
+        "domContentLoadedEventStart": 369.4000000000233,
+        "domContentLoadedEventEnd": 369.6000000000349,
+        "domComplete": 461.70000000001164,
+        "loadEventStart": 461.79999999998836,
+        "loadEventEnd": 461.9000000000233,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      }
+    ],
+    "paints": [
+      {
+        "name": "first-paint",
+        "entryType": "paint",
+        "startTime": 500,
+        "duration": 0,
+        "navigationId": 4585,
+        "paintTime": 309.20000000001164,
+        "presentationTime": 500
+      },
+      {
+        "name": "first-contentful-paint",
+        "entryType": "paint",
+        "startTime": 500,
+        "duration": 0,
+        "navigationId": 4585,
+        "paintTime": 309.20000000001164,
+        "presentationTime": 500
+      }
+    ],
+    "resources": [
+      {
+        "name": "http://127.0.0.1:4173/hero/my-photo.jpg",
+        "initiatorType": "link",
+        "transferSize": 160627,
+        "encodedBodySize": 160327,
+        "duration": 8
+      },
+      {
+        "name": "http://127.0.0.1:4173/Doctors/fed.webp",
+        "initiatorType": "link",
+        "transferSize": 274394,
+        "encodedBodySize": 274094,
+        "duration": 20.5
+      },
+      {
+        "name": "http://127.0.0.1:4173/_next/static/chunks/0ypgvcj7fxvm2.css",
+        "initiatorType": "link",
+        "transferSize": 98801,
+        "encodedBodySize": 98501,
+        "duration": 19.400000000023283
+      },
+      {
+        "name": "http://127.0.0.1:4173/_next/static/chunks/033g87j5nlof8.js",
+        "initiatorType": "link",
+        "transferSize": 29054,
+        "encodedBodySize": 28754,
+        "duration": 36.70000000001164
+      },
+      {
+        "name": "http://127.0.0.1:4173/_next/static/chunks/0pqt~8bl3ukh4.js",
+        "initiatorType": "script",
+        "transferSize": 44714,
+        "encodedBodySize": 44414,
+        "duration": 36.399999999965075
+      },
+      {
+        "name": "http://127.0.0.1:4173/_next/static/chunks/10u3y4bw1ayzs.js",
+        "initiatorType": "script",
+        "transferSize": 227614,
+        "encodedBodySize": 227314,
+        "duration": 72
+      },
+      {
+        "name": "http://127.0.0.1:4173/_next/static/chunks/06.8ksq1x9s18.js",
+        "initiatorType": "script",
+        "transferSize": 145385,
+        "encodedBodySize": 145085,
+        "duration": 71.40000000002328
+      },
+      {
+        "name": "http://127.0.0.1:4173/_next/static/chunks/turbopack-1386zi0bg__rs.js",
+        "initiatorType": "script",
+        "transferSize": 10880,
+        "encodedBodySize": 10580,
+        "duration": 35.90000000002328
+      },
+      {
+        "name": "http://127.0.0.1:4173/_next/static/chunks/0257sn2hj_uao.js",
+        "initiatorType": "script",
+        "transferSize": 61395,
+        "encodedBodySize": 61095,
+        "duration": 36.5
+      },
+      {
+        "name": "http://127.0.0.1:4173/_next/static/chunks/0d3shmwh5_nmn.js",
+        "initiatorType": "script",
+        "transferSize": 54946,
+        "encodedBodySize": 54646,
+        "duration": 119.40000000002328
+      },
+      {
+        "name": "http://127.0.0.1:4173/_next/static/chunks/17jo776hq38ki.js",
+        "initiatorType": "script",
+        "transferSize": 134686,
+        "encodedBodySize": 134386,
+        "duration": 119.60000000003492
+      },
+      {
+        "name": "http://127.0.0.1:4173/_next/static/chunks/01chsg3qq1_j2.js",
+        "initiatorType": "script",
+        "transferSize": 63878,
+        "encodedBodySize": 63578,
+        "duration": 118.90000000002328
+      },
+      {
+        "name": "http://127.0.0.1:4173/zub.png",
+        "initiatorType": "img",
+        "transferSize": 1494515,
+        "encodedBodySize": 1494215,
+        "duration": 40.29999999998836
+      },
+      {
+        "name": "http://127.0.0.1:4173/services/implantation.webp",
+        "initiatorType": "img",
+        "transferSize": 125586,
+        "encodedBodySize": 125286,
+        "duration": 45.600000000034925
+      },
+      {
+        "name": "http://127.0.0.1:4173/icon.ico?icon.08f3~a.t65_nh.ico",
+        "initiatorType": "other",
+        "transferSize": 1548114,
+        "encodedBodySize": 1547814,
+        "duration": 15.099999999976717
+      },
+      {
+        "name": "http://127.0.0.1:4173/services/",
+        "initiatorType": "fetch",
+        "transferSize": 300,
+        "encodedBodySize": 0,
+        "duration": 40.100000000034925
+      },
+      {
+        "name": "http://127.0.0.1:4173/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+        "initiatorType": "fetch",
+        "transferSize": 4848,
+        "encodedBodySize": 4548,
+        "duration": 44.40000000002328
+      },
+      {
+        "name": "http://127.0.0.1:4173/__next._index.txt?_rsc=yIp22O3xgPPxC28X",
+        "initiatorType": "fetch",
+        "transferSize": 17049,
+        "encodedBodySize": 16749,
+        "duration": 44.09999999997672
+      },
+      {
+        "name": "http://127.0.0.1:4173/__next.__PAGE__.txt?_rsc=8nTjltbQWvg6NcbE",
+        "initiatorType": "fetch",
+        "transferSize": 1324,
+        "encodedBodySize": 1024,
+        "duration": 43.90000000002328
+      },
+      {
+        "name": "http://127.0.0.1:4173/services/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+        "initiatorType": "fetch",
+        "transferSize": 616,
+        "encodedBodySize": 316,
+        "duration": 12.099999999976717
+      },
+      {
+        "name": "http://127.0.0.1:4173/services/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+        "initiatorType": "fetch",
+        "transferSize": 4848,
+        "encodedBodySize": 4548,
+        "duration": 11.700000000011642
+      },
+      {
+        "name": "http://127.0.0.1:4173/services/__next.services.txt?_rsc=sqRjqjppYnUgeCLZ",
+        "initiatorType": "fetch",
+        "transferSize": 825,
+        "encodedBodySize": 525,
+        "duration": 7.7000000000116415
+      },
+      {
+        "name": "http://127.0.0.1:4173/services/__next.services.__PAGE__.txt?_rsc=sf1YpdcMRkAgPkSR",
+        "initiatorType": "fetch",
+        "transferSize": 1012,
+        "encodedBodySize": 712,
+        "duration": 8.299999999988358
+      },
+      {
+        "name": "http://127.0.0.1:4173/_next/static/chunks/07s~s-o4204ku.js",
+        "initiatorType": "script",
+        "transferSize": 22045,
+        "encodedBodySize": 21745,
+        "duration": 44.300000000046566
+      }
+    ],
+    "memory": {
+      "usedJSHeapSize": 6273077,
+      "totalJSHeapSize": 8260877
+    },
+    "requestCount": 25,
+    "encodedBytes": 4630682,
+    "cdp": [
+      {
+        "name": "Timestamp",
+        "value": 511.532998
+      },
+      {
+        "name": "AudioHandlers",
+        "value": 0
+      },
+      {
+        "name": "AudioWorkletProcessors",
+        "value": 0
+      },
+      {
+        "name": "Documents",
+        "value": 5
+      },
+      {
+        "name": "Frames",
+        "value": 5
+      },
+      {
+        "name": "JSEventListeners",
+        "value": 437
+      },
+      {
+        "name": "LayoutObjects",
+        "value": 697
+      },
+      {
+        "name": "MediaKeySessions",
+        "value": 0
+      },
+      {
+        "name": "MediaKeys",
+        "value": 0
+      },
+      {
+        "name": "Nodes",
+        "value": 771
+      },
+      {
+        "name": "Resources",
+        "value": 32
+      },
+      {
+        "name": "ContextLifecycleStateObservers",
+        "value": 27
+      },
+      {
+        "name": "V8PerContextDatas",
+        "value": 4
+      },
+      {
+        "name": "WorkerGlobalScopes",
+        "value": 0
+      },
+      {
+        "name": "UACSSResources",
+        "value": 0
+      },
+      {
+        "name": "RTCPeerConnections",
+        "value": 0
+      },
+      {
+        "name": "ResourceFetchers",
+        "value": 5
+      },
+      {
+        "name": "AdSubframes",
+        "value": 0
+      },
+      {
+        "name": "DetachedScriptStates",
+        "value": 2
+      },
+      {
+        "name": "ArrayBufferContents",
+        "value": 32
+      },
+      {
+        "name": "LayoutCount",
+        "value": 8
+      },
+      {
+        "name": "RecalcStyleCount",
+        "value": 28
+      },
+      {
+        "name": "LayoutDuration",
+        "value": 0.135185
+      },
+      {
+        "name": "RecalcStyleDuration",
+        "value": 0.150346
+      },
+      {
+        "name": "DevToolsCommandDuration",
+        "value": 0.000146
+      },
+      {
+        "name": "ScriptDuration",
+        "value": 0.213185
+      },
+      {
+        "name": "V8CompileDuration",
+        "value": 0.000697
+      },
+      {
+        "name": "TaskDuration",
+        "value": 0.803264
+      },
+      {
+        "name": "TaskOtherDuration",
+        "value": 0.303705
+      },
+      {
+        "name": "ThreadTime",
+        "value": 0.367287
+      },
+      {
+        "name": "ProcessTime",
+        "value": 0.66
+      },
+      {
+        "name": "JSHeapUsedSize",
+        "value": 6131928
+      },
+      {
+        "name": "JSHeapTotalSize",
+        "value": 8650752
+      },
+      {
+        "name": "FirstMeaningfulPaint",
+        "value": 506.554543
+      },
+      {
+        "name": "DomContentLoaded",
+        "value": 506.427771
+      },
+      {
+        "name": "NavigationStart",
+        "value": 506.05824
+      }
+    ]
+  },
+  "idle": [
+    {
+      "name": "Timestamp",
+      "value": 516.657039
+    },
+    {
+      "name": "AudioHandlers",
+      "value": 0
+    },
+    {
+      "name": "AudioWorkletProcessors",
+      "value": 0
+    },
+    {
+      "name": "Documents",
+      "value": 5
+    },
+    {
+      "name": "Frames",
+      "value": 5
+    },
+    {
+      "name": "JSEventListeners",
+      "value": 437
+    },
+    {
+      "name": "LayoutObjects",
+      "value": 697
+    },
+    {
+      "name": "MediaKeySessions",
+      "value": 0
+    },
+    {
+      "name": "MediaKeys",
+      "value": 0
+    },
+    {
+      "name": "Nodes",
+      "value": 771
+    },
+    {
+      "name": "Resources",
+      "value": 32
+    },
+    {
+      "name": "ContextLifecycleStateObservers",
+      "value": 27
+    },
+    {
+      "name": "V8PerContextDatas",
+      "value": 4
+    },
+    {
+      "name": "WorkerGlobalScopes",
+      "value": 0
+    },
+    {
+      "name": "UACSSResources",
+      "value": 0
+    },
+    {
+      "name": "RTCPeerConnections",
+      "value": 0
+    },
+    {
+      "name": "ResourceFetchers",
+      "value": 5
+    },
+    {
+      "name": "AdSubframes",
+      "value": 0
+    },
+    {
+      "name": "DetachedScriptStates",
+      "value": 2
+    },
+    {
+      "name": "ArrayBufferContents",
+      "value": 32
+    },
+    {
+      "name": "LayoutCount",
+      "value": 8
+    },
+    {
+      "name": "RecalcStyleCount",
+      "value": 28
+    },
+    {
+      "name": "LayoutDuration",
+      "value": 0.135185
+    },
+    {
+      "name": "RecalcStyleDuration",
+      "value": 0.150346
+    },
+    {
+      "name": "DevToolsCommandDuration",
+      "value": 0.008982
+    },
+    {
+      "name": "ScriptDuration",
+      "value": 0.213185
+    },
+    {
+      "name": "V8CompileDuration",
+      "value": 0.000697
+    },
+    {
+      "name": "TaskDuration",
+      "value": 0.821533
+    },
+    {
+      "name": "TaskOtherDuration",
+      "value": 0.313138
+    },
+    {
+      "name": "ThreadTime",
+      "value": 0.38937
+    },
+    {
+      "name": "ProcessTime",
+      "value": 0.77
+    },
+    {
+      "name": "JSHeapUsedSize",
+      "value": 5546244
+    },
+    {
+      "name": "JSHeapTotalSize",
+      "value": 7340032
+    },
+    {
+      "name": "FirstMeaningfulPaint",
+      "value": 506.554543
+    },
+    {
+      "name": "DomContentLoaded",
+      "value": 506.427771
+    },
+    {
+      "name": "NavigationStart",
+      "value": 506.05824
+    }
+  ],
+  "bookingResponseApproxMs": 570,
+  "afterScroll": {
+    "audit": {
+      "cls": 0,
+      "lcp": [
+        {
+          "startTime": 500,
+          "size": 64056,
+          "url": "",
+          "element": "H1"
+        }
+      ],
+      "longtasks": [
+        {
+          "startTime": 382.1000000000349,
+          "duration": 75
+        },
+        {
+          "startTime": 606.5,
+          "duration": 51
+        },
+        {
+          "startTime": 10947.5,
+          "duration": 144
+        },
+        {
+          "startTime": 11104.5,
+          "duration": 52
+        }
+      ],
+      "interactions": [
+        {
+          "name": "pointerdown",
+          "duration": 544,
+          "interactionId": 7991
+        },
+        {
+          "name": "pointerup",
+          "duration": 544,
+          "interactionId": 7991
+        },
+        {
+          "name": "click",
+          "duration": 544,
+          "interactionId": 7991
+        },
+        {
+          "name": "keydown",
+          "duration": 216,
+          "interactionId": 7998
+        },
+        {
+          "name": "keyup",
+          "duration": 104,
+          "interactionId": 7998
+        }
+      ]
+    },
+    "memory": {
+      "usedJSHeapSize": 9089006,
+      "totalJSHeapSize": 12291482
+    },
+    "requestCount": 94,
+    "encodedBytes": 5615038,
+    "cdp": [
+      {
+        "name": "Timestamp",
+        "value": 524.513197
+      },
+      {
+        "name": "AudioHandlers",
+        "value": 0
+      },
+      {
+        "name": "AudioWorkletProcessors",
+        "value": 0
+      },
+      {
+        "name": "Documents",
+        "value": 5
+      },
+      {
+        "name": "Frames",
+        "value": 6
+      },
+      {
+        "name": "JSEventListeners",
+        "value": 518
+      },
+      {
+        "name": "LayoutObjects",
+        "value": 747
+      },
+      {
+        "name": "MediaKeySessions",
+        "value": 0
+      },
+      {
+        "name": "MediaKeys",
+        "value": 0
+      },
+      {
+        "name": "Nodes",
+        "value": 817
+      },
+      {
+        "name": "Resources",
+        "value": 92
+      },
+      {
+        "name": "ContextLifecycleStateObservers",
+        "value": 33
+      },
+      {
+        "name": "V8PerContextDatas",
+        "value": 4
+      },
+      {
+        "name": "WorkerGlobalScopes",
+        "value": 0
+      },
+      {
+        "name": "UACSSResources",
+        "value": 0
+      },
+      {
+        "name": "RTCPeerConnections",
+        "value": 0
+      },
+      {
+        "name": "ResourceFetchers",
+        "value": 5
+      },
+      {
+        "name": "AdSubframes",
+        "value": 0
+      },
+      {
+        "name": "DetachedScriptStates",
+        "value": 2
+      },
+      {
+        "name": "ArrayBufferContents",
+        "value": 164
+      },
+      {
+        "name": "LayoutCount",
+        "value": 13
+      },
+      {
+        "name": "RecalcStyleCount",
+        "value": 75
+      },
+      {
+        "name": "LayoutDuration",
+        "value": 0.156096
+      },
+      {
+        "name": "RecalcStyleDuration",
+        "value": 0.178967
+      },
+      {
+        "name": "DevToolsCommandDuration",
+        "value": 0.113494
+      },
+      {
+        "name": "ScriptDuration",
+        "value": 0.479817
+      },
+      {
+        "name": "V8CompileDuration",
+        "value": 0.00085
+      },
+      {
+        "name": "TaskDuration",
+        "value": 1.75931
+      },
+      {
+        "name": "TaskOtherDuration",
+        "value": 0.830086
+      },
+      {
+        "name": "ThreadTime",
+        "value": 0.619801
+      },
+      {
+        "name": "ProcessTime",
+        "value": 1.52
+      },
+      {
+        "name": "JSHeapUsedSize",
+        "value": 7612568
+      },
+      {
+        "name": "JSHeapTotalSize",
+        "value": 10817536
+      },
+      {
+        "name": "FirstMeaningfulPaint",
+        "value": 506.554543
+      },
+      {
+        "name": "DomContentLoaded",
+        "value": 506.427771
+      },
+      {
+        "name": "NavigationStart",
+        "value": 506.05824
+      }
+    ]
+  },
+  "requests": [
+    {
+      "url": "http://127.0.0.1:4173/",
+      "method": "GET",
+      "resourceType": "document"
+    },
+    {
+      "url": "http://127.0.0.1:4173/hero/my-photo.jpg",
+      "method": "GET",
+      "resourceType": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/Doctors/fed.webp",
+      "method": "GET",
+      "resourceType": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/_next/static/chunks/0ypgvcj7fxvm2.css",
+      "method": "GET",
+      "resourceType": "stylesheet"
+    },
+    {
+      "url": "http://127.0.0.1:4173/_next/static/chunks/033g87j5nlof8.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/_next/static/chunks/0pqt~8bl3ukh4.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/_next/static/chunks/10u3y4bw1ayzs.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/_next/static/chunks/06.8ksq1x9s18.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/_next/static/chunks/turbopack-1386zi0bg__rs.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/_next/static/chunks/0257sn2hj_uao.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/_next/static/chunks/17jo776hq38ki.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/_next/static/chunks/0d3shmwh5_nmn.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/_next/static/chunks/01chsg3qq1_j2.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/zub.png",
+      "method": "GET",
+      "resourceType": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/implantation.webp",
+      "method": "GET",
+      "resourceType": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/icon.ico?icon.08f3~a.t65_nh.ico",
+      "method": "GET",
+      "resourceType": "other"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/",
+      "method": "HEAD",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/__next._index.txt?_rsc=yIp22O3xgPPxC28X",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/__next.__PAGE__.txt?_rsc=8nTjltbQWvg6NcbE",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/__next.services.txt?_rsc=sqRjqjppYnUgeCLZ",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/__next.services.__PAGE__.txt?_rsc=sf1YpdcMRkAgPkSR",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/_next/static/chunks/07s~s-o4204ku.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/privacy/",
+      "method": "HEAD",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/consent/",
+      "method": "HEAD",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/privacy/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/consent/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/privacy/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/privacy/__next.privacy.txt?_rsc=3XDUVntrE9f2g4uy",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/privacy/__next.privacy.__PAGE__.txt?_rsc=HrEtqPkwiCQvqKeY",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/consent/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/consent/__next.consent.txt?_rsc=4uyW7IpvoyJ0L_2S",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/consent/__next.consent.__PAGE__.txt?_rsc=asTrPYts6D0MCIms",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/zub.webp",
+      "method": "GET",
+      "resourceType": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/caries.webp",
+      "method": "GET",
+      "resourceType": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/Doctors/bak.webp",
+      "method": "GET",
+      "resourceType": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/Doctors/kos.webp",
+      "method": "GET",
+      "resourceType": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/Doctors/bah.webp",
+      "method": "GET",
+      "resourceType": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/Doctors/che.webp",
+      "method": "GET",
+      "resourceType": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/Doctors/fedor.webp",
+      "method": "GET",
+      "resourceType": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4173/Doctors/gra.webp",
+      "method": "GET",
+      "resourceType": "image"
+    },
+    {
+      "url": "https://yandex.ru/map-widget/v1/?mode=search&oid=99713820273&ol=biz&z=17",
+      "method": "GET",
+      "resourceType": "document"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/crowns/",
+      "method": "HEAD",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/orthodontics/",
+      "method": "HEAD",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/hygiene/",
+      "method": "HEAD",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/caries/",
+      "method": "HEAD",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/crowns/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/orthodontics/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/hygiene/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/caries/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/implantation/",
+      "method": "HEAD",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/contact/",
+      "method": "HEAD",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/about/",
+      "method": "HEAD",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/doctors/",
+      "method": "HEAD",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/implantation/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/contact/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/about/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/doctors/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/promotions/",
+      "method": "HEAD",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/crowns/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/crowns/__next.services.$d$slug.txt?_rsc=3BUW-ajWshX73zSK",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/promotions/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/crowns/__next.services.$d$slug.__PAGE__.txt?_rsc=XE6wlfXwA-iF3IQ6",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/orthodontics/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/orthodontics/__next.services.$d$slug.txt?_rsc=3BUW-ajWshX73zSK",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/orthodontics/__next.services.$d$slug.__PAGE__.txt?_rsc=XE6wlfXwA-iF3IQ6",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/_next/static/chunks/031o5587x~g4r.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/hygiene/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/hygiene/__next.services.$d$slug.txt?_rsc=3BUW-ajWshX73zSK",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/hygiene/__next.services.$d$slug.__PAGE__.txt?_rsc=XE6wlfXwA-iF3IQ6",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/caries/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/caries/__next.services.$d$slug.txt?_rsc=3BUW-ajWshX73zSK",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/caries/__next.services.$d$slug.__PAGE__.txt?_rsc=XE6wlfXwA-iF3IQ6",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/implantation/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/implantation/__next.services.$d$slug.txt?_rsc=3BUW-ajWshX73zSK",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/services/implantation/__next.services.$d$slug.__PAGE__.txt?_rsc=XE6wlfXwA-iF3IQ6",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/contact/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/contact/__next.contact.txt?_rsc=JFWGu_dmBAb9P0LW",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/contact/__next.contact.__PAGE__.txt?_rsc=BiuOixuigeBXVJn7",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/about/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/about/__next.about.txt?_rsc=n4tDNspjD4yS_Xnd",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/_next/static/chunks/0avrt09e7b32l.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/about/__next.about.__PAGE__.txt?_rsc=hzcUC6YqarYE9pKE",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/doctors/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/doctors/__next.doctors.txt?_rsc=0VIaccRHle8qAGr3",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/doctors/__next.doctors.__PAGE__.txt?_rsc=R-5Glde3w-XSeXe_",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/_next/static/chunks/0d_gsmp8uirwk.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/promotions/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/promotions/__next.promotions.txt?_rsc=dH47gKjY6YrWqyCj",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/promotions/__next.promotions.__PAGE__.txt?_rsc=Ddqm6bQDeiNSWIz_",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4173/_next/static/chunks/0xu_8tt~5ccwd.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/_next/static/chunks/0tu353y4.olgd.js",
+      "method": "GET",
+      "resourceType": "script"
+    }
+  ],
+  "errors": []
+}
