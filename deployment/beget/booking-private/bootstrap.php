@@ -49,6 +49,9 @@ function booking_database(): PDO
         PDO::ATTR_EMULATE_PREPARES => false,
         PDO::ATTR_TIMEOUT => 5,
     ]);
+    // DATETIME defaults, admin labels and retention all use the same UTC clock,
+    // regardless of the hosting provider's MySQL session timezone.
+    $pdo->exec("SET time_zone = '+00:00'");
     return $pdo;
 }
 
@@ -152,9 +155,28 @@ function booking_reply(int $status, array $payload): never
     exit;
 }
 
+/** A retry may acknowledge only the same data, never replace an earlier request. */
+function booking_existing_request(string $requestId, array $payload, string $consentVersion): bool
+{
+    $stmt = booking_database()->prepare(
+        'SELECT payload_ciphertext, consent_version FROM booking_requests WHERE request_id = :request_id'
+    );
+    $stmt->execute(['request_id' => $requestId]);
+    $existing = $stmt->fetch();
+    if ($existing === false) {
+        return false;
+    }
+    if ((string) $existing['consent_version'] !== $consentVersion
+        || booking_decrypt((string) $existing['payload_ciphertext']) !== $payload
+    ) {
+        booking_reply(409, ['success' => false, 'message' => 'Повторите отправку обновлённой формы.']);
+    }
+    return true;
+}
+
 function booking_start_admin_session(): void
 {
-    if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'off') {
+    if (($_SERVER['HTTPS'] ?? '') !== 'on') {
         http_response_code(403);
         exit('HTTPS required');
     }

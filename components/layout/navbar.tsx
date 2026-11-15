@@ -1,14 +1,15 @@
 "use client";
 
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 import { useBooking } from "@/components/providers/booking-provider";
+import { useModalAccessibility } from "@/components/hooks/use-modal-accessibility";
 
 const navItems = [
   { href: "/", label: "Главная" },
@@ -44,24 +45,25 @@ export function Navbar() {
   const mounted = useSyncExternalStore(subscribeToHydration, () => true, () => false);
   const pathname = usePathname() || "/";
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const drawerRef = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
 
   const { resolvedTheme, setTheme } = useTheme();
 
   const isDark = mounted && resolvedTheme === "dark";
 
-  useEffect(() => {
-    if (!mobileMenuOpen) return;
-
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileMenuOpen]);
-
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
   };
+
+  useModalAccessibility(drawerRef, mobileMenuOpen, closeMobileMenu);
+
+  useEffect(() => {
+    const desktop = window.matchMedia("(min-width: 1280px)");
+    const closeOnDesktop = () => { if (desktop.matches) setMobileMenuOpen(false); };
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => desktop.removeEventListener("change", closeOnDesktop);
+  }, []);
 
   const handleMobileBooking = () => {
     closeMobileMenu();
@@ -80,7 +82,7 @@ export function Navbar() {
       return currentPath === "/";
     }
 
-    return currentPath === itemPath;
+    return currentPath === itemPath || currentPath.startsWith(`${itemPath}/`);
   };
 
   return (
@@ -187,7 +189,7 @@ export function Navbar() {
               />
 
               <Image
-                src="/zub.png"
+                src="/brand/logo-210.webp"
                 alt="OLGA Logo"
                 width={66}
                 height={66}
@@ -243,6 +245,7 @@ export function Navbar() {
 
           {/* DESKTOP NAVIGATION */}
           <nav
+            aria-label="Основная навигация"
             className="
               hidden
               items-center
@@ -254,7 +257,7 @@ export function Navbar() {
               p-1.5
               shadow-[0_12px_38px_rgba(18,199,183,0.08)]
               backdrop-blur-2xl
-              md:flex
+              xl:flex
             "
           >
             {navItems.map((item) => {
@@ -262,6 +265,7 @@ export function Navbar() {
 
               return (
                 <Link
+                  aria-current={isActive ? "page" : undefined}
                   key={item.href}
                   href={item.href}
                   className={`
@@ -507,7 +511,7 @@ export function Navbar() {
                 hover:bg-[var(--glass)]
                 hover:shadow-[0_10px_28px_rgba(18,199,183,0.18)]
                 sm:inline-flex
-                md:inline-flex
+                xl:inline-flex
               "
             >
               Позвонить
@@ -525,15 +529,14 @@ export function Navbar() {
                 py-2.5
                 text-sm
                 font-semibold
-                text-white
+                text-[#071412]
                 shadow-[0_12px_30px_rgba(18,199,183,0.34)]
                 transition-all
                 duration-500
                 hover:-translate-y-[2px]
-                hover:bg-[var(--accent)]
+                hover:brightness-110
                 hover:shadow-[0_16px_40px_rgba(18,199,183,0.42)]
-                dark:text-[#071412]
-                md:inline-flex
+                xl:inline-flex
               "
             >
               Запись
@@ -544,6 +547,8 @@ export function Navbar() {
               type="button"
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Открыть меню"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-navigation"
               className="
                 inline-flex
                 h-11
@@ -562,7 +567,7 @@ export function Navbar() {
                 hover:border-[var(--accent-light)]/45
                 hover:bg-[var(--accent-light)]/8
                 active:scale-95
-                md:hidden
+                xl:hidden
               "
             >
               <Menu size={21} />
@@ -577,6 +582,9 @@ export function Navbar() {
           <>
             <motion.button
               type="button"
+              data-modal-backdrop
+              aria-hidden="true"
+              tabIndex={-1}
               aria-label="Закрыть меню"
               onClick={closeMobileMenu}
               className="
@@ -585,7 +593,7 @@ export function Navbar() {
                 z-[90]
                 bg-[#03100f]/50
                 backdrop-blur-md
-                md:hidden
+                xl:hidden
               "
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -597,17 +605,24 @@ export function Navbar() {
             />
 
             <motion.aside
+              ref={drawerRef}
+              id="mobile-navigation"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="mobile-menu-title"
+              tabIndex={-1}
               className="
                 fixed
                 right-3
                 top-3
                 z-[100]
                 flex
-                max-h-[calc(100vh-24px)]
+                max-h-[calc(100dvh-24px)]
                 w-[calc(100vw-24px)]
                 max-w-[360px]
                 flex-col
-                overflow-hidden
+                overflow-y-auto
+                overscroll-contain
                 rounded-[34px]
                 border
                 border-[var(--accent-light)]/20
@@ -615,9 +630,9 @@ export function Navbar() {
                 p-5
                 shadow-[0_28px_100px_rgba(0,0,0,0.28)]
                 backdrop-blur-3xl
-                md:hidden
+                xl:hidden
               "
-              initial={{
+              initial={reduceMotion ? false : {
                 opacity: 0,
                 x: 40,
                 scale: 0.96,
@@ -629,14 +644,14 @@ export function Navbar() {
                 scale: 1,
                 filter: "blur(0px)",
               }}
-              exit={{
+              exit={reduceMotion ? { opacity: 0 } : {
                 opacity: 0,
                 x: 40,
                 scale: 0.96,
                 filter: "blur(8px)",
               }}
               transition={{
-                duration: 0.35,
+                duration: reduceMotion ? 0 : 0.35,
                 ease: smoothEase,
               }}
             >
@@ -671,6 +686,7 @@ export function Navbar() {
               <div className="relative z-10 flex items-center justify-between gap-4">
                 <div>
                   <div
+                    id="mobile-menu-title"
                     className="
                       text-xs
                       font-semibold
@@ -724,6 +740,7 @@ export function Navbar() {
 
                   return (
                     <Link
+                      aria-current={isActive ? "page" : undefined}
                       key={item.href}
                       href={item.href}
                       onClick={closeMobileMenu}

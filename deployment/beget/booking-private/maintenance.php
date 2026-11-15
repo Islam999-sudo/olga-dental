@@ -15,7 +15,7 @@ require __DIR__ . '/bootstrap.php';
 
 $config = booking_config();
 $days = (int) ($config['retention_days'] ?? 0);
-if ($days < 1 || $days > 3650 || ($config['accept_bookings'] ?? false) !== true) {
+if ($days < 1 || $days > 3650 || ($config['retention_approved'] ?? false) !== true) {
     fwrite(STDERR, "Cleanup disabled or retention period not approved.\n");
     exit(1);
 }

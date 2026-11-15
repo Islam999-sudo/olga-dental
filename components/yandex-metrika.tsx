@@ -13,6 +13,10 @@ const PRODUCTION_HOSTS = new Set([
 ]);
 
 type Choice = "loading" | "pending" | "accepted" | "declined";
+// Retain an explicit choice for this tab when browser storage is unavailable.
+// No analytics runs before a visitor has chosen "accepted".
+let memoryChoice: Choice = "pending";
+let useMemoryChoice = false;
 type YandexFunction = ((...args: unknown[]) => void) & {
   a?: unknown[][];
   l?: number;
@@ -41,11 +45,12 @@ function subscribeToChoice(onStoreChange: () => void) {
 
 function storedChoice(): Choice {
   if (!productionHost()) return "declined";
+  if (useMemoryChoice) return memoryChoice;
   try {
     const value = window.localStorage.getItem(CONSENT_KEY);
     return value === "accepted" || value === "declined" ? value : "pending";
   } catch {
-    return "pending";
+    return memoryChoice;
   }
 }
 
@@ -58,11 +63,14 @@ function useAnalyticsChoice(): Choice {
 }
 
 function updateChoice(value: "accepted" | "declined" | "pending") {
+  memoryChoice = value;
   try {
     if (value === "pending") window.localStorage.removeItem(CONSENT_KEY);
     else window.localStorage.setItem(CONSENT_KEY, value);
+    useMemoryChoice = false;
   } catch {
     // Tracking is optional even when persistent storage is unavailable.
+    useMemoryChoice = true;
   }
   window.disableYaCounter105008013 = value !== "accepted";
   window.dispatchEvent(new Event(PREFERENCE_CHANGED));

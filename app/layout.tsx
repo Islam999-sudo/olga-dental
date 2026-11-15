@@ -168,6 +168,12 @@ export default function RootLayout({
           dark:text-white
         "
       >
+        <a
+          href="#main-content"
+          className="fixed left-4 top-4 z-[300000] -translate-y-[200%] rounded-xl bg-[var(--card)] px-5 py-3 text-[var(--foreground)] shadow-lg focus:translate-y-0"
+        >
+          Перейти к содержимому
+        </a>
         <script
           type="application/ld+json"
           suppressHydrationWarning
@@ -186,7 +192,7 @@ export default function RootLayout({
             <GlobalBookingModal />
 
             <div className="min-h-screen flex flex-col">
-              <main className="flex-1">{children}</main>
+              <main id="main-content" tabIndex={-1} className="flex-1">{children}</main>
               <Footer />
             </div>
           </BookingProvider>

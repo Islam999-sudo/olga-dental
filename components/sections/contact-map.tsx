@@ -4,7 +4,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { reveal } from "@/lib/motion";
 
-export function ContactMap() {
+export function ContactMap({ standalone = false }: { standalone?: boolean }) {
+  const Heading = standalone ? "h1" : "h2";
   const [copied, setCopied] = useState(false);
 
   const address = "г. Мурино, Воронцовский бульвар, 2";
@@ -95,7 +96,7 @@ export function ContactMap() {
             Контакты
           </span>
 
-          <h2
+          <Heading
             className="
               mt-6
               text-4xl
@@ -105,7 +106,7 @@ export function ContactMap() {
             "
           >
             Как нас найти
-          </h2>
+          </Heading>
 
           <p
             className="

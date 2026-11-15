@@ -118,12 +118,12 @@ export function Hero({ onBook }: Props) {
           <h1
             className="
               mt-6
-              text-5xl
+              text-[clamp(2.125rem,10.5vw,3rem)]
               font-semibold
               leading-[1.05]
               tracking-tight
               text-[var(--accent)]
-              md:text-7xl
+              md:text-[clamp(3rem,5.2vw,4.5rem)]
             "
           >
             Современная
@@ -159,7 +159,7 @@ export function Hero({ onBook }: Props) {
                 py-4
                 text-sm
                 font-medium
-                text-white
+                text-[#071412]
                 shadow-[0_18px_40px_rgba(18,199,183,0.28)]
                 transition-all
                 duration-300
@@ -316,7 +316,8 @@ export function Hero({ onBook }: Props) {
             <Image
               src="/hero/my-photo.jpg"
               fill
-              priority
+              loading="eager"
+              fetchPriority="high"
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="h-full w-full object-cover"
               style={{

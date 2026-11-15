@@ -39,9 +39,9 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6 pb-7 pt-14 sm:pt-16 lg:pt-20">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.35fr_.75fr_.85fr_1.1fr] lg:gap-10">
           <div className="max-w-sm">
-            <Link href="/" className="group inline-flex items-center gap-3" aria-label="OLGA Dental Clinic — на главную">
+            <Link href="/" className="group inline-flex items-center gap-3">
               <Image
-                src="/zub.png"
+                src="/brand/logo-210.webp"
                 alt=""
                 width={72}
                 height={72}
@@ -55,6 +55,7 @@ export function Footer() {
                   Dental Clinic
                 </span>
               </span>
+              <span className="sr-only"> — на главную</span>
             </Link>
             <p className="mt-6 text-sm leading-7 text-[var(--text-soft)]">
               Стоматологическая клиника в Мурино. Консультации,

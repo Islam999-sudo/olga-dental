@@ -38,4 +38,7 @@ return [
 
     // Draft retention period; confirm policy and legal obligations.
     'retention_days' => 30,
+    // Cleanup remains active when accepting new bookings is paused.
+    // Enable only after the clinic approves retention and backup deletion.
+    'retention_approved' => false,
 ];

@@ -166,7 +166,7 @@ export function Testimonials() {
                     ★★★★★
                   </div>
 
-                  <div className="text-xs text-white/40">
+                  <div className="text-xs text-white/75">
                     {review.date}
                   </div>
                 </div>
@@ -210,11 +210,11 @@ export function Testimonials() {
                       {review.name}
                     </div>
 
-                    <div className="text-xs text-white/45">
+                    <div className="text-xs text-white/75">
                       {review.level}
                     </div>
 
-                    <div className="mt-1 text-xs text-white/35">
+                    <div className="mt-1 text-xs text-white/75">
                       Отзыв на Яндекс.Картах
                     </div>
                   </div>
@@ -249,7 +249,7 @@ export function Testimonials() {
               Хотите увидеть больше мнений пациентов?
             </div>
 
-            <div className="mt-2 max-w-2xl text-sm leading-relaxed text-white/55">
+            <div className="mt-2 max-w-2xl text-sm leading-relaxed text-white/75">
               Откройте карточку клиники на Яндекс.Картах, чтобы посмотреть
               актуальные отзывы, рейтинг и фотографии.
             </div>
