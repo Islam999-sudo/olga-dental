@@ -23,6 +23,10 @@ from concurrent.futures import ThreadPoolExecutor
 
 SOURCE = Path(__file__).resolve().parents[1]
 PHP = os.environ.get("PHP_BINARY", "php")
+# This harness deliberately rewrites its private test config between requests.
+# setup-php/CLI OPcache settings must not serve a cached config from another
+# scenario. Disable only this test process's opcode cache, including all workers.
+PHP_COMMAND = [PHP, "-d", "opcache.enable=0", "-d", "opcache.enable_cli=0"]
 PORT = int(os.environ.get("OLGA_TEST_DB_PORT", "3306"))
 CHECKS = []
 
@@ -56,7 +60,7 @@ with tempfile.TemporaryDirectory(prefix="olga-synthetic-security-") as folder:
     bootstrap = root / "booking-private/bootstrap.php"
 
     def php_code(code):
-        result = subprocess.run([PHP, "-r", "require " + json.dumps(str(bootstrap)) + ";" + code], check=True, text=True, capture_output=True)
+        result = subprocess.run([*PHP_COMMAND, "-r", "require " + json.dumps(str(bootstrap)) + ";" + code], check=True, text=True, capture_output=True)
         return result.stdout.strip()
 
     php_code("$db=booking_database();$db->exec('DROP TABLE IF EXISTS booking_requests');$db->exec('DROP TABLE IF EXISTS booking_rate_limits');$db->exec(file_get_contents(" + json.dumps(str(root / "booking-private/schema.sql")) + "));")
@@ -72,7 +76,7 @@ with tempfile.TemporaryDirectory(prefix="olga-synthetic-security-") as folder:
         sock.bind(("127.0.0.1", 0))
         http_port = sock.getsockname()[1]
     log = (root / "php.log").open("w+")
-    server = subprocess.Popen([PHP, "-d", "display_errors=0", "-d", "session.save_path=" + str(root / "sessions"), "-S", f"127.0.0.1:{http_port}", str(router)], stdout=log, stderr=log, env={**os.environ, "PHP_CLI_SERVER_WORKERS": "4"}, start_new_session=True)
+    server = subprocess.Popen([*PHP_COMMAND, "-d", "display_errors=0", "-d", "session.save_path=" + str(root / "sessions"), "-S", f"127.0.0.1:{http_port}", str(router)], stdout=log, stderr=log, env={**os.environ, "PHP_CLI_SERVER_WORKERS": "4"}, start_new_session=True)
 
     def request(path="/api/booking.php", method="POST", body=None, headers=None):
         connection = http.client.HTTPConnection("127.0.0.1", http_port, timeout=5)
@@ -160,7 +164,7 @@ with tempfile.TemporaryDirectory(prefix="olga-synthetic-security-") as folder:
         failure_test_cookie = cookie_of(signed_in)
         php_code("booking_database()->exec(\"UPDATE booking_requests SET created_at=DATE_SUB(UTC_TIMESTAMP(),INTERVAL 31 DAY) WHERE id=1\");")
         configuration.write_text(config_code.replace("'accept_bookings'=>true", "'accept_bookings'=>false"))
-        cleanup = subprocess.run([PHP, str(root / "booking-private/maintenance.php")], capture_output=True, text=True)
+        cleanup = subprocess.run([*PHP_COMMAND, str(root / "booking-private/maintenance.php")], capture_output=True, text=True)
         check("retention runs while intake paused", cleanup.returncode == 0 and php_code("echo booking_database()->query('SELECT COUNT(*) FROM booking_requests')->fetchColumn();") == "3")
         check("intake flag fails closed", request(body=payload())[0] == 503)
         configuration.write_text(config_code.replace("'admin_enabled'=>true", "'admin_enabled'=>false"))
