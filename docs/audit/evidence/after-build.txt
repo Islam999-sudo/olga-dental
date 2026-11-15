@@ -1,0 +1,47 @@
+
+> olga-dental@0.1.0 build
+> next build
+
+▲ Next.js 16.4.6 (Turbopack)
+✓ Running next.config.ts took 66ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 1459ms
+  Running TypeScript ...
+  Finished TypeScript in 1640ms ...
+  Collecting page data using 2 workers ...
+  Generating static pages using 2 workers (0/25) ...
+  Generating static pages using 2 workers (6/25) 
+  Generating static pages using 2 workers (12/25) 
+  Generating static pages using 2 workers (18/25) 
+✓ Generating static pages using 2 workers (25/25) in 632ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ○ /consent
+├ ○ /contact
+├ ○ /doctors
+├ ○ /icon.ico
+├ ○ /privacy
+├ ○ /promotions
+├ ○ /robots.txt
+├ ○ /services
+├   /services/[slug]
+│ ├ ● /services/implantation
+│ ├ ● /services/implant-tooth-package
+│ ├ ● /services/caries
+│ └ ● [+9 more paths]
+└ ○ /sitemap.xml
+
+
+○  (Static)  prerendered as static content
+●  (SSG)     prerendered as static HTML (uses generateStaticParams)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice

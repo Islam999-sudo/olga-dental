@@ -4,12 +4,14 @@
 
 CREATE TABLE IF NOT EXISTS booking_requests (
   id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  request_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NULL,
   payload_ciphertext MEDIUMTEXT NOT NULL,
   consent_version VARCHAR(64) NOT NULL,
   consent_at DATETIME NOT NULL,
   status ENUM('new','processed') NOT NULL DEFAULT 'new',
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
+  UNIQUE KEY booking_request_id (request_id),
   INDEX booking_created (created_at),
   INDEX booking_status_created (status, created_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

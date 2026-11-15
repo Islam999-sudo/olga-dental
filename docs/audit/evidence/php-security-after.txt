@@ -1,0 +1,41 @@
+PASS: existing-schema migration applied
+PASS: DB session uses UTC
+PASS: method rejected
+PASS: TLS required
+PASS: origin rejected
+PASS: content type rejected
+PASS: oversized payload rejected
+PASS: malformed JSON rejected
+PASS: consent missing
+PASS: consent version rejected
+PASS: name type rejected
+PASS: name injection rejected
+PASS: phone rejected
+PASS: source rejected
+PASS: doctor type rejected
+PASS: honeypot rejected
+PASS: request ID rejected
+PASS: concurrent replay creates one request
+PASS: valid request accepted
+PASS: PII absent from response
+PASS: identical replay accepted once
+PASS: changed replay rejected
+PASS: fresh requests accepted before limit
+PASS: rate limit enforced
+PASS: replay works despite rate limit
+PASS: stored payload encrypted
+PASS: admin HTTP rejected
+PASS: anonymous sees login, no requests
+PASS: session cookie flags
+PASS: CSRF rejected
+PASS: login brute force limited
+PASS: successful login rotates session
+PASS: authorized inbox escapes XSS
+PASS: idle session expires after 15 minutes
+PASS: logout invalidates old session
+PASS: retention runs while intake paused
+PASS: intake flag fails closed
+PASS: admin flag fails closed
+PASS: DB failure is generic 503
+PASS: admin DB failure is generic
+PASS: 40 isolated PHP/MySQL security checks. No production requests.

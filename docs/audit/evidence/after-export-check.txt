@@ -1,0 +1,1 @@
+PASS: 20 routes, metadata, landmarks, local links/images, sitemap, static 404, no PHP/admin exposure.

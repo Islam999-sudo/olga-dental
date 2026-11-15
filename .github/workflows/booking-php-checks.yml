@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - preview/soni-development
+      - "audit/**"
     paths:
       - "deployment/beget/**"
       - "components/ui/booking-modal.tsx"
@@ -12,6 +13,7 @@ on:
     paths:
       - "deployment/beget/**"
       - "components/ui/booking-modal.tsx"
+      - ".github/workflows/booking-php-checks.yml"
 
 permissions:
   contents: read
@@ -36,6 +38,37 @@ jobs:
       - name: Prevent client-side patient-data dispatch to third parties
         run: |
           set -eu
-          ! grep -R -i -E 'api\\.web3forms\\.com|WEB3FORMS_ACCESS_KEY' components app
+          blocked_pattern='api[.]web3forms[.]com|WEB3FORMS_ACCESS_KEY'
+          # Prove the guard detects a real endpoint before checking source files.
+          printf '%s\n' 'https://api.web3forms.com/submit' | grep -i -E "$blocked_pattern" >/dev/null
+          ! grep -R -i -E "$blocked_pattern" components app
           ! test -f deployment/beget/booking-private/config.php
           ! find public -type f -name '*.php' | grep -q .
+
+  php-integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ROOT_PASSWORD: synthetic-root-only
+          MYSQL_DATABASE: olga_audit_synthetic
+          MYSQL_USER: synthetic
+          MYSQL_PASSWORD: synthetic-isolated-only
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost -psynthetic-root-only"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          extensions: pdo_mysql, openssl
+          tools: none
+      - name: Isolated synthetic API, admin and MySQL regression
+        run: python3 deployment/beget/tests/security-integration.py

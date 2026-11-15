@@ -60,6 +60,13 @@ try {
         booking_reply(400, ['success' => false, 'message' => 'Не удалось обработать запрос.']);
     }
 
+    $requestId = $body['request_id'] ?? null;
+    if (!is_string($requestId)
+        || !preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/D', $requestId)
+    ) {
+        booking_reply(400, ['success' => false, 'message' => 'Обновите форму перед отправкой.']);
+    }
+
     if (($body['consent'] ?? false) !== true
         || !is_string($body['consent_version'] ?? null)
         || !hash_equals((string) $config['consent_version'], $body['consent_version'])
@@ -101,27 +108,46 @@ try {
         booking_reply(400, ['success' => false, 'message' => 'Слишком длинное название услуги или врача.']);
     }
 
-    if (booking_rate_limited('submission', 3, 1800)) {
-        header('Retry-After: 1800');
-        booking_reply(429, ['success' => false, 'message' => 'Слишком много запросов. Попробуйте позже.']);
-    }
-
-    $encryptedPayload = booking_encrypt([
+    $payload = [
         'name' => $name,
         'phone' => '+' . $phone,
         'source' => $source,
         'doctor' => trim($doctor),
         'service' => trim($service),
-    ]);
+    ];
+
+    // A lost response may be safely retried with the original identifier.
+    // Identical replays neither create rows nor consume another rate-limit slot.
+    if (booking_existing_request($requestId, $payload, (string) $config['consent_version'])) {
+        booking_reply(200, ['success' => true, 'message' => 'Заявка принята. Администратор свяжется с вами.']);
+    }
+
+    if (booking_rate_limited('submission', 3, 1800)) {
+        header('Retry-After: 1800');
+        booking_reply(429, ['success' => false, 'message' => 'Слишком много запросов. Попробуйте позже.']);
+    }
+
+    $encryptedPayload = booking_encrypt($payload);
 
     $stmt = booking_database()->prepare(
-        'INSERT INTO booking_requests (payload_ciphertext, consent_version, consent_at)
-         VALUES (:payload_ciphertext, :consent_version, UTC_TIMESTAMP())'
+        'INSERT INTO booking_requests (request_id, payload_ciphertext, consent_version, consent_at)
+         VALUES (:request_id, :payload_ciphertext, :consent_version, UTC_TIMESTAMP())'
     );
-    $stmt->execute([
-        'payload_ciphertext' => $encryptedPayload,
-        'consent_version' => $config['consent_version'],
-    ]);
+    try {
+        $stmt->execute([
+            'request_id' => $requestId,
+            'payload_ciphertext' => $encryptedPayload,
+            'consent_version' => $config['consent_version'],
+        ]);
+    } catch (PDOException $error) {
+        // The unique index also closes the race between concurrent retries.
+        if (($error->errorInfo[1] ?? null) === 1062
+            && booking_existing_request($requestId, $payload, (string) $config['consent_version'])
+        ) {
+            booking_reply(200, ['success' => true, 'message' => 'Заявка принята. Администратор свяжется с вами.']);
+        }
+        throw $error;
+    }
 
     // No form data, tokens, names, numbers or email bodies in responses/logs.
     booking_reply(201, ['success' => true, 'message' => 'Заявка принята. Администратор свяжется с вами.']);

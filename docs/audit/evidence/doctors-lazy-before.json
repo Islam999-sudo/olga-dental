@@ -1,0 +1,58 @@
+[
+  {
+    "src": "/Doctors/fed.webp",
+    "complete": true,
+    "naturalWidth": 941,
+    "loading": "eager",
+    "rect": "{\"x\":504,\"y\":203.125,\"width\":358,\"height\":518,\"top\":203.125,\"right\":862,\"bottom\":721.125,\"left\":504}",
+    "style": "hidden"
+  },
+  {
+    "src": "/Doctors/bak.webp",
+    "complete": true,
+    "naturalWidth": 941,
+    "loading": "lazy",
+    "rect": "{\"x\":921.6415405273438,\"y\":219.7674560546875,\"width\":314.73931884765625,\"height\":484.715087890625,\"top\":219.7674560546875,\"right\":1236.380859375,\"bottom\":704.4825439453125,\"left\":921.6415405273438}",
+    "style": "hidden"
+  },
+  {
+    "src": "/Doctors/kos.webp",
+    "complete": true,
+    "naturalWidth": 941,
+    "loading": "lazy",
+    "rect": "{\"x\":575.5999755859375,\"y\":306.7250061035156,\"width\":214.800048828125,\"height\":310.8000183105469,\"top\":306.7250061035156,\"right\":790.4000244140625,\"bottom\":617.5250244140625,\"left\":575.5999755859375}",
+    "style": "hidden"
+  },
+  {
+    "src": "/Doctors/bah.webp",
+    "complete": true,
+    "naturalWidth": 941,
+    "loading": "lazy",
+    "rect": "{\"x\":575.5999755859375,\"y\":306.7250061035156,\"width\":214.800048828125,\"height\":310.8000183105469,\"top\":306.7250061035156,\"right\":790.4000244140625,\"bottom\":617.5250244140625,\"left\":575.5999755859375}",
+    "style": "hidden"
+  },
+  {
+    "src": "/Doctors/che.webp",
+    "complete": true,
+    "naturalWidth": 941,
+    "loading": "lazy",
+    "rect": "{\"x\":575.5999755859375,\"y\":306.7250061035156,\"width\":214.800048828125,\"height\":310.8000183105469,\"top\":306.7250061035156,\"right\":790.4000244140625,\"bottom\":617.5250244140625,\"left\":575.5999755859375}",
+    "style": "hidden"
+  },
+  {
+    "src": "/Doctors/fedor.webp",
+    "complete": true,
+    "naturalWidth": 941,
+    "loading": "lazy",
+    "rect": "{\"x\":575.5999755859375,\"y\":306.7250061035156,\"width\":214.800048828125,\"height\":310.8000183105469,\"top\":306.7250061035156,\"right\":790.4000244140625,\"bottom\":617.5250244140625,\"left\":575.5999755859375}",
+    "style": "hidden"
+  },
+  {
+    "src": "/Doctors/gra.webp",
+    "complete": true,
+    "naturalWidth": 941,
+    "loading": "lazy",
+    "rect": "{\"x\":129.61915588378906,\"y\":219.7674560546875,\"width\":314.73931884765625,\"height\":484.715087890625,\"top\":219.7674560546875,\"right\":444.3584747314453,\"bottom\":704.4825439453125,\"left\":129.61915588378906}",
+    "style": "hidden"
+  }
+]

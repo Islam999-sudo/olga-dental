@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
+import { useModalAccessibility } from "@/components/hooks/use-modal-accessibility";
 import Link from "next/link";
 
 type Props = {
@@ -94,6 +95,8 @@ const formatPhone = (value: string) => {
   return formatPhoneFromDigits(digits);
 };
 
+const isValidName = (value: string) => /^[\p{L}\p{M}\s'-]{2,60}$/u.test(value.trim());
+
 const isValidRussianPhone = (value: string) => {
   const digits = normalizePhoneDigits(value);
   return digits.length === 11 && digits.startsWith("7");
@@ -114,7 +117,29 @@ export function BookingModal({
   const [errorMessage, setErrorMessage] = useState("");
   const [demoSuccess, setDemoSuccess] = useState(false);
 
-  const openedAtRef = useRef(0);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const successCloseRef = useRef<HTMLButtonElement>(null);
+  const requestRef = useRef<AbortController | null>(null);
+  const successTimerRef = useRef<number | null>(null);
+  const pendingRequestRef = useRef<{ fingerprint: string; id: string } | null>(null);
+  const titleId = useId();
+  const errorId = useId();
+  const nameId = useId();
+  const phoneId = useId();
+
+  const closeSafely = () => {
+    requestRef.current?.abort();
+    requestRef.current = null;
+    if (successTimerRef.current !== null) window.clearTimeout(successTimerRef.current);
+    successTimerRef.current = null;
+    setLoading(false);
+    setSent(false);
+    setErrorMessage("");
+    setDemoSuccess(false);
+    onClose();
+  };
+
+  useModalAccessibility(dialogRef, open, closeSafely);
 
   const contextLabel = doctor?.name
     ? `Врач: ${doctor.name}`
@@ -131,39 +156,20 @@ export function BookingModal({
   useEffect(() => {
     if (!open) return;
 
-    openedAtRef.current = Date.now();
-
-    // Conversion metric only, without patient details or identifiers.
-    window.ym?.(105008013, "reachGoal", "booking_open");
-
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setSent(false);
-        onClose();
-      }
-    };
-
-    document.addEventListener("keydown", handleEsc);
-    document.body.style.overflow = "hidden";
+    // Optional analytics must not interfere with the booking flow.
+    try { window.ym?.(105008013, "reachGoal", "booking_open"); } catch { /* Optional metric. */ }
 
     return () => {
-      document.removeEventListener("keydown", handleEsc);
-      document.body.style.overflow = "";
+      requestRef.current?.abort();
+      if (successTimerRef.current !== null) window.clearTimeout(successTimerRef.current);
     };
-  }, [open, onClose]);
+  }, [open]);
+
+  useEffect(() => {
+    if (open && sent) successCloseRef.current?.focus({ preventScroll: true });
+  }, [open, sent]);
 
   if (!open) return null;
-
-  const closeSafely = () => {
-    const diff = Date.now() - openedAtRef.current;
-
-    if (diff < 350) return;
-
-    setSent(false);
-    setErrorMessage("");
-    setDemoSuccess(false);
-    onClose();
-  };
 
   const handlePhoneChange = (value: string) => {
     setPhone(formatPhone(value));
@@ -205,9 +211,14 @@ export function BookingModal({
   };
 
   const handleSubmit = async () => {
+    if (requestRef.current) return;
     setErrorMessage("");
-    if (!name.trim() || !isValidRussianPhone(phone)) {
-      setErrorMessage("Укажите имя и корректный номер телефона.");
+    if (!isValidName(name)) {
+      setErrorMessage("Укажите имя от 2 до 60 символов: буквы, пробел, дефис или апостроф.");
+      return;
+    }
+    if (!isValidRussianPhone(phone)) {
+      setErrorMessage("Укажите корректный номер телефона.");
       return;
     }
     if (!consent) {
@@ -226,38 +237,61 @@ export function BookingModal({
       return;
     }
 
-    const cooldown = localStorage.getItem("bookingCooldown");
-    if (cooldown && Date.now() - Number(cooldown) < 15000) {
-      setErrorMessage("Подождите немного перед повторной отправкой.");
-      return;
+    try {
+      const cooldown = localStorage.getItem("bookingCooldown");
+      if (cooldown && Date.now() - Number(cooldown) < 15000) {
+        setErrorMessage("Подождите немного перед повторной отправкой.");
+        return;
+      }
+    } catch {
+      // The server enforces rate limits when browser storage is unavailable.
     }
 
+    const controller = new AbortController();
+    requestRef.current = controller;
+    let timedOut = false;
+    const timeout = window.setTimeout(() => {
+      timedOut = true;
+      controller.abort();
+    }, 15000);
     setLoading(true);
     try {
+      const body = {
+        name: name.trim(),
+        phone: formatPhone(phone),
+        source,
+        doctor: doctor?.name || "",
+        service: service?.title || "",
+        consent: true,
+        consent_version: CONSENT_VERSION,
+        website: "",
+      };
+      const fingerprint = JSON.stringify(body);
+      if (pendingRequestRef.current?.fingerprint !== fingerprint) {
+        pendingRequestRef.current = { fingerprint, id: crypto.randomUUID() };
+      }
       const response = await fetch(BOOKING_API_PATH, {
         method: "POST",
         credentials: "same-origin",
         cache: "no-store",
+        signal: controller.signal,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: name.trim(),
-          phone: formatPhone(phone),
-          source,
-          doctor: doctor?.name || "",
-          service: service?.title || "",
-          consent: true,
-          consent_version: CONSENT_VERSION,
-          website: "",
-        }),
+        body: JSON.stringify({ ...body, request_id: pendingRequestRef.current.id }),
       });
       const payload: { success?: boolean; message?: string } = await response.json();
       if (!response.ok || !payload.success) throw new Error("Booking failed");
+      if (controller.signal.aborted) return;
 
-      localStorage.setItem("bookingCooldown", String(Date.now()));
-      window.ym?.(105008013, "reachGoal", "booking_success");
+      pendingRequestRef.current = null;
+      try {
+        localStorage.setItem("bookingCooldown", String(Date.now()));
+      } catch {
+        // A saved application must still show success if storage is blocked.
+      }
+      try { window.ym?.(105008013, "reachGoal", "booking_success"); } catch { /* Optional metric. */ }
       setDemoSuccess(false);
       setSent(true);
-      window.setTimeout(() => {
+      successTimerRef.current = window.setTimeout(() => {
         setSent(false);
         setName("");
         setPhone("");
@@ -265,9 +299,17 @@ export function BookingModal({
         onClose();
       }, 2400);
     } catch {
-      setErrorMessage("Не удалось отправить заявку. Пожалуйста, позвоните в клинику.");
+      if (!controller.signal.aborted || timedOut) {
+        setErrorMessage(timedOut
+          ? "Сервер долго не отвечает. Попробуйте ещё раз или позвоните в клинику."
+          : "Не удалось отправить заявку. Попробуйте ещё раз или позвоните в клинику.");
+      }
     } finally {
-      setLoading(false);
+      window.clearTimeout(timeout);
+      if (requestRef.current === controller) {
+        requestRef.current = null;
+        setLoading(false);
+      }
     }
   };
 
@@ -286,6 +328,8 @@ export function BookingModal({
     >
       {/* OVERLAY */}
       <div
+        data-modal-backdrop
+        aria-hidden="true"
         className="
           absolute
           inset-0
@@ -296,11 +340,17 @@ export function BookingModal({
 
       {/* MODAL */}
       <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        aria-busy={loading}
+        tabIndex={-1}
         onClick={(e) => e.stopPropagation()}
         className="
           relative
           z-[200001]
-          max-h-[92vh]
+          max-h-[92dvh]
           w-full
           max-w-lg
           overflow-y-auto
@@ -332,7 +382,10 @@ export function BookingModal({
         />
 
         {!sent ? (
-          <div className="relative z-10">
+          <form noValidate className="relative z-10" onSubmit={(event) => {
+            event.preventDefault();
+            void handleSubmit();
+          }}>
             <span
               className="
                 inline-flex
@@ -353,6 +406,7 @@ export function BookingModal({
             </span>
 
             <h2
+              id={titleId}
               className="
                 mt-6
                 text-3xl
@@ -410,7 +464,14 @@ export function BookingModal({
             </p>
 
             <div className="mt-7 space-y-4">
+              <label htmlFor={nameId} className="sr-only">Ваше имя</label>
               <input
+                id={nameId}
+                name="name"
+                required
+                minLength={2}
+                aria-invalid={errorMessage && !isValidName(name) ? true : undefined}
+                aria-describedby={errorMessage ? errorId : undefined}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Ваше имя"
@@ -434,12 +495,18 @@ export function BookingModal({
                 "
               />
 
+              <label htmlFor={phoneId} className="sr-only">Номер телефона</label>
               <input
+                id={phoneId}
+                name="phone"
+                required
+                aria-invalid={errorMessage && !isValidRussianPhone(phone) ? true : undefined}
+                aria-describedby={errorMessage ? errorId : undefined}
                 value={phone}
                 onChange={(e) => handlePhoneChange(e.target.value)}
                 onKeyDown={handlePhoneKeyDown}
                 placeholder="+7 (___) ___-__-__"
-                inputMode="numeric"
+                inputMode="tel"
                 type="tel"
                 autoComplete="tel"
                 maxLength={18}
@@ -464,6 +531,7 @@ export function BookingModal({
               <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-[var(--accent-light)]/20 bg-[var(--glass)] px-4 py-4 text-sm leading-relaxed text-[var(--text-soft)]">
                 <input
                   type="checkbox"
+                  name="consent"
                   checked={consent}
                   onChange={(e) => setConsent(e.target.checked)}
                   className="mt-1 h-5 w-5 shrink-0 accent-[var(--accent)]"
@@ -485,17 +553,13 @@ export function BookingModal({
                     : "Тестовая версия: заявки не отправляются."}
                 </p>
               )}
-              {errorMessage && <p role="alert" className="text-sm font-medium text-red-600 dark:text-red-300">{errorMessage}</p>}
+              {errorMessage && <p id={errorId} role="alert" className="text-sm font-medium text-red-600 dark:text-red-300">{errorMessage}</p>}
             </div>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <button
                 type="button"
-                onClick={() => {
-                  setSent(false);
-                  onClose();
-                }}
-                disabled={loading}
+                onClick={closeSafely}
                 className="
                   flex-1
                   rounded-2xl
@@ -524,8 +588,7 @@ export function BookingModal({
                 </a>
               ) : (
                 <button
-                  type="button"
-                  onClick={handleSubmit}
+                  type="submit"
                   disabled={loading}
                   className="flex-1 rounded-2xl bg-[var(--accent-light)] py-3 text-sm font-medium text-[#071412] shadow-lg shadow-[var(--accent-light)]/30 transition hover:-translate-y-[2px] hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
                 >
@@ -533,9 +596,9 @@ export function BookingModal({
                 </button>
               )}
             </div>
-          </div>
+          </form>
         ) : (
-          <div className="relative z-10 py-16 text-center">
+          <div role="status" className="relative z-10 py-16 text-center">
             <div
               className="
                 mx-auto
@@ -554,6 +617,7 @@ export function BookingModal({
             </div>
 
             <h2
+              id={titleId}
               className="
                 mt-6
                 text-3xl
@@ -567,6 +631,9 @@ export function BookingModal({
             <p className="mt-3 text-sm text-[var(--text-soft)]">
               {demoSuccess ? "Это демонстрация: заявка не отправлена, данные не сохранены." : "Мы свяжемся с вами в ближайшее время."}
             </p>
+            <button ref={successCloseRef} type="button" onClick={closeSafely} className="mt-6 rounded-2xl border border-[var(--accent-light)]/30 px-6 py-3 text-sm font-medium text-[var(--accent)]">
+              Закрыть
+            </button>
           </div>
         )}
       </div>

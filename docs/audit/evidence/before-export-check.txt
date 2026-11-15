@@ -1,0 +1,26 @@
+ERROR: /: incorrect canonical URL
+ERROR: /about/: missing or duplicate title
+ERROR: /about/: expected one main landmark
+ERROR: /about/: incorrect canonical URL
+ERROR: /contact/: missing or duplicate title
+ERROR: /contact/: expected one h1
+ERROR: /contact/: incorrect canonical URL
+ERROR: /doctors/: missing or duplicate title
+ERROR: /doctors/: expected one main landmark
+ERROR: /doctors/: incorrect canonical URL
+ERROR: /promotions/: missing or duplicate title
+ERROR: /promotions/: incorrect canonical URL
+ERROR: /services/: missing or duplicate title
+ERROR: /services/: incorrect canonical URL
+ERROR: /services/implantation/: missing social image
+ERROR: /services/implant-tooth-package/: missing social image
+ERROR: /services/caries/: missing social image
+ERROR: /services/hygiene/: missing social image
+ERROR: /services/veneers/: missing social image
+ERROR: /services/extraction/: missing social image
+ERROR: /services/pulpitis/: missing social image
+ERROR: /services/periodontitis/: missing social image
+ERROR: /services/crowns/: missing social image
+ERROR: /services/prosthetics/: missing social image
+ERROR: /services/sinus/: missing social image
+ERROR: /services/orthodontics/: missing social image

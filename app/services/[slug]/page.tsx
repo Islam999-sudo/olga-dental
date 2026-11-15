@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -65,16 +66,18 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const article = getServiceArticle(slug);
   if (!service || !article) return { title: "Услуга не найдена" };
 
+  const metadata = pageMetadata(
+    service.title + " в Мурино — лечение, цены и этапы",
+    service.desc + " Этапы лечения, показания, уход и ответы на частые вопросы. OLGA Dental Clinic, Мурино.",
+    "/services/" + slug + "/",
+  );
   return {
-    title: service.title + " в Мурино — лечение, цены и этапы",
-    description:
-      service.desc + " Этапы лечения, показания, уход и ответы на частые вопросы. OLGA Dental Clinic, Мурино.",
-    alternates: { canonical: "/services/" + slug + "/" },
+    ...metadata,
     openGraph: {
+      ...metadata.openGraph,
       title: service.title + " — OLGA Dental Clinic",
       description: article.lead,
       type: "article",
-      url: "/services/" + slug + "/",
     },
   };
 }

@@ -1,0 +1,1458 @@
+{
+  "label": "after",
+  "url": "http://127.0.0.1:4181",
+  "timestamp": "2026-11-15T19:50:49.549Z",
+  "browser": "156.0.8078.79",
+  "conditions": {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "deviceScaleFactor": 1,
+    "mobileEmulation": true,
+    "headless": true,
+    "network": "unthrottled local HTTP, external requests allowed",
+    "cpu": "unthrottled",
+    "idleWindowMs": 5000
+  },
+  "load": {
+    "audit": {
+      "cls": 0,
+      "lcp": [
+        {
+          "startTime": 428,
+          "size": 46900,
+          "url": "",
+          "element": "H1"
+        }
+      ],
+      "longtasks": [
+        {
+          "startTime": 502.0999999999767,
+          "duration": 109
+        }
+      ],
+      "interactions": []
+    },
+    "navigation": [
+      {
+        "name": "http://127.0.0.1:4181/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 393.5,
+        "navigationId": 1708,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.0",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.5999999999767169,
+        "domainLookupStart": 0.5999999999767169,
+        "domainLookupEnd": 0.5999999999767169,
+        "connectStart": 0.5999999999767169,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.5999999999767169,
+        "requestStart": 3.800000000046566,
+        "responseStart": 5.099999999976717,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 5.099999999976717,
+        "responseEnd": 6.699999999953434,
+        "transferSize": 144374,
+        "encodedBodySize": 144074,
+        "decodedBodySize": 144074,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 312.0999999999767,
+        "domContentLoadedEventStart": 312.0999999999767,
+        "domContentLoadedEventEnd": 312.30000000004657,
+        "domComplete": 393.4000000000233,
+        "loadEventStart": 393.5,
+        "loadEventEnd": 393.5,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "low"
+        }
+      }
+    ],
+    "paints": [
+      {
+        "name": "first-paint",
+        "entryType": "paint",
+        "startTime": 428,
+        "duration": 0,
+        "navigationId": 1708,
+        "paintTime": 307.80000000004657,
+        "presentationTime": 428
+      },
+      {
+        "name": "first-contentful-paint",
+        "entryType": "paint",
+        "startTime": 428,
+        "duration": 0,
+        "navigationId": 1708,
+        "paintTime": 307.80000000004657,
+        "presentationTime": 428
+      }
+    ],
+    "resources": [
+      {
+        "name": "http://127.0.0.1:4181/hero/my-photo.jpg",
+        "initiatorType": "link",
+        "transferSize": 160627,
+        "encodedBodySize": 160327,
+        "duration": 70.90000000002328
+      },
+      {
+        "name": "http://127.0.0.1:4181/_next/static/chunks/2s5_mqxsvd6h4.css",
+        "initiatorType": "link",
+        "transferSize": 99845,
+        "encodedBodySize": 99545,
+        "duration": 56.29999999993015
+      },
+      {
+        "name": "http://127.0.0.1:4181/_next/static/chunks/1pcw6gskne7pf.js",
+        "initiatorType": "link",
+        "transferSize": 5900,
+        "encodedBodySize": 5600,
+        "duration": 65.59999999997672
+      },
+      {
+        "name": "http://127.0.0.1:4181/_next/static/chunks/0li7vzj18bfpo.js",
+        "initiatorType": "script",
+        "transferSize": 34500,
+        "encodedBodySize": 34200,
+        "duration": 65.09999999997672
+      },
+      {
+        "name": "http://127.0.0.1:4181/_next/static/chunks/092r-mewpaf3q.js",
+        "initiatorType": "script",
+        "transferSize": 229352,
+        "encodedBodySize": 229052,
+        "duration": 78.5
+      },
+      {
+        "name": "http://127.0.0.1:4181/_next/static/chunks/turbopack-2u1d16houkiyo.js",
+        "initiatorType": "script",
+        "transferSize": 10274,
+        "encodedBodySize": 9974,
+        "duration": 82
+      },
+      {
+        "name": "http://127.0.0.1:4181/_next/static/chunks/3hcg696yt7n09.js",
+        "initiatorType": "script",
+        "transferSize": 165200,
+        "encodedBodySize": 164900,
+        "duration": 74.5
+      },
+      {
+        "name": "http://127.0.0.1:4181/_next/static/chunks/2v5nlsrhu_bhs.js",
+        "initiatorType": "script",
+        "transferSize": 29506,
+        "encodedBodySize": 29206,
+        "duration": 83.09999999997672
+      },
+      {
+        "name": "http://127.0.0.1:4181/_next/static/chunks/232te0tqk31l9.js",
+        "initiatorType": "script",
+        "transferSize": 15425,
+        "encodedBodySize": 15125,
+        "duration": 83.40000000002328
+      },
+      {
+        "name": "http://127.0.0.1:4181/_next/static/chunks/0mqcgxbdvx-rb.js",
+        "initiatorType": "script",
+        "transferSize": 43701,
+        "encodedBodySize": 43401,
+        "duration": 81.59999999997672
+      },
+      {
+        "name": "http://127.0.0.1:4181/_next/static/chunks/1waiqjd-aa5i2.js",
+        "initiatorType": "script",
+        "transferSize": 86921,
+        "encodedBodySize": 86621,
+        "duration": 85.5
+      },
+      {
+        "name": "http://127.0.0.1:4181/_next/static/chunks/3irz908jdupht.js",
+        "initiatorType": "script",
+        "transferSize": 128517,
+        "encodedBodySize": 128217,
+        "duration": 84.70000000006985
+      },
+      {
+        "name": "http://127.0.0.1:4181/brand/logo-210.webp",
+        "initiatorType": "img",
+        "transferSize": 22188,
+        "encodedBodySize": 21888,
+        "duration": 8.300000000046566
+      },
+      {
+        "name": "http://127.0.0.1:4181/icon.ico?icon.0yydje_fje4q2.ico",
+        "initiatorType": "other",
+        "transferSize": 13457,
+        "encodedBodySize": 13157,
+        "duration": 3.200000000069849
+      },
+      {
+        "name": "http://127.0.0.1:4181/",
+        "initiatorType": "fetch",
+        "transferSize": 0,
+        "encodedBodySize": 0,
+        "duration": 1.6999999999534339
+      },
+      {
+        "name": "http://127.0.0.1:4181/services/",
+        "initiatorType": "fetch",
+        "transferSize": 300,
+        "encodedBodySize": 0,
+        "duration": 42.40000000002328
+      },
+      {
+        "name": "http://127.0.0.1:4181/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+        "initiatorType": "fetch",
+        "transferSize": 464,
+        "encodedBodySize": 164,
+        "duration": 2.5
+      },
+      {
+        "name": "http://127.0.0.1:4181/services/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+        "initiatorType": "fetch",
+        "transferSize": 515,
+        "encodedBodySize": 215,
+        "duration": 2.599999999976717
+      },
+      {
+        "name": "http://127.0.0.1:4181/__next._index.txt?_rsc=yIp22O3xgPPxC28X",
+        "initiatorType": "fetch",
+        "transferSize": 17147,
+        "encodedBodySize": 16847,
+        "duration": 5.300000000046566
+      },
+      {
+        "name": "http://127.0.0.1:4181/__next.__PAGE__.txt?_rsc=8nTjltbQWvg6NcbE",
+        "initiatorType": "fetch",
+        "transferSize": 5369,
+        "encodedBodySize": 5069,
+        "duration": 5.199999999953434
+      },
+      {
+        "name": "http://127.0.0.1:4181/services/__next.services.__PAGE__.txt?_rsc=sf1YpdcMRkAgPkSR",
+        "initiatorType": "fetch",
+        "transferSize": 5415,
+        "encodedBodySize": 5115,
+        "duration": 2.8999999999068677
+      },
+      {
+        "name": "http://127.0.0.1:4181/_next/static/chunks/27ickcam9e369.js",
+        "initiatorType": "script",
+        "transferSize": 26749,
+        "encodedBodySize": 26449,
+        "duration": 8.399999999906868
+      }
+    ],
+    "memory": {
+      "usedJSHeapSize": 7219828,
+      "totalJSHeapSize": 9555024
+    },
+    "requestCount": 23,
+    "encodedBytes": 1243199,
+    "cdp": [
+      {
+        "name": "Timestamp",
+        "value": 914.047467
+      },
+      {
+        "name": "AudioHandlers",
+        "value": 0
+      },
+      {
+        "name": "AudioWorkletProcessors",
+        "value": 0
+      },
+      {
+        "name": "Documents",
+        "value": 5
+      },
+      {
+        "name": "Frames",
+        "value": 5
+      },
+      {
+        "name": "JSEventListeners",
+        "value": 445
+      },
+      {
+        "name": "LayoutObjects",
+        "value": 715
+      },
+      {
+        "name": "MediaKeySessions",
+        "value": 0
+      },
+      {
+        "name": "MediaKeys",
+        "value": 0
+      },
+      {
+        "name": "Nodes",
+        "value": 772
+      },
+      {
+        "name": "Resources",
+        "value": 32
+      },
+      {
+        "name": "ContextLifecycleStateObservers",
+        "value": 28
+      },
+      {
+        "name": "V8PerContextDatas",
+        "value": 4
+      },
+      {
+        "name": "WorkerGlobalScopes",
+        "value": 0
+      },
+      {
+        "name": "UACSSResources",
+        "value": 0
+      },
+      {
+        "name": "RTCPeerConnections",
+        "value": 0
+      },
+      {
+        "name": "ResourceFetchers",
+        "value": 5
+      },
+      {
+        "name": "AdSubframes",
+        "value": 0
+      },
+      {
+        "name": "DetachedScriptStates",
+        "value": 2
+      },
+      {
+        "name": "ArrayBufferContents",
+        "value": 16
+      },
+      {
+        "name": "LayoutCount",
+        "value": 8
+      },
+      {
+        "name": "RecalcStyleCount",
+        "value": 53
+      },
+      {
+        "name": "LayoutDuration",
+        "value": 0.128955
+      },
+      {
+        "name": "RecalcStyleDuration",
+        "value": 0.144254
+      },
+      {
+        "name": "DevToolsCommandDuration",
+        "value": 0.000029
+      },
+      {
+        "name": "ScriptDuration",
+        "value": 0.257609
+      },
+      {
+        "name": "V8CompileDuration",
+        "value": 0.000576
+      },
+      {
+        "name": "TaskDuration",
+        "value": 0.794756
+      },
+      {
+        "name": "TaskOtherDuration",
+        "value": 0.263333
+      },
+      {
+        "name": "ThreadTime",
+        "value": 0.463275
+      },
+      {
+        "name": "ProcessTime",
+        "value": 0.83
+      },
+      {
+        "name": "JSHeapUsedSize",
+        "value": 5866124
+      },
+      {
+        "name": "JSHeapTotalSize",
+        "value": 8650752
+      },
+      {
+        "name": "FirstMeaningfulPaint",
+        "value": 909.065197
+      },
+      {
+        "name": "DomContentLoaded",
+        "value": 908.951113
+      },
+      {
+        "name": "NavigationStart",
+        "value": 908.63893
+      }
+    ]
+  },
+  "idle": [
+    {
+      "name": "Timestamp",
+      "value": 919.065326
+    },
+    {
+      "name": "AudioHandlers",
+      "value": 0
+    },
+    {
+      "name": "AudioWorkletProcessors",
+      "value": 0
+    },
+    {
+      "name": "Documents",
+      "value": 5
+    },
+    {
+      "name": "Frames",
+      "value": 5
+    },
+    {
+      "name": "JSEventListeners",
+      "value": 445
+    },
+    {
+      "name": "LayoutObjects",
+      "value": 715
+    },
+    {
+      "name": "MediaKeySessions",
+      "value": 0
+    },
+    {
+      "name": "MediaKeys",
+      "value": 0
+    },
+    {
+      "name": "Nodes",
+      "value": 772
+    },
+    {
+      "name": "Resources",
+      "value": 32
+    },
+    {
+      "name": "ContextLifecycleStateObservers",
+      "value": 28
+    },
+    {
+      "name": "V8PerContextDatas",
+      "value": 4
+    },
+    {
+      "name": "WorkerGlobalScopes",
+      "value": 0
+    },
+    {
+      "name": "UACSSResources",
+      "value": 0
+    },
+    {
+      "name": "RTCPeerConnections",
+      "value": 0
+    },
+    {
+      "name": "ResourceFetchers",
+      "value": 5
+    },
+    {
+      "name": "AdSubframes",
+      "value": 0
+    },
+    {
+      "name": "DetachedScriptStates",
+      "value": 2
+    },
+    {
+      "name": "ArrayBufferContents",
+      "value": 16
+    },
+    {
+      "name": "LayoutCount",
+      "value": 8
+    },
+    {
+      "name": "RecalcStyleCount",
+      "value": 53
+    },
+    {
+      "name": "LayoutDuration",
+      "value": 0.128955
+    },
+    {
+      "name": "RecalcStyleDuration",
+      "value": 0.144254
+    },
+    {
+      "name": "DevToolsCommandDuration",
+      "value": 0.007282
+    },
+    {
+      "name": "ScriptDuration",
+      "value": 0.257609
+    },
+    {
+      "name": "V8CompileDuration",
+      "value": 0.000576
+    },
+    {
+      "name": "TaskDuration",
+      "value": 0.806216
+    },
+    {
+      "name": "TaskOtherDuration",
+      "value": 0.26754
+    },
+    {
+      "name": "ThreadTime",
+      "value": 0.48014
+    },
+    {
+      "name": "ProcessTime",
+      "value": 1
+    },
+    {
+      "name": "JSHeapUsedSize",
+      "value": 6205600
+    },
+    {
+      "name": "JSHeapTotalSize",
+      "value": 8912896
+    },
+    {
+      "name": "FirstMeaningfulPaint",
+      "value": 909.065197
+    },
+    {
+      "name": "DomContentLoaded",
+      "value": 908.951113
+    },
+    {
+      "name": "NavigationStart",
+      "value": 908.63893
+    }
+  ],
+  "bookingResponseApproxMs": 162,
+  "afterScroll": {
+    "audit": {
+      "cls": 0,
+      "lcp": [
+        {
+          "startTime": 428,
+          "size": 46900,
+          "url": "",
+          "element": "H1"
+        }
+      ],
+      "longtasks": [
+        {
+          "startTime": 502.0999999999767,
+          "duration": 109
+        }
+      ],
+      "interactions": [
+        {
+          "name": "pointerdown",
+          "duration": 192,
+          "interactionId": 3325
+        },
+        {
+          "name": "pointerup",
+          "duration": 192,
+          "interactionId": 3325
+        },
+        {
+          "name": "click",
+          "duration": 192,
+          "interactionId": 3325
+        },
+        {
+          "name": "keydown",
+          "duration": 120,
+          "interactionId": 3332
+        },
+        {
+          "name": "keyup",
+          "duration": 104,
+          "interactionId": 3332
+        }
+      ]
+    },
+    "memory": {
+      "usedJSHeapSize": 9712643,
+      "totalJSHeapSize": 13751747
+    },
+    "requestCount": 65,
+    "encodedBytes": 2694385,
+    "cdp": [
+      {
+        "name": "Timestamp",
+        "value": 926.390135
+      },
+      {
+        "name": "AudioHandlers",
+        "value": 0
+      },
+      {
+        "name": "AudioWorkletProcessors",
+        "value": 0
+      },
+      {
+        "name": "Documents",
+        "value": 5
+      },
+      {
+        "name": "Frames",
+        "value": 6
+      },
+      {
+        "name": "JSEventListeners",
+        "value": 537
+      },
+      {
+        "name": "LayoutObjects",
+        "value": 773
+      },
+      {
+        "name": "MediaKeySessions",
+        "value": 0
+      },
+      {
+        "name": "MediaKeys",
+        "value": 0
+      },
+      {
+        "name": "Nodes",
+        "value": 822
+      },
+      {
+        "name": "Resources",
+        "value": 63
+      },
+      {
+        "name": "ContextLifecycleStateObservers",
+        "value": 34
+      },
+      {
+        "name": "V8PerContextDatas",
+        "value": 4
+      },
+      {
+        "name": "WorkerGlobalScopes",
+        "value": 0
+      },
+      {
+        "name": "UACSSResources",
+        "value": 0
+      },
+      {
+        "name": "RTCPeerConnections",
+        "value": 0
+      },
+      {
+        "name": "ResourceFetchers",
+        "value": 5
+      },
+      {
+        "name": "AdSubframes",
+        "value": 0
+      },
+      {
+        "name": "DetachedScriptStates",
+        "value": 2
+      },
+      {
+        "name": "ArrayBufferContents",
+        "value": 75
+      },
+      {
+        "name": "LayoutCount",
+        "value": 15
+      },
+      {
+        "name": "RecalcStyleCount",
+        "value": 144
+      },
+      {
+        "name": "LayoutDuration",
+        "value": 0.13226
+      },
+      {
+        "name": "RecalcStyleDuration",
+        "value": 0.210419
+      },
+      {
+        "name": "DevToolsCommandDuration",
+        "value": 0.192959
+      },
+      {
+        "name": "ScriptDuration",
+        "value": 0.323899
+      },
+      {
+        "name": "V8CompileDuration",
+        "value": 0.000666
+      },
+      {
+        "name": "TaskDuration",
+        "value": 1.433832
+      },
+      {
+        "name": "TaskOtherDuration",
+        "value": 0.573629
+      },
+      {
+        "name": "ThreadTime",
+        "value": 0.817781
+      },
+      {
+        "name": "ProcessTime",
+        "value": 2.43
+      },
+      {
+        "name": "JSHeapUsedSize",
+        "value": 8086660
+      },
+      {
+        "name": "JSHeapTotalSize",
+        "value": 12128256
+      },
+      {
+        "name": "FirstMeaningfulPaint",
+        "value": 909.065197
+      },
+      {
+        "name": "DomContentLoaded",
+        "value": 908.951113
+      },
+      {
+        "name": "NavigationStart",
+        "value": 908.63893
+      }
+    ]
+  },
+  "requests": [
+    {
+      "url": "http://127.0.0.1:4181/",
+      "method": "GET",
+      "resourceType": "document"
+    },
+    {
+      "url": "http://127.0.0.1:4181/hero/my-photo.jpg",
+      "method": "GET",
+      "resourceType": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/2s5_mqxsvd6h4.css",
+      "method": "GET",
+      "resourceType": "stylesheet"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/1pcw6gskne7pf.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/0li7vzj18bfpo.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/092r-mewpaf3q.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/3hcg696yt7n09.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/turbopack-2u1d16houkiyo.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/232te0tqk31l9.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/0mqcgxbdvx-rb.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/2v5nlsrhu_bhs.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/3irz908jdupht.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/1waiqjd-aa5i2.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/brand/logo-210.webp",
+      "method": "GET",
+      "resourceType": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4181/icon.ico?icon.0yydje_fje4q2.ico",
+      "method": "GET",
+      "resourceType": "other"
+    },
+    {
+      "url": "http://127.0.0.1:4181/",
+      "method": "HEAD",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/",
+      "method": "HEAD",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/__next._index.txt?_rsc=yIp22O3xgPPxC28X",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/__next.__PAGE__.txt?_rsc=8nTjltbQWvg6NcbE",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/__next.services.__PAGE__.txt?_rsc=sf1YpdcMRkAgPkSR",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/27ickcam9e369.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/consent/",
+      "method": "HEAD",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/privacy/",
+      "method": "HEAD",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/consent/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/privacy/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/privacy/__next.privacy.__PAGE__.txt?_rsc=HrEtqPkwiCQvqKeY",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/consent/__next.consent.__PAGE__.txt?_rsc=asTrPYts6D0MCIms",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/implantation.webp",
+      "method": "GET",
+      "resourceType": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/zub.webp",
+      "method": "GET",
+      "resourceType": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/caries.webp",
+      "method": "GET",
+      "resourceType": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/implantation/",
+      "method": "HEAD",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/implantation/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/implantation/__next.services.$d$slug.__PAGE__.txt?_rsc=XE6wlfXwA-iF3IQ6",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/09xwpczwq71j_.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/Doctors/fed.webp",
+      "method": "GET",
+      "resourceType": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4181/Doctors/bak.webp",
+      "method": "GET",
+      "resourceType": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4181/Doctors/kos.webp",
+      "method": "GET",
+      "resourceType": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4181/Doctors/bah.webp",
+      "method": "GET",
+      "resourceType": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4181/Doctors/che.webp",
+      "method": "GET",
+      "resourceType": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4181/Doctors/fedor.webp",
+      "method": "GET",
+      "resourceType": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4181/Doctors/gra.webp",
+      "method": "GET",
+      "resourceType": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/implant-tooth-package/__next.services.$d$slug.__PAGE__.txt?_rsc=XE6wlfXwA-iF3IQ6",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/caries/__next.services.$d$slug.__PAGE__.txt?_rsc=XE6wlfXwA-iF3IQ6",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "https://yandex.ru/map-widget/v1/?mode=search&oid=99713820273&ol=biz&z=17",
+      "method": "GET",
+      "resourceType": "document"
+    },
+    {
+      "url": "http://127.0.0.1:4181/contact/",
+      "method": "HEAD",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/contact/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/contact/__next.contact.__PAGE__.txt?_rsc=BiuOixuigeBXVJn7",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/promotions/",
+      "method": "HEAD",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/doctors/",
+      "method": "HEAD",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/about/",
+      "method": "HEAD",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/0hyr24h3fot3n.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/hygiene/__next.services.$d$slug.__PAGE__.txt?_rsc=XE6wlfXwA-iF3IQ6",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/promotions/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/doctors/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/about/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/orthodontics/__next.services.$d$slug.__PAGE__.txt?_rsc=XE6wlfXwA-iF3IQ6",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/promotions/__next.promotions.__PAGE__.txt?_rsc=Ddqm6bQDeiNSWIz_",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/about/__next.about.__PAGE__.txt?_rsc=hzcUC6YqarYE9pKE",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/doctors/__next.doctors.__PAGE__.txt?_rsc=R-5Glde3w-XSeXe_",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/crowns/__next.services.$d$slug.__PAGE__.txt?_rsc=XE6wlfXwA-iF3IQ6",
+      "method": "GET",
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/0u3l3q7-pjax1.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/1xe8f1b56mjbb.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/1iwomhcjs06cm.js",
+      "method": "GET",
+      "resourceType": "script"
+    }
+  ],
+  "responses": [
+    {
+      "url": "http://127.0.0.1:4181/",
+      "status": 200,
+      "type": "document"
+    },
+    {
+      "url": "http://127.0.0.1:4181/hero/my-photo.jpg",
+      "status": 200,
+      "type": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/2s5_mqxsvd6h4.css",
+      "status": 200,
+      "type": "stylesheet"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/0li7vzj18bfpo.js",
+      "status": 200,
+      "type": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/1pcw6gskne7pf.js",
+      "status": 200,
+      "type": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/turbopack-2u1d16houkiyo.js",
+      "status": 200,
+      "type": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/3hcg696yt7n09.js",
+      "status": 200,
+      "type": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/2v5nlsrhu_bhs.js",
+      "status": 200,
+      "type": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/232te0tqk31l9.js",
+      "status": 200,
+      "type": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/0mqcgxbdvx-rb.js",
+      "status": 200,
+      "type": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/092r-mewpaf3q.js",
+      "status": 200,
+      "type": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/1waiqjd-aa5i2.js",
+      "status": 200,
+      "type": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/3irz908jdupht.js",
+      "status": 200,
+      "type": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/brand/logo-210.webp",
+      "status": 200,
+      "type": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4181/icon.ico?icon.0yydje_fje4q2.ico",
+      "status": 200,
+      "type": "other"
+    },
+    {
+      "url": "http://127.0.0.1:4181/",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/__next._index.txt?_rsc=yIp22O3xgPPxC28X",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/__next.__PAGE__.txt?_rsc=8nTjltbQWvg6NcbE",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/__next.services.__PAGE__.txt?_rsc=sf1YpdcMRkAgPkSR",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/27ickcam9e369.js",
+      "status": 200,
+      "type": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/consent/",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/privacy/",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/privacy/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/consent/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/consent/__next.consent.__PAGE__.txt?_rsc=asTrPYts6D0MCIms",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/privacy/__next.privacy.__PAGE__.txt?_rsc=HrEtqPkwiCQvqKeY",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/implantation.webp",
+      "status": 200,
+      "type": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/zub.webp",
+      "status": 200,
+      "type": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/caries.webp",
+      "status": 200,
+      "type": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/implantation/",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/implantation/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/implantation/__next.services.$d$slug.__PAGE__.txt?_rsc=XE6wlfXwA-iF3IQ6",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/09xwpczwq71j_.js",
+      "status": 200,
+      "type": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/Doctors/bak.webp",
+      "status": 200,
+      "type": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4181/Doctors/kos.webp",
+      "status": 200,
+      "type": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4181/Doctors/fed.webp",
+      "status": 200,
+      "type": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4181/Doctors/bah.webp",
+      "status": 200,
+      "type": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4181/Doctors/che.webp",
+      "status": 200,
+      "type": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4181/Doctors/fedor.webp",
+      "status": 200,
+      "type": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4181/Doctors/gra.webp",
+      "status": 200,
+      "type": "image"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/implant-tooth-package/__next.services.$d$slug.__PAGE__.txt?_rsc=XE6wlfXwA-iF3IQ6",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/caries/__next.services.$d$slug.__PAGE__.txt?_rsc=XE6wlfXwA-iF3IQ6",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/contact/",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/contact/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/contact/__next.contact.__PAGE__.txt?_rsc=BiuOixuigeBXVJn7",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/promotions/",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/doctors/",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/about/",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/0hyr24h3fot3n.js",
+      "status": 200,
+      "type": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/hygiene/__next.services.$d$slug.__PAGE__.txt?_rsc=XE6wlfXwA-iF3IQ6",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/promotions/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/about/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/doctors/__next._tree.txt?_rsc=5CB68i4pnAekjehf",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/orthodontics/__next.services.$d$slug.__PAGE__.txt?_rsc=XE6wlfXwA-iF3IQ6",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/promotions/__next.promotions.__PAGE__.txt?_rsc=Ddqm6bQDeiNSWIz_",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/about/__next.about.__PAGE__.txt?_rsc=hzcUC6YqarYE9pKE",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/doctors/__next.doctors.__PAGE__.txt?_rsc=R-5Glde3w-XSeXe_",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/crowns/__next.services.$d$slug.__PAGE__.txt?_rsc=XE6wlfXwA-iF3IQ6",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/0u3l3q7-pjax1.js",
+      "status": 200,
+      "type": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/1xe8f1b56mjbb.js",
+      "status": 200,
+      "type": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4181/_next/static/chunks/1iwomhcjs06cm.js",
+      "status": 200,
+      "type": "script"
+    }
+  ],
+  "failedRequests": [
+    {
+      "url": "http://127.0.0.1:4181/",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4181/consent/",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4181/privacy/",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4181/services/implantation/",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://yandex.ru/map-widget/v1/?mode=search&oid=99713820273&ol=biz&z=17",
+      "error": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "url": "http://127.0.0.1:4181/contact/",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4181/promotions/",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4181/doctors/",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:4181/about/",
+      "error": "net::ERR_ABORTED"
+    }
+  ],
+  "errors": []
+}

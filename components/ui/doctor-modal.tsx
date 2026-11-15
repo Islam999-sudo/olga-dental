@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useSyncExternalStore } from "react";
+import { useRef, useSyncExternalStore } from "react";
 import Image from "next/image";
 import { createPortal } from "react-dom";
 import { Doctor } from "@/data/doctors";
+import { useModalAccessibility } from "@/components/hooks/use-modal-accessibility";
 
 const subscribeToHydration = () => () => {};
 
@@ -19,24 +20,8 @@ export function DoctorModal({
   onBook,
 }: Props) {
   const mounted = useSyncExternalStore(subscribeToHydration, () => true, () => false);
-
-  useEffect(() => {
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        onClose();
-      }
-    };
-
-    document.addEventListener("keydown", handleEsc);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      document.removeEventListener("keydown", handleEsc);
-    };
-  }, [onClose]);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useModalAccessibility(dialogRef, mounted, onClose);
 
   if (!mounted) return null;
 
@@ -58,12 +43,17 @@ export function DoctorModal({
       onClick={onClose}
     >
       <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="doctor-profile-title"
+        tabIndex={-1}
         onClick={(e) => e.stopPropagation()}
         className="
           relative
           w-full
           max-w-[1040px]
-          max-h-[88vh]
+          max-h-[calc(100dvh-3rem)]
           overflow-y-auto
           overflow-x-hidden
           rounded-[30px]
@@ -264,6 +254,7 @@ export function DoctorModal({
               </span>
 
               <h2
+                id="doctor-profile-title"
                 className="
                   mt-4
                   pr-10

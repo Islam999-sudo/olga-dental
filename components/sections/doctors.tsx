@@ -352,8 +352,8 @@ export function Doctors({ onBookDoctor }: Props) {
                       sm:w-[360px]
                     "
                     role="button"
+                    aria-hidden={pos.opacity === 0}
                     tabIndex={isActive ? 0 : -1}
-                    aria-label={`Открыть профиль врача: ${d.name}`}
                     onClick={() => {
                       if (dragBlockedRef.current) return;
                       if (!isActive) {
@@ -370,6 +370,7 @@ export function Doctors({ onBookDoctor }: Props) {
                       }
                     }}
                   >
+                    <span className="sr-only">{isActive ? "Открыть профиль врача: " : "Показать врача: "}</span>
                     <motion.div
                       whileHover={
                         isMobile
@@ -397,7 +398,7 @@ export function Doctors({ onBookDoctor }: Props) {
                         sizes="(max-width: 640px) 292px, 360px"
                         alt={d.name}
                         draggable={false}
-                        loading={isActive ? "eager" : "lazy"}
+                        loading="lazy"
                         decoding="async"
                         className="
                           pointer-events-none
@@ -426,8 +427,8 @@ export function Doctors({ onBookDoctor }: Props) {
                           inset-0
                           z-[2]
                           bg-gradient-to-t
-                          from-[var(--accent)]/92
-                          via-[var(--accent)]/24
+                          from-[#031d19]
+                          via-[#063d37]/80
                           to-transparent
                         "
                       />

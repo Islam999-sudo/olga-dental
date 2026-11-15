@@ -1,0 +1,31 @@
+{
+  "repository": "Islam999-sudo/olga-dental",
+  "branch": "audit/olga-quality-2026",
+  "verified_at_date_utc": "2026-11-15",
+  "runs": [
+    {
+      "name": "OLGA Frontend Quality Audit",
+      "commit": "e3d33759be9b383b492f96624172f3f5d8fa5033",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Islam999-sudo/olga-dental/actions/runs/43754378642"
+    },
+    {
+      "name": "OLGA Booking PHP Safety Checks — initial attempt",
+      "commit": "e3d33759be9b383b492f96624172f3f5d8fa5033",
+      "status": "completed",
+      "conclusion": "failure",
+      "reason": "Temporary test config mutations were not immediately visible with CI CLI opcode cache; intake-flag assertion failed. Assertion retained, opcode cache disabled for synthetic harness processes only.",
+      "url": "https://github.com/Islam999-sudo/olga-dental/actions/runs/43754378650"
+    },
+    {
+      "name": "OLGA Booking PHP Safety Checks — fixed test isolation",
+      "commit": "093132c95656ee17238993c509b70fc134b8b99e",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": { "php-lint": "success", "php-integration": "success" },
+      "url": "https://github.com/Islam999-sudo/olga-dental/actions/runs/43754805860"
+    }
+  ],
+  "limits": "These runs verify the specified commits. The later report-only commit does not change application runtime. No merge or production deployment occurred."
+}

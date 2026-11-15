@@ -88,7 +88,7 @@ const stats = [
 
 export function AboutPageContent() {
   return (
-    <main className="relative overflow-hidden pb-32 pt-32">
+    <div className="relative overflow-hidden pb-32 pt-32">
       {/* BACKGROUND */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div
@@ -1106,6 +1106,6 @@ export function AboutPageContent() {
           </div>
         </section>
       </div>
-    </main>
+    </div>
   );
 }

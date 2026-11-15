@@ -1,0 +1,111 @@
+{
+  "timestamp": "2026-11-15T19:47:24.206Z",
+  "browser": "156.0.8078.79",
+  "base": "http://127.0.0.1:4173",
+  "method": "Chromium real browser, static export; only same-origin GET requests allowed. Three independent history documents; three promotion fragment targets; direct fragment document; 1800ms delayed JavaScript hydration.",
+  "results": [
+    {
+      "test": "history restores scrolled home",
+      "iteration": 1,
+      "original": {
+        "url": "http://127.0.0.1:4173/",
+        "y": 1200,
+        "hash": "",
+        "targetTop": null,
+        "viewport": 768
+      },
+      "back": {
+        "url": "http://127.0.0.1:4173/",
+        "y": 1200,
+        "hash": "",
+        "targetTop": null,
+        "viewport": 768
+      },
+      "pass": true
+    },
+    {
+      "test": "history restores scrolled home",
+      "iteration": 2,
+      "original": {
+        "url": "http://127.0.0.1:4173/",
+        "y": 1200,
+        "hash": "",
+        "targetTop": null,
+        "viewport": 768
+      },
+      "back": {
+        "url": "http://127.0.0.1:4173/",
+        "y": 1200,
+        "hash": "",
+        "targetTop": null,
+        "viewport": 768
+      },
+      "pass": true
+    },
+    {
+      "test": "history restores scrolled home",
+      "iteration": 3,
+      "original": {
+        "url": "http://127.0.0.1:4173/",
+        "y": 1200,
+        "hash": "",
+        "targetTop": null,
+        "viewport": 768
+      },
+      "back": {
+        "url": "http://127.0.0.1:4173/",
+        "y": 1200,
+        "hash": "",
+        "targetTop": null,
+        "viewport": 768
+      },
+      "pass": true
+    },
+    {
+      "test": "promotion to service fragment",
+      "slug": "hygiene",
+      "url": "http://127.0.0.1:4173/services/#hygiene",
+      "y": 1780,
+      "hash": "#hygiene",
+      "targetTop": 192,
+      "viewport": 768,
+      "pass": true
+    },
+    {
+      "test": "promotion to service fragment",
+      "slug": "caries",
+      "url": "http://127.0.0.1:4173/services/#caries",
+      "y": 1245,
+      "hash": "#caries",
+      "targetTop": 191.5,
+      "viewport": 768,
+      "pass": true
+    },
+    {
+      "test": "promotion to service fragment",
+      "slug": "implant-tooth-package",
+      "url": "http://127.0.0.1:4173/services/#implant-tooth-package",
+      "y": 686,
+      "hash": "#implant-tooth-package",
+      "targetTop": 192.25,
+      "viewport": 768,
+      "pass": true
+    },
+    {
+      "test": "direct document fragment",
+      "url": "http://127.0.0.1:4173/services/#caries",
+      "y": 1245,
+      "hash": "#caries",
+      "targetTop": 191.5,
+      "viewport": 768,
+      "pass": true
+    },
+    {
+      "test": "scroll before delayed hydration",
+      "javascriptDelayMs": 1800,
+      "original": 1200,
+      "actual": 1200,
+      "pass": true
+    }
+  ]
+}

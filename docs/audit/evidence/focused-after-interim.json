@@ -1,0 +1,100 @@
+{
+  "flows": [
+    {
+      "name": "Desktop booking accessible inputs+trap+restore",
+      "pass": true
+    },
+    {
+      "name": "Form Enter validates and demo succeeds",
+      "pass": false,
+      "error": "locator.waitFor: Error: strict mode violation: getByRole('alert') resolved to 2 elements:\n    1) <p role=\"alert\" id=\"_R_79bH1_\" class=\"text-sm font-medium text-red-600 dark:text-red-300\">Для отправки заявки необходимо отдельное согласие…</p> aka getByText('Для отправки заявки необходимо отдельное согласие на обработку данных')\n    2) <div role=\"alert\" aria-live=\"assertive\" id=\"__next-route-announc"
+    },
+    {
+      "name": "Doctor dialog focus trap and booking context",
+      "pass": true
+    },
+    {
+      "name": "Menu escape focus 320x568",
+      "pass": true
+    },
+    {
+      "name": "Menu booking transition 320x568",
+      "pass": true
+    },
+    {
+      "name": "Menu escape focus 390x844",
+      "pass": true
+    },
+    {
+      "name": "Menu booking transition 390x844",
+      "pass": true
+    },
+    {
+      "name": "Menu escape focus 844x390",
+      "pass": true
+    },
+    {
+      "name": "Menu booking transition 844x390",
+      "pass": true
+    },
+    {
+      "name": "Menu escape focus 768x1024",
+      "pass": true
+    },
+    {
+      "name": "Menu booking transition 768x1024",
+      "pass": true
+    }
+  ],
+  "axe": [
+    {
+      "route": "/",
+      "violations": [
+        {
+          "id": "label-content-name-mismatch",
+          "nodes": [
+            [
+              ".h-\\[455px\\].w-\\[292px\\][aria-hidden=\"false\"]:nth-child(1)"
+            ],
+            [
+              ".h-\\[455px\\].w-\\[292px\\][aria-hidden=\"false\"]:nth-child(2)"
+            ],
+            [
+              ".h-\\[455px\\].w-\\[292px\\][aria-hidden=\"false\"]:nth-child(7)"
+            ],
+            [
+              ".max-w-sm > .gap-3.group[href=\"/\"]"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/services/",
+      "violations": [
+        {
+          "id": "label-content-name-mismatch",
+          "nodes": [
+            [
+              ".max-w-sm > .gap-3.group[href=\"/\"]"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/doctors/",
+      "violations": [
+        {
+          "id": "label-content-name-mismatch",
+          "nodes": [
+            [
+              ".group.inline-flex[href=\"/\"]"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "anchors": []
+}

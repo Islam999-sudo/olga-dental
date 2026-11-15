@@ -114,7 +114,7 @@ export function DoctorsPage() {
   };
 
   return (
-    <main
+    <div
       className="
         relative
         min-h-screen
@@ -536,7 +536,7 @@ export function DoctorsPage() {
                         rounded-full
                         border
                         border-white/18
-                        bg-white/14
+                        bg-[#071412]/80
                         px-4
                         py-2
                         text-xs
@@ -972,6 +972,6 @@ export function DoctorsPage() {
           onBook={handleBookDoctor}
         />
       )}
-    </main>
+    </div>
   );
 }

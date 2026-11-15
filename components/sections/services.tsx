@@ -81,7 +81,7 @@ return (
             <h1
               className="
                 mt-6
-                text-5xl
+                text-[clamp(1.75rem,8.8vw,3rem)]
                 font-semibold
                 tracking-tight
                 text-[var(--accent)]
@@ -139,7 +139,7 @@ return (
             <h2
               className="
                 mt-6
-                text-4xl
+                text-[clamp(2rem,10vw,2.25rem)]
                 font-semibold
                 tracking-tight
                 text-[var(--accent)]
@@ -293,9 +293,9 @@ return (
                         bg-gradient-to-br
                         from-[var(--accent-light)]
                         via-[#16d6c5]
-                        to-[var(--accent)]
+                        to-[#10b6a7]
                         p-5
-                        text-white
+                        text-[#071412]
                         shadow-[0_20px_80px_rgba(18,199,183,0.22)]
                         lg:col-span-2
                         lg:row-span-2
@@ -381,7 +381,7 @@ return (
                         rounded-full
                         border
                         border-white/25
-                        bg-white/15
+                        bg-[#071412]/80
                         px-3
                         py-1.5
                         text-xs
@@ -409,7 +409,7 @@ return (
                           text-xs
                           uppercase
                           tracking-[0.2em]
-                          text-white
+                          text-[#071412]
                           backdrop-blur
                         "
                       >
@@ -430,7 +430,7 @@ return (
                     <p
                       className={
                         isFeatured
-                          ? "mt-5 max-w-xl text-lg leading-relaxed text-white/90"
+                          ? "mt-5 max-w-xl text-lg leading-relaxed text-[#071412]"
                           : "mt-4 text-sm leading-relaxed text-[var(--text-muted)]"
                       }
                     >
@@ -443,7 +443,7 @@ return (
                           key={benefit}
                           className={
                             isFeatured
-                              ? "rounded-full border border-white/15 bg-white/12 px-3 py-1 text-xs text-white backdrop-blur"
+                              ? "rounded-full border border-[#071412]/20 bg-white/20 px-3 py-1 text-xs text-[#071412] backdrop-blur"
                               : "rounded-full border border-[var(--accent-light)]/18 bg-[var(--accent-light)]/7 px-3 py-1 text-xs text-[var(--text-soft)]"
                           }
                         >
@@ -456,7 +456,7 @@ return (
                       <div
                         className={
                           isFeatured
-                            ? "text-2xl font-semibold text-white"
+                            ? "text-2xl font-semibold text-[#071412]"
                             : "text-lg font-semibold text-[var(--accent)]"
                         }
                       >
@@ -474,7 +474,7 @@ return (
                               py-3
                               text-sm
                               font-medium
-                              text-[var(--accent)]
+                              text-[#075e57]
                               shadow-lg
                               transition
                               hover:scale-[1.03]
@@ -492,7 +492,7 @@ return (
                               text-[var(--accent)]
                               transition
                               hover:bg-[var(--accent-light)]
-                              hover:text-white
+                              hover:text-[#071412]
                             `
                         }
                       >

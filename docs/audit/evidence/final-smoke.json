@@ -1,0 +1,385 @@
+{
+  "timestamp": "2026-11-15T19:47:16.324Z",
+  "build": "Final normal static export: initial pathname scroll guard + compact ICO favicon; visual/layout matrix was run before these two targeted changes.",
+  "routes": [
+    {
+      "route": "/",
+      "status": 200
+    },
+    {
+      "route": "/services/",
+      "status": 200
+    },
+    {
+      "route": "/doctors/",
+      "status": 200
+    },
+    {
+      "route": "/about/",
+      "status": 200
+    },
+    {
+      "route": "/contact/",
+      "status": 200
+    },
+    {
+      "route": "/promotions/",
+      "status": 200
+    },
+    {
+      "route": "/privacy/",
+      "status": 200
+    },
+    {
+      "route": "/consent/",
+      "status": 200
+    },
+    {
+      "route": "/services/implantation/",
+      "status": 200
+    },
+    {
+      "route": "/services/implant-tooth-package/",
+      "status": 200
+    },
+    {
+      "route": "/services/caries/",
+      "status": 200
+    },
+    {
+      "route": "/services/hygiene/",
+      "status": 200
+    },
+    {
+      "route": "/services/veneers/",
+      "status": 200
+    },
+    {
+      "route": "/services/extraction/",
+      "status": 200
+    },
+    {
+      "route": "/services/pulpitis/",
+      "status": 200
+    },
+    {
+      "route": "/services/periodontitis/",
+      "status": 200
+    },
+    {
+      "route": "/services/crowns/",
+      "status": 200
+    },
+    {
+      "route": "/services/prosthetics/",
+      "status": 200
+    },
+    {
+      "route": "/services/sinus/",
+      "status": 200
+    },
+    {
+      "route": "/services/orthodontics/",
+      "status": 200
+    }
+  ],
+  "assets": [
+    {
+      "asset": "/icon.ico",
+      "status": 200,
+      "bytes": 13157,
+      "contentType": "image/vnd.microsoft.icon"
+    },
+    {
+      "asset": "/hero/my-photo.jpg",
+      "status": 200,
+      "bytes": 160327,
+      "contentType": "image/jpeg"
+    },
+    {
+      "asset": "/_next/static/chunks/2s5_mqxsvd6h4.css",
+      "status": 200,
+      "bytes": 99545,
+      "contentType": "text/css"
+    },
+    {
+      "asset": "/_next/static/chunks/1pcw6gskne7pf.js",
+      "status": 200,
+      "bytes": 5600,
+      "contentType": "text/javascript"
+    },
+    {
+      "asset": "/_next/static/chunks/0li7vzj18bfpo.js",
+      "status": 200,
+      "bytes": 34200,
+      "contentType": "text/javascript"
+    },
+    {
+      "asset": "/_next/static/chunks/092r-mewpaf3q.js",
+      "status": 200,
+      "bytes": 229052,
+      "contentType": "text/javascript"
+    },
+    {
+      "asset": "/_next/static/chunks/3hcg696yt7n09.js",
+      "status": 200,
+      "bytes": 164900,
+      "contentType": "text/javascript"
+    },
+    {
+      "asset": "/_next/static/chunks/turbopack-2u1d16houkiyo.js",
+      "status": 200,
+      "bytes": 9974,
+      "contentType": "text/javascript"
+    },
+    {
+      "asset": "/_next/static/chunks/232te0tqk31l9.js",
+      "status": 200,
+      "bytes": 15125,
+      "contentType": "text/javascript"
+    },
+    {
+      "asset": "/_next/static/chunks/0mqcgxbdvx-rb.js",
+      "status": 200,
+      "bytes": 43401,
+      "contentType": "text/javascript"
+    },
+    {
+      "asset": "/_next/static/chunks/2v5nlsrhu_bhs.js",
+      "status": 200,
+      "bytes": 29206,
+      "contentType": "text/javascript"
+    },
+    {
+      "asset": "/_next/static/chunks/3irz908jdupht.js",
+      "status": 200,
+      "bytes": 128217,
+      "contentType": "text/javascript"
+    },
+    {
+      "asset": "/_next/static/chunks/1waiqjd-aa5i2.js",
+      "status": 200,
+      "bytes": 86621,
+      "contentType": "text/javascript"
+    },
+    {
+      "asset": "/icon.ico?icon.0yydje_fje4q2.ico",
+      "status": 200,
+      "bytes": 13157,
+      "contentType": "image/vnd.microsoft.icon"
+    },
+    {
+      "asset": "/_next/static/chunks/0cz1d0mv5g_q7.js",
+      "status": 200,
+      "bytes": 112594,
+      "contentType": "text/javascript"
+    },
+    {
+      "asset": "/brand/logo-210.webp",
+      "status": 200,
+      "bytes": 21888,
+      "contentType": "image/webp"
+    },
+    {
+      "asset": "/services/implantation.webp",
+      "status": 200,
+      "bytes": 125286,
+      "contentType": "image/webp"
+    },
+    {
+      "asset": "/services/zub.webp",
+      "status": 200,
+      "bytes": 158592,
+      "contentType": "image/webp"
+    },
+    {
+      "asset": "/services/caries.webp",
+      "status": 200,
+      "bytes": 133564,
+      "contentType": "image/webp"
+    },
+    {
+      "asset": "/Doctors/fed.webp",
+      "status": 200,
+      "bytes": 274094,
+      "contentType": "image/webp"
+    },
+    {
+      "asset": "/Doctors/bak.webp",
+      "status": 200,
+      "bytes": 42302,
+      "contentType": "image/webp"
+    },
+    {
+      "asset": "/Doctors/kos.webp",
+      "status": 200,
+      "bytes": 92602,
+      "contentType": "image/webp"
+    },
+    {
+      "asset": "/Doctors/bah.webp",
+      "status": 200,
+      "bytes": 44464,
+      "contentType": "image/webp"
+    },
+    {
+      "asset": "/Doctors/che.webp",
+      "status": 200,
+      "bytes": 40256,
+      "contentType": "image/webp"
+    },
+    {
+      "asset": "/Doctors/fedor.webp",
+      "status": 200,
+      "bytes": 50488,
+      "contentType": "image/webp"
+    },
+    {
+      "asset": "/Doctors/gra.webp",
+      "status": 200,
+      "bytes": 58188,
+      "contentType": "image/webp"
+    },
+    {
+      "asset": "/_next/static/chunks/27ickcam9e369.js",
+      "status": 200,
+      "bytes": 26449,
+      "contentType": "text/javascript"
+    },
+    {
+      "asset": "/services/hygiene.webp",
+      "status": 200,
+      "bytes": 154670,
+      "contentType": "image/webp"
+    },
+    {
+      "asset": "/services/veneers.webp",
+      "status": 200,
+      "bytes": 138942,
+      "contentType": "image/webp"
+    },
+    {
+      "asset": "/services/extraction.webp",
+      "status": 200,
+      "bytes": 172546,
+      "contentType": "image/webp"
+    },
+    {
+      "asset": "/services/pulpitis.webp",
+      "status": 200,
+      "bytes": 142946,
+      "contentType": "image/webp"
+    },
+    {
+      "asset": "/services/periodontitis.webp",
+      "status": 200,
+      "bytes": 154256,
+      "contentType": "image/webp"
+    },
+    {
+      "asset": "/services/crowns.webp",
+      "status": 200,
+      "bytes": 136322,
+      "contentType": "image/webp"
+    },
+    {
+      "asset": "/services/prosthetics.webp",
+      "status": 200,
+      "bytes": 132794,
+      "contentType": "image/webp"
+    },
+    {
+      "asset": "/services/sinus.webp",
+      "status": 200,
+      "bytes": 144658,
+      "contentType": "image/webp"
+    },
+    {
+      "asset": "/services/orthodontics.webp",
+      "status": 200,
+      "bytes": 137254,
+      "contentType": "image/webp"
+    },
+    {
+      "asset": "/_next/static/chunks/1iwomhcjs06cm.js",
+      "status": 200,
+      "bytes": 41115,
+      "contentType": "text/javascript"
+    },
+    {
+      "asset": "/clinic/clinic-4.webp",
+      "status": 200,
+      "bytes": 58770,
+      "contentType": "image/webp"
+    },
+    {
+      "asset": "/_next/static/chunks/1xe8f1b56mjbb.js",
+      "status": 200,
+      "bytes": 28389,
+      "contentType": "text/javascript"
+    },
+    {
+      "asset": "/clinic/clinic-3.webp",
+      "status": 200,
+      "bytes": 64544,
+      "contentType": "image/webp"
+    },
+    {
+      "asset": "/clinic/clinic-2.webp",
+      "status": 200,
+      "bytes": 64862,
+      "contentType": "image/webp"
+    },
+    {
+      "asset": "/clinic/clinic-6.webp",
+      "status": 200,
+      "bytes": 71606,
+      "contentType": "image/webp"
+    },
+    {
+      "asset": "/_next/static/chunks/0hyr24h3fot3n.js",
+      "status": 200,
+      "bytes": 14298,
+      "contentType": "text/javascript"
+    },
+    {
+      "asset": "/_next/static/chunks/0u3l3q7-pjax1.js",
+      "status": 200,
+      "bytes": 5421,
+      "contentType": "text/javascript"
+    },
+    {
+      "asset": "/_next/static/chunks/09xwpczwq71j_.js",
+      "status": 200,
+      "bytes": 576,
+      "contentType": "text/javascript"
+    }
+  ],
+  "flows": [
+    {
+      "name": "Final navbar booking validates and demo succeeds",
+      "pass": true
+    },
+    {
+      "name": "Final doctor profile context",
+      "pass": true
+    },
+    {
+      "name": "Final service booking context",
+      "pass": true
+    },
+    {
+      "name": "Final mobile menu Escape and booking",
+      "pass": true
+    }
+  ],
+  "runtimeErrors": [],
+  "summary": {
+    "routes": 20,
+    "routeFailures": 0,
+    "assets": 45,
+    "assetFailures": 0,
+    "flowFailures": 0,
+    "runtimeErrors": 0
+  }
+}

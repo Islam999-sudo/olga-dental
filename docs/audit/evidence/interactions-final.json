@@ -1,0 +1,147 @@
+{
+  "timestamp": "2026-11-15T19:52:55.318Z",
+  "source": "Application commit e3d3375; final normal export",
+  "checks": [
+    {
+      "name": "Theme toggles to dark",
+      "pass": true,
+      "details": true
+    },
+    {
+      "name": "Theme persists on reload",
+      "pass": true,
+      "details": true
+    },
+    {
+      "name": "Theme returns to light",
+      "pass": true,
+      "details": true
+    },
+    {
+      "name": "Home carousel next and previous arrows",
+      "pass": true,
+      "details": true
+    },
+    {
+      "name": "Home carousel active card keyboard opens profile",
+      "pass": true,
+      "details": true
+    },
+    {
+      "name": "Doctor filter Все",
+      "pass": true,
+      "details": {
+        "count": 7
+      }
+    },
+    {
+      "name": "Doctor filter Терапия",
+      "pass": true,
+      "details": {
+        "count": 6
+      }
+    },
+    {
+      "name": "Doctor filter Хирургия",
+      "pass": true,
+      "details": {
+        "count": 1
+      }
+    },
+    {
+      "name": "Doctor filter Имплантация",
+      "pass": true,
+      "details": {
+        "count": 1
+      }
+    },
+    {
+      "name": "Doctor filter Ортопедия",
+      "pass": true,
+      "details": {
+        "count": 3
+      }
+    },
+    {
+      "name": "Doctor filter Ортодонтия",
+      "pass": true,
+      "details": {
+        "count": 1
+      }
+    },
+    {
+      "name": "Doctor filter Гигиена",
+      "pass": true,
+      "details": {
+        "count": 3
+      }
+    },
+    {
+      "name": "Doctor profile 1",
+      "pass": true,
+      "details": true
+    },
+    {
+      "name": "Doctor profile 2",
+      "pass": true,
+      "details": true
+    },
+    {
+      "name": "Doctor profile 3",
+      "pass": true,
+      "details": true
+    },
+    {
+      "name": "Doctor profile 4",
+      "pass": true,
+      "details": true
+    },
+    {
+      "name": "Doctor profile 5",
+      "pass": true,
+      "details": true
+    },
+    {
+      "name": "Doctor profile 6",
+      "pass": true,
+      "details": true
+    },
+    {
+      "name": "Doctor profile 7",
+      "pass": true,
+      "details": true
+    },
+    {
+      "name": "Service FAQ opens by click and closes by keyboard",
+      "pass": true,
+      "details": true
+    },
+    {
+      "name": "Legal mailto rendered /privacy/",
+      "pass": true,
+      "details": {
+        "hrefs": [
+          "mailto:mail@olga-clinic.ru"
+        ],
+        "navigation": "Email client not launched; no message sent"
+      }
+    },
+    {
+      "name": "Legal mailto rendered /consent/",
+      "pass": true,
+      "details": {
+        "hrefs": [
+          "mailto:mail@olga-clinic.ru"
+        ],
+        "navigation": "Email client not launched; no message sent"
+      }
+    }
+  ],
+  "errors": [],
+  "summary": {
+    "total": 22,
+    "passed": 22,
+    "failed": 0,
+    "runtimeErrors": 0
+  }
+}

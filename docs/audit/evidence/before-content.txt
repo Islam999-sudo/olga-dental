@@ -1,0 +1,1 @@
+PASS: 12 services, 12 articles, 12 service images, 7 doctor photos.

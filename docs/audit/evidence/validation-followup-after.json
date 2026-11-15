@@ -1,0 +1,32 @@
+{
+  "timestamp": "2026-11-15T19:46:28.301Z",
+  "explains": "The original after runner asserted the old combined validation paragraph. Current form uses noValidate and specific custom name/phone alerts. The initial native-validation hypothesis was disproved and is not a product failure.",
+  "cases": [
+    {
+      "name": "Empty booking validates with specific name alert",
+      "alert": "Укажите имя от 2 до 60 символов: буквы, пробел, дефис или апостроф.",
+      "pass": true
+    },
+    {
+      "name": "Name rejects digits",
+      "alert": "Укажите имя от 2 до 60 символов: буквы, пробел, дефис или апостроф.",
+      "pass": true
+    },
+    {
+      "name": "Missing phone produces phone alert",
+      "alert": "Укажите корректный номер телефона.",
+      "pass": true
+    },
+    {
+      "name": "Missing consent produces separate alert",
+      "alert": "Для отправки заявки необходимо отдельное согласие на обработку данных.",
+      "pass": true
+    }
+  ],
+  "apiCalls": [],
+  "summary": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0
+  }
+}

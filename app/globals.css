@@ -1,10 +1,11 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   --background: #f6f6f5;
   --foreground: #18181b;
 
-  --accent: #0f8f84;
+  --accent: #08776e;
   --accent-light: #12c7b7;
 
   --text-soft: #263f3b;
@@ -33,6 +34,12 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
 }
 
 body {
@@ -310,8 +317,4 @@ select {
   pointer-events: auto;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
-}
-
-html {
-  scroll-behavior: smooth;
 }
